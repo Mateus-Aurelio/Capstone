@@ -28,7 +28,7 @@ public class Damage : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (!damageOnCollision) return;
-        bool destroy = false;
+        /*bool destroy = false;
         if (damageEnemies && (collision.gameObject.GetComponent<Enemy>() != null || collision.gameObject.CompareTag("Enemy")))
         {
             AHealth health = collision.gameObject.GetComponent<AHealth>();
@@ -43,13 +43,13 @@ public class Damage : MonoBehaviour
             if (!destroy && destroySelfOnDamage) destroy = true;
         }
 
-        if (destroy) Destroy(gameObject); 
+        if (destroy) Destroy(gameObject); */
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (!damageOnTrigger) return;
-        bool destroy = false;
+        /*bool destroy = false;
         if (damageEnemies && (other.gameObject.GetComponent<Enemy>() != null || other.CompareTag("Enemy")))
         {
             AHealth health = other.gameObject.GetComponent<AHealth>();
@@ -64,7 +64,7 @@ public class Damage : MonoBehaviour
             if (!destroy && destroySelfOnDamage) destroy = true;
         }
 
-        if (destroy) Destroy(gameObject);
+        if (destroy) Destroy(gameObject);*/
     }
 
     public void ChangeDamage(float change)

@@ -85,10 +85,10 @@ public class Health : AHealth
     public void Die()
     {
         health = 0;
-        foreach (PlayerActions player in GameObject.FindObjectsOfType<PlayerActions>())
+        /*foreach (PlayerActions player in GameObject.FindObjectsOfType<PlayerActions>())
         {
             player.ChangeGold(goldToPlayers);
-        }
+        }*/
         if (deathPrefab != null) Instantiate(deathPrefab, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
