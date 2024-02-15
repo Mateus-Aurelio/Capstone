@@ -68,10 +68,8 @@
     <Compile Include="Assets\VRTemplateAssets\Scripts\DestroyObject.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\VideoTimeScrubControl.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\VideoPlayerRenderTexture.cs" />
-    <Compile Include="Assets\Scripts\Causes+Effects\Effects\ConditionChangeEffect.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\Rotator.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\XRKnob.cs" />
-    <Compile Include="Assets\Scripts\Causes+Effects\Conditions\SimpleCondition.cs" />
     <Compile Include="Assets\Scripts\MovementRecognizer.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\BooleanToggleVisualsController.cs" />
     <Compile Include="Assets\Scripts\DevHelp.cs" />
@@ -82,6 +80,7 @@
     <Compile Include="Assets\PDollar\Scripts\PDollarGestureRecognizer\Geometry.cs" />
     <Compile Include="Assets\Scripts\HelperComponents\DelayedSpawn.cs" />
     <Compile Include="Assets\Scripts\HelperComponents\DelayedDestroy.cs" />
+    <Compile Include="Assets\Scripts\Causes+Effects\Causes\UpdateCause.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\Callout.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\XRPokeFollowAffordanceFill.cs" />
     <Compile Include="Assets\Scripts\Helpers.cs" />
@@ -93,19 +92,21 @@
     <Compile Include="Assets\Scripts\HelperComponents\MoveOverTime.cs" />
     <Compile Include="Assets\PDollar\Scripts\PDollarGestureRecognizer\Point.cs" />
     <Compile Include="Assets\Scripts\Causes+Effects\Conditions\StateConditional.cs" />
+    <Compile Include="Assets\Scripts\Causes+Effects\Effects\SetConditionEffect.cs" />
     <Compile Include="Assets\Scripts\Causes+Effects\Conditions\ACondition.cs" />
+    <Compile Include="Assets\Scripts\Causes+Effects\Effects\MoveClampedEffect.cs" />
     <Compile Include="Assets\Scripts\Causes+Effects\Effects\AEffect.cs" />
     <Compile Include="Assets\Scripts\Health\Health.cs" />
     <Compile Include="Assets\PDollar\Scripts\PDollarGestureRecognizer\PointCloudRecognizer.cs" />
     <Compile Include="Assets\Scripts\Causes+Effects\Effects\SetActiveEffect.cs" />
     <Compile Include="Assets\Scripts\Causes+Effects\Causes\OnMouseEnterCause.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\BezierCurve.cs" />
-    <Compile Include="Assets\Scripts\Causes+Effects\Effects\SetConditionStateEffect.cs" />
     <Compile Include="Assets\PDollar\Scripts\PDollarGestureRecognizer\GestureIO.cs" />
     <Compile Include="Assets\Scripts\Causes+Effects\Causes\InputCause.cs" />
     <Compile Include="Assets\Scripts\HelperComponents\MoveForwardOverTime.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\LaunchProjectile.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\StepManager.cs" />
+    <Compile Include="Assets\Scripts\Causes+Effects\Conditions\InverseConditional.cs" />
     <Compile Include="Assets\Scripts\OrbSpawner.cs" />
     <Compile Include="Assets\PDollar\Scripts\PDollarGestureRecognizer\Result.cs" />
     <Compile Include="Assets\Scripts\Causes+Effects\Effects\DestroyEffect.cs" />
@@ -115,6 +116,7 @@
     <Compile Include="Assets\VRTemplateAssets\Scripts\AnchorVisuals.cs" />
     <Compile Include="Assets\Scripts\Causes+Effects\Causes\OnTouchCause.cs" />
     <Compile Include="Assets\Scripts\Elevator.cs" />
+    <Compile Include="Assets\Scripts\Causes+Effects\Effects\SpinEffect.cs" />
     <Compile Include="Assets\Scripts\Causes+Effects\Causes\OnMouseExitCause.cs" />
     <Compile Include="Assets\Scripts\Health\DamageOverTime.cs" />
   </ItemGroup>

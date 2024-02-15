@@ -5,15 +5,15 @@ using UnityEngine;
 public class OnTouchCause : ACause
 {
     [SerializeField] private List<string> objectNamesThatCauseTouch = new List<string>();
+    [SerializeField] private List<string> tagsThatCauseTouch = new List<string>();
+    [SerializeField] private List<string> layersThatCauseTouch = new List<string>();
     [SerializeField] private bool triggerCausesTouch = false;
     [SerializeField] private bool collisionCausesTouch = false;
-    [SerializeField] private bool twoDimensional = false;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (twoDimensional) return;
         if (!triggerCausesTouch) return;
-        if (objectNamesThatCauseTouch.Contains(other.name))
+        if (GameObjectCausesTouch(other.gameObject))
         {
             CauseEffects();
         }
@@ -21,31 +21,17 @@ public class OnTouchCause : ACause
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (twoDimensional) return;
         if (!collisionCausesTouch) return;
-        if (objectNamesThatCauseTouch.Contains(collision.gameObject.name))
+        if (GameObjectCausesTouch(collision.gameObject))
         {
             CauseEffects();
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private bool GameObjectCausesTouch(GameObject given)
     {
-        if (!twoDimensional) return;
-        if (!triggerCausesTouch) return;
-        if (objectNamesThatCauseTouch.Contains(collision.gameObject.name))
-        {
-            CauseEffects();
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (!twoDimensional) return;
-        if (!collisionCausesTouch) return;
-        if (objectNamesThatCauseTouch.Contains(collision.gameObject.name))
-        {
-            CauseEffects();
-        }
+        return tagsThatCauseTouch.Contains(given.tag) 
+            || layersThatCauseTouch.Contains(LayerMask.LayerToName(given.layer)) 
+            || objectNamesThatCauseTouch.Contains(given.name);
     }
 }

@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class ChangeConditionEffect : AEffect
 {
-    [SerializeField] SimpleCondition simpleCondition;
+    [SerializeField] StateConditional simpleCondition;
 
     public override void DoEffect()
     {
-        simpleCondition.ChangeConditionState();
+        simpleCondition.SwapCondition();
     }
 }

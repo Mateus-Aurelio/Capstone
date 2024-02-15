@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ConditionChangeEffect : AEffect
+public class SetConditionEffect : AEffect
 {
     [SerializeField] private StateConditional conditional;
+    [SerializeField] private bool conditionToSet;
+
     public override void DoEffect()
     {
-        conditional.SetCondition(true);
+        conditional.SetCondition(conditionToSet);
     }
 }
