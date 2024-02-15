@@ -14,6 +14,7 @@ public class OrbSpawner : MonoBehaviour
     [SerializeField] private Vector3 spawnPos;
     [SerializeField] private Transform normalParent;
     [SerializeField] private Transform movingParent;
+    [SerializeField] private Transform cameraTransform;
     private Transform currentParent;
     private bool moving = false;
     private GameObject currentOrb = null;
@@ -65,7 +66,7 @@ public class OrbSpawner : MonoBehaviour
     private void CreateOrb(GameObject prefab)
     {
         if (currentOrb != null) Destroy(currentOrb);
-        currentOrb = Instantiate(prefab, Vector3.forward + transform.position, Quaternion.identity, currentParent);
+        currentOrb = Instantiate(prefab, cameraTransform.forward + transform.position, Quaternion.identity, currentParent);
         StartCoroutine("Cooldown");
     }
 

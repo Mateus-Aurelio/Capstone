@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Anchor
+  - EarthSource
+  - AirSource
+  - FireSource
+  - WaterSource
   layers:
   - Default
   - TransparentFX
@@ -15,7 +19,7 @@ TagManager:
   - Fire
   - Air
   - Environment
-  - 
+  - ElementSources
   - 
   - 
   - 

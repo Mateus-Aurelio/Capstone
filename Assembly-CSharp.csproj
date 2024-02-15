@@ -63,27 +63,29 @@
     <Compile Include="Assets\Scripts\Causes+Effects\Effects\PlayAudioEffect.cs" />
     <Compile Include="Assets\Scripts\Terrain\TerrainChange.cs" />
     <Compile Include="Assets\Scripts\Terrain\TerrainZone.cs" />
-    <Compile Include="Assets\Scripts\VRInput.cs" />
+    <Compile Include="Assets\Scripts\Helpers\DevHelp.cs" />
     <Compile Include="Assets\Scripts\Causes+Effects\Causes\OnClickCause.cs" />
+    <Compile Include="Assets\Scripts\ZoneEffects\ElementSourceFinder.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\DestroyObject.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\VideoTimeScrubControl.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\VideoPlayerRenderTexture.cs" />
+    <Compile Include="Assets\Scripts\ZoneEffects\ZoneEffect.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\Rotator.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\XRKnob.cs" />
     <Compile Include="Assets\Scripts\MovementRecognizer.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\BooleanToggleVisualsController.cs" />
-    <Compile Include="Assets\Scripts\DevHelp.cs" />
     <Compile Include="Assets\Scripts\Health\HealthChild.cs" />
     <Compile Include="Assets\Scripts\Health\AHealth.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\RayAttachModifier.cs" />
-    <Compile Include="Assets\Scripts\ChildParent.cs" />
     <Compile Include="Assets\PDollar\Scripts\PDollarGestureRecognizer\Geometry.cs" />
     <Compile Include="Assets\Scripts\HelperComponents\DelayedSpawn.cs" />
+    <Compile Include="Assets\Scripts\Helpers\Helpers.cs" />
+    <Compile Include="Assets\Scripts\ZoneEffects\CollisionStorer.cs" />
     <Compile Include="Assets\Scripts\HelperComponents\DelayedDestroy.cs" />
     <Compile Include="Assets\Scripts\Causes+Effects\Causes\UpdateCause.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\Callout.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\XRPokeFollowAffordanceFill.cs" />
-    <Compile Include="Assets\Scripts\Helpers.cs" />
+    <Compile Include="Assets\Scripts\Helpers\VRInput.cs" />
     <Compile Include="Assets\Scripts\Causes+Effects\Causes\OnTimerCause.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\CalloutGazeController.cs" />
     <Compile Include="Assets\Scripts\Causes+Effects\Causes\ACause.cs" />
@@ -117,6 +119,7 @@
     <Compile Include="Assets\Scripts\Causes+Effects\Causes\OnTouchCause.cs" />
     <Compile Include="Assets\Scripts\Elevator.cs" />
     <Compile Include="Assets\Scripts\Causes+Effects\Effects\SpinEffect.cs" />
+    <Compile Include="Assets\Scripts\Helpers\ChildParent.cs" />
     <Compile Include="Assets\Scripts\Causes+Effects\Causes\OnMouseExitCause.cs" />
     <Compile Include="Assets\Scripts\Health\DamageOverTime.cs" />
   </ItemGroup>
@@ -1042,6 +1045,10 @@
       <HintPath>Library\ScriptAssemblies\Unity.Burst.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.ProBuilder.AddOns.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.ProBuilder.AddOns.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.Rider.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
       <Private>False</Private>
@@ -1118,6 +1125,10 @@
       <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.ProBuilder.AssetIdRemapUtility">
+      <HintPath>Library\ScriptAssemblies\Unity.ProBuilder.AssetIdRemapUtility.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.VSCode.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
       <Private>False</Private>
@@ -1168,6 +1179,10 @@
     </Reference>
     <Reference Include="Unity.PlasticSCM.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.ProBuilder">
+      <HintPath>Library\ScriptAssemblies\Unity.ProBuilder.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
@@ -1244,6 +1259,10 @@
     </Reference>
     <Reference Include="Unity.VisualScripting.SettingsProvider.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.SettingsProvider.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.ProBuilder.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.ProBuilder.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.XR.OpenXR.Editor">
