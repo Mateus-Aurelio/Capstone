@@ -196,4 +196,10 @@ public class CollisionStorer : MonoBehaviour
     {
         return objectsColliding;
     }
+
+    public void ClearListAndSetInactive()
+    {
+        objectsColliding.Clear();
+        gameObject.SetActive(false);
+    }
 }

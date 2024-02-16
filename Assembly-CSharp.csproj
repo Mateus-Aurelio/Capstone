@@ -82,6 +82,7 @@
     <Compile Include="Assets\Scripts\Helpers\Helpers.cs" />
     <Compile Include="Assets\Scripts\ZoneEffects\CollisionStorer.cs" />
     <Compile Include="Assets\Scripts\HelperComponents\DelayedDestroy.cs" />
+    <Compile Include="Assets\Scripts\Causes+Effects\Causes\OnExitCause.cs" />
     <Compile Include="Assets\Scripts\Causes+Effects\Causes\UpdateCause.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\Callout.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\XRPokeFollowAffordanceFill.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="Assets\Scripts\Causes+Effects\Causes\OnTimerCause.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\CalloutGazeController.cs" />
     <Compile Include="Assets\Scripts\Causes+Effects\Causes\ACause.cs" />
+    <Compile Include="Assets\Scripts\ElementSource.cs" />
     <Compile Include="Assets\Scripts\HelperComponents\SceneChanger.cs" />
     <Compile Include="Assets\Scripts\Causes+Effects\Effects\ChangeConditionEffect.cs" />
     <Compile Include="Assets\Scripts\HelperComponents\MoveOverTime.cs" />
