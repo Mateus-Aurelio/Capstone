@@ -6,6 +6,7 @@ public class ElementSource : ZoneEffect
 {
     public static List<ElementSource> sources = new List<ElementSource>();
     [SerializeField] private List<GameObject> gameObjectsWhenShowing = new List<GameObject>();
+    [SerializeField] private Element element = Element.none;
 
     private void Start()
     {
@@ -37,5 +38,10 @@ public class ElementSource : ZoneEffect
         {
             g.SetActive(false);
         }
+    }
+
+    public Element GetElement()
+    {
+        return element;
     }
 }

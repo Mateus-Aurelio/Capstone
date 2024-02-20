@@ -6,19 +6,24 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class OrbSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject fireOrb;
-    [SerializeField] private GameObject airOrb;
+    [SerializeField] private bool input = true;
+
     [SerializeField] private GameObject waterOrb;
     [SerializeField] private GameObject earthOrb;
+    [SerializeField] private GameObject fireOrb;
+    [SerializeField] private GameObject airOrb;
 
-    [SerializeField] private Vector3 spawnPos;
+    [SerializeField] private Transform spawnPos;
     [SerializeField] private Transform normalParent;
     [SerializeField] private Transform movingParent;
     [SerializeField] private Transform cameraTransform;
     private Transform currentParent;
     private bool moving = false;
     private GameObject currentOrb = null;
-    private float CD = 0; // CHANGE TO A COROUTINE 
+    private float CD = 0;
+
+    private List<Vector3> movementChecker = new List<Vector3>();
+    [SerializeField] private int maxMovementChecks = 50;
 
     void Start()
     {
@@ -27,25 +32,45 @@ public class OrbSpawner : MonoBehaviour
 
     void Update()
     {
-        if (CD <= 0) OrbInputCheck();
+        if (CD <= 0 && input) OrbInputCheck();
 
-        if (!moving && VRInput.ButtonPressed(XRNode.LeftHand, InputHelpers.Button.Grip))
+        /*if (!moving && VRInput.ButtonPressed(XRNode.RightHand, InputHelpers.Button.Grip))
         {
             moving = true;
             currentParent = movingParent;
             if (currentOrb != null) currentOrb.transform.parent = currentParent.transform;
-        }
-        else if (moving && !VRInput.ButtonPressed(XRNode.LeftHand, InputHelpers.Button.Grip))
+        }*/
+        else if (moving && !VRInput.ButtonPressed(XRNode.RightHand, InputHelpers.Button.Grip))
         {
             moving = false;
             currentParent = normalParent;
-            if (currentOrb != null) currentOrb.transform.parent = currentParent.transform;
+            // if (currentOrb != null) currentOrb.transform.parent = currentParent.transform;
+            if (currentOrb != null)
+            {
+                currentOrb.transform.parent = null;
+                currentOrb.GetComponent<Rigidbody>().useGravity = true;
+                /*Vector3 sum = new Vector3();
+                foreach (Vector3 v in movementChecker)
+                {
+                    sum += v;
+                }
+                currentOrb.GetComponent<Rigidbody>().velocity = (sum / movementChecker.Count) / (Time.fixedDeltaTime * maxMovementChecks);*/
+                Vector3 startPos = movementChecker[movementChecker.Count - 1];
+                Vector3 endPos = movementChecker[0];
+                currentOrb.GetComponent<Rigidbody>().velocity = (startPos - endPos) / (Time.fixedDeltaTime * 15 / 2);
+            }
         }
+    }
+
+    private void FixedUpdate()
+    {
+        if (movementChecker.Count > maxMovementChecks) movementChecker.RemoveAt(0);
+        movementChecker.Add(spawnPos.position);
     }
 
     private void OrbInputCheck()
     {
-        if (VRInput.ButtonPressed(XRNode.RightHand, InputHelpers.Button.PrimaryButton))
+        /*if (VRInput.ButtonPressed(XRNode.RightHand, InputHelpers.Button.PrimaryButton))
         {
             CreateOrb(earthOrb);
         }
@@ -60,13 +85,20 @@ public class OrbSpawner : MonoBehaviour
         if (VRInput.ButtonPressed(XRNode.LeftHand, InputHelpers.Button.SecondaryButton))
         {
             CreateOrb(fireOrb);
-        }
+        }*/
     }
 
-    private void CreateOrb(GameObject prefab)
+    public void CreateOrb(GameObject prefab)
     {
+        if (VRInput.ButtonPressed(XRNode.RightHand, InputHelpers.Button.Grip))
+        {
+            moving = true;
+            currentParent = movingParent;
+        }
+
         if (currentOrb != null) Destroy(currentOrb);
-        currentOrb = Instantiate(prefab, cameraTransform.forward + transform.position, Quaternion.identity, currentParent);
+        if (prefab != null)
+            currentOrb = Instantiate(prefab, spawnPos.position, Quaternion.identity, currentParent);
         StartCoroutine("Cooldown");
     }
 

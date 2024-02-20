@@ -10,7 +10,7 @@ public class CollisionStorer : MonoBehaviour
     [SerializeField] private bool doNormalCollisions = true;
     [SerializeField] private bool doTriggerCollisions = false;
     [SerializeField] private bool requireRaycast = false;
-    [SerializeField] private string zoneEffectName = "";
+    /*[SerializeField] private string zoneEffectName = "";*/
     private Camera raycastCam;
 
     private void Start()
@@ -46,7 +46,7 @@ public class CollisionStorer : MonoBehaviour
         return hitData.transform.gameObject == givenObject;
     }
 
-    private void TryToEnter(GameObject givenObject)
+    protected void TryToEnter(GameObject givenObject)
     {
         if (objectsColliding.Contains(givenObject))
         {
@@ -57,31 +57,35 @@ public class CollisionStorer : MonoBehaviour
             return;
         }
         objectsColliding.Add(givenObject);
-        ZoneEffect[] zoneEffects = givenObject.GetComponents<ZoneEffect>();
+        NewObjectCollided(givenObject);
+        ObjectsCollidingListChanged();
+        /*ZoneEffect[] zoneEffects = givenObject.GetComponents<ZoneEffect>();
         foreach (ZoneEffect ze in zoneEffects)
         {
             ze.DoEnterEffect(zoneEffectName);
         }
-        Debug.Log("entered " + givenObject.name);
+        Debug.Log("entered " + givenObject.name);*/
     }
 
-    private void TryToExit(GameObject givenObject)
+    protected void TryToExit(GameObject givenObject)
     {
         if (!objectsColliding.Contains(givenObject))
         {
             return;
         }
-        if (!RaycastCheck(givenObject))
+        /*if (!RaycastCheck(givenObject))
         {
             return;
-        }
+        }*/
         objectsColliding.Remove(givenObject);
-        ZoneEffect[] zoneEffects = givenObject.GetComponents<ZoneEffect>();
+        NewObjectUncollided(givenObject);
+        ObjectsCollidingListChanged();
+        /*ZoneEffect[] zoneEffects = givenObject.GetComponents<ZoneEffect>();
         foreach (ZoneEffect ze in zoneEffects)
         {
             ze.DoExitEffect(zoneEffectName);
         }
-        Debug.Log("exited " + givenObject.name);
+        Debug.Log("exited " + givenObject.name);*/
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -89,7 +93,7 @@ public class CollisionStorer : MonoBehaviour
         if (!doNormalCollisions) return;
         if (GameObjectCausesTouch(collision.gameObject))
         {
-            if (collision.gameObject.CompareTag(tag) && !objectsColliding.Contains(collision.gameObject))
+            if (!objectsColliding.Contains(collision.gameObject))
             {
                 TryToEnter(collision.gameObject);
             }
@@ -101,7 +105,7 @@ public class CollisionStorer : MonoBehaviour
         if (!doTriggerCollisions) return;
         if (GameObjectCausesTouch(other.gameObject))
         {
-            if (other.CompareTag(tag) && !objectsColliding.Contains(other.gameObject))
+            if (!objectsColliding.Contains(other.gameObject))
             {
                 TryToEnter(other.gameObject);
             }
@@ -113,9 +117,7 @@ public class CollisionStorer : MonoBehaviour
         if (!doNormalCollisions) return;
         if (GameObjectCausesTouch(collision.gameObject))
         {
-            if (collision.gameObject.CompareTag(tag))
-            {
-                /*Ray ray = new Ray(transform.position, transform.position - collision.transform.position);
+            /*Ray ray = new Ray(transform.position, transform.position - collision.transform.position);
                 RaycastHit hitData;
                 Physics.Raycast(ray, out hitData);
                 if (hitData.transform == null)
@@ -123,14 +125,13 @@ public class CollisionStorer : MonoBehaviour
                     return;
                 }
                 GameObject hitObject = hitData.transform.gameObject;*/
-                if (!objectsColliding.Contains(collision.gameObject))// && hitObject == collision.gameObject)
-                {
-                    TryToEnter(collision.gameObject);
-                }
-                else if (objectsColliding.Contains(collision.gameObject) && requireRaycast && !RaycastCheck(collision.gameObject))
-                {
-                    TryToExit(collision.gameObject);
-                }
+            if (!objectsColliding.Contains(collision.gameObject))// && hitObject == collision.gameObject)
+            {
+                TryToEnter(collision.gameObject);
+            }
+            else if (objectsColliding.Contains(collision.gameObject) && requireRaycast && !RaycastCheck(collision.gameObject))
+            {
+                TryToExit(collision.gameObject);
             }
         }
     }
@@ -140,9 +141,7 @@ public class CollisionStorer : MonoBehaviour
         if (!doTriggerCollisions) return;
         if (GameObjectCausesTouch(other.gameObject))
         {
-            if (other.CompareTag(tag))
-            {
-                /*Ray ray = new Ray(transform.position, transform.position - other.transform.position);
+            /*Ray ray = new Ray(transform.position, transform.position - other.transform.position);
                 RaycastHit hitData;
                 Physics.Raycast(ray, out hitData);
                 if (hitData.transform == null)
@@ -150,14 +149,13 @@ public class CollisionStorer : MonoBehaviour
                     return;
                 }
                 GameObject hitObject = hitData.transform.gameObject;*/
-                if (!objectsColliding.Contains(other.gameObject))// && hitObject == other.gameObject)
-                {
-                    TryToEnter(other.gameObject);
-                }
-                else if(objectsColliding.Contains(other.gameObject) && requireRaycast && !RaycastCheck(other.gameObject))
-                {
-                    TryToExit(other.gameObject);
-                }
+            if (!objectsColliding.Contains(other.gameObject))// && hitObject == other.gameObject)
+            {
+                TryToEnter(other.gameObject);
+            }
+            else if (objectsColliding.Contains(other.gameObject) && requireRaycast && !RaycastCheck(other.gameObject))
+            {
+                TryToExit(other.gameObject);
             }
         }
     }
@@ -167,7 +165,7 @@ public class CollisionStorer : MonoBehaviour
         if (!doNormalCollisions) return;
         if (GameObjectCausesTouch(collision.gameObject))
         {
-            if (collision.gameObject.CompareTag(tag) && objectsColliding.Contains(collision.gameObject))
+            if (objectsColliding.Contains(collision.gameObject))
             {
                 TryToExit(collision.gameObject);
             }
@@ -179,7 +177,7 @@ public class CollisionStorer : MonoBehaviour
         if (!doTriggerCollisions) return;
         if (GameObjectCausesTouch(other.gameObject))
         {
-            if (other.CompareTag(tag) && objectsColliding.Contains(other.gameObject))
+            if (objectsColliding.Contains(other.gameObject))
             {
                 TryToExit(other.gameObject);
             }
@@ -197,9 +195,35 @@ public class CollisionStorer : MonoBehaviour
         return objectsColliding;
     }
 
-    public void ClearListAndSetInactive()
+    public void ClearListAndDisableColliders()
     {
         objectsColliding.Clear();
-        gameObject.SetActive(false);
+        foreach (Collider c in GetComponents<Collider>())
+        {
+            c.enabled = false;
+        }
+    }
+
+    public void EnableColliders()
+    {
+        foreach (Collider c in GetComponents<Collider>())
+        {
+            c.enabled = true;
+        }
+    }
+
+    protected virtual void ObjectsCollidingListChanged()
+    {
+
+    }
+
+    protected virtual void NewObjectCollided(GameObject newObject)
+    {
+
+    }
+
+    protected virtual void NewObjectUncollided(GameObject newObject)
+    {
+
     }
 }
