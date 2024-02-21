@@ -12,7 +12,6 @@ public class TerrainChange : MonoBehaviour
         TerrainZone terrain;
         foreach (RaycastHit hit in Physics.SphereCastAll(transform.position, 10, Vector3.down, 10))
         {
-            Debug.Log("hit");
             terrain = hit.collider.GetComponent<TerrainZone>();
             if (terrain == null) continue;
             Debug.Log("hit terrain!");

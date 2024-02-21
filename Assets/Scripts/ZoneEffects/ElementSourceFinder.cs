@@ -4,17 +4,22 @@ using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 
+public enum SourceFinderState
+{
+    none = 0, 
+    searching = 1, 
+    pulling = 2, 
+    pulled = 3
+}
+
 public class ElementSourceFinder : CollisionStorer
 {
-    // [SerializeField] private CollisionStorer collisionStorer;
     [SerializeField] private Transform leftHand;
     [SerializeField] private Transform rightHand;
     [SerializeField] private Transform playerCenter;
-    // [SerializeField] private float maxHandDistance = 0.5f;
     [SerializeField] private float handDistanceFromCenter = 0.5f;
-    private bool searching = false;
-    [SerializeField] private GameObject searchObject;
-    [SerializeField] private GameObject foundObject;
+    private SourceFinderState currentState = SourceFinderState.none;
+    [SerializeField] private GameObject searchingDisplayObject;
     [SerializeField] private XRNode hand = XRNode.RightHand;
 
     [SerializeField] private OrbSpawner orbSpawner;
@@ -23,147 +28,192 @@ public class ElementSourceFinder : CollisionStorer
     [SerializeField] private GameObject fireOrbPrefab;
     [SerializeField] private GameObject airOrbPrefab;
 
-    private ElementSource currentSource = null;
+    private ElementSource tempSource = null;
+    private ElementSource highlightedSource = null;
 
     private void Start()
     {
-        SetSearching(false);
+
     }
 
     void Update()
     {
-        if (ElementPullingGesture())
+        switch (currentState)
         {
-            List<GameObject> collidedObjects = this.GetObjectsColliding();
-            if (collidedObjects.Count > 0)
-            {
-                foundObject = collidedObjects[0];
-            }
-        }
-        else if (ElementPulledGesture())
-        {
-            if (foundObject != null)
-            {
-                switch ((int) foundObject.GetComponent<ElementSource>().GetElement())
-                {
-                    case (int) Element.none:
-                        Debug.Log("spawned null orb");
-                        orbSpawner.CreateOrb(null);
-                        break;
-                    case (int)Element.earth:
-                        Debug.Log("spawned earth orb");
-                        orbSpawner.CreateOrb(earthOrbPrefab);
-                        break;
-                    case (int)Element.water:
-                        Debug.Log("spawned water orb");
-                        orbSpawner.CreateOrb(waterOrbPrefab);
-                        break;
-                    case (int)Element.fire:
-                        Debug.Log("spawned fire orb");
-                        orbSpawner.CreateOrb(fireOrbPrefab);
-                        break;
-                    case (int)Element.air:
-                        Debug.Log("spawned air orb");
-                        orbSpawner.CreateOrb(airOrbPrefab);
-                        break;
-                    default:
-                        break;
-                }
-            }
-            SetSearching(false);
-        }
-        else if (!searching && ElementSearchGesture())
-        {
-            SetSearching(true);
-        }
-        else if (searching && !ElementSearchGesture())
-        {
-            SetSearching(false);
+            case SourceFinderState.none:
+                NoneStateUpdate();
+                break;
+            case SourceFinderState.searching:
+                SearchingStateUpdate();
+                break;
+            case SourceFinderState.pulling:
+                PullingStateUpdate();
+                break;
+            case SourceFinderState.pulled:
+                PulledStateUpdate();
+                break;
+            default:
+                break;
         }
     }
 
-    private void SetSearching(bool given)
+    private void EnterNoneState()
     {
-        searching = given;
-        if (!given)
+        currentState = SourceFinderState.none;
+        this.ClearListAndDisableColliders();
+        searchingDisplayObject.SetActive(false);
+        if (highlightedSource != null)
         {
-            List<GameObject> collidedObjects = this.GetObjectsColliding();
-            GameObject collidedObject;
-            while (collidedObjects.Count > 0)
-            {
-                collidedObject = collidedObjects[0];
-                this.TryToExit(collidedObject);
-                this.NewObjectUncollided(collidedObject);
-                collidedObjects = this.GetObjectsColliding();
-            }
-            /*foreach (GameObject g in this.GetObjectsColliding())
-            {
-                this.TryToExit(g);
-                this.NewObjectUncollided(g);
-            }*/
-            this.ObjectsCollidingListChanged();
-            this.ClearListAndDisableColliders();
-            if (foundObject != null)
-            {
-                currentSource = foundObject.GetComponent<ElementSource>();
-                if (currentSource != null) currentSource.HideSource();
-            }
-            foundObject = null;
+            highlightedSource.HideSource();
+            highlightedSource.HidePulling();
+        }
+        highlightedSource = null;
+    }
+
+    private void EnterSearchingState()
+    {
+        currentState = SourceFinderState.searching;
+        this.EnableColliders();
+        searchingDisplayObject.SetActive(true);
+    }
+
+    private void EnterPullingState()
+    {
+        currentState = SourceFinderState.pulling;
+        if (highlightedSource != null)
+        {
+            highlightedSource.HideSource();
+            highlightedSource.ShowPulling();
+        }
+    }
+
+    private void EnterPulledState()
+    {
+        currentState = SourceFinderState.pulled;
+        if (highlightedSource != null)
+        {
+            highlightedSource.HidePulling();
+        }
+        if (highlightedSource == null)
+        {
+            EnterNoneState();
+            return;
+        }
+        switch (highlightedSource.GetComponent<ElementSource>().GetElement())
+        {
+            case Element.none:
+                Debug.Log("spawned null orb");
+                orbSpawner.CreateOrb(null);
+                break;
+            case Element.earth:
+                Debug.Log("spawned earth orb");
+                orbSpawner.CreateOrb(earthOrbPrefab);
+                break;
+            case Element.water:
+                Debug.Log("spawned water orb");
+                orbSpawner.CreateOrb(waterOrbPrefab);
+                break;
+            case Element.fire:
+                Debug.Log("spawned fire orb");
+                orbSpawner.CreateOrb(fireOrbPrefab);
+                break;
+            case Element.air:
+                Debug.Log("spawned air orb");
+                orbSpawner.CreateOrb(airOrbPrefab);
+                break;
+            default:
+                break;
+        }
+        EnterNoneState();
+    }
+
+    private void NoneStateUpdate()
+    {
+        if (!VRInput.ButtonPressed(hand, InputHelpers.Button.Grip)
+            && Vector3.Distance(rightHand.position, playerCenter.position) > handDistanceFromCenter)
+        {
+            EnterSearchingState();
+        }
+    }
+
+    private void SearchingStateUpdate()
+    {
+        if (Vector3.Distance(rightHand.position, playerCenter.position) <= handDistanceFromCenter)
+        {
+            EnterNoneState();
+            return;
+        }
+
+        if (!VRInput.ButtonPressed(hand, InputHelpers.Button.Grip))
+        {
+            return;
+        }
+
+        if (GetObjectsColliding().Count > 0)
+        {
+            EnterPullingState();
         }
         else
         {
-            this.EnableColliders();
+            EnterNoneState();
         }
+    }
+
+    private void PullingStateUpdate()
+    {
+        if (!VRInput.ButtonPressed(hand, InputHelpers.Button.Grip))
+        {
+            EnterNoneState();
+            return;
+        }
+        if (Vector3.Distance(rightHand.position, playerCenter.position) <= handDistanceFromCenter
+            && VRInput.ButtonPressed(hand, InputHelpers.Button.Grip))
+        {
+            EnterPulledState();
+            return;
+        }
+    }
+
+    private void PulledStateUpdate()
+    {
         
-        searchObject.SetActive(given);
-    }
-
-    private bool ElementSearchGesture()
-    {
-        return /*VRInput.ButtonPressed(hand, InputHelpers.Button.SecondaryButton)
-            && */(searching || !VRInput.ButtonPressed(hand, InputHelpers.Button.Grip))
-            // && !VRInput.ButtonPressed(hand, InputHelpers.Button.Trigger)
-            && Vector3.Distance(rightHand.position, playerCenter.position) > handDistanceFromCenter;
-    }
-
-    private bool ElementPullingGesture()
-    {
-        return /*VRInput.ButtonPressed(hand, InputHelpers.Button.SecondaryButton)
-            && */VRInput.ButtonPressed(hand, InputHelpers.Button.Grip)
-            // && !VRInput.ButtonPressed(hand, InputHelpers.Button.Trigger)
-            && Vector3.Distance(rightHand.position, playerCenter.position) > handDistanceFromCenter;
-    }
-
-    private bool ElementPulledGesture()
-    {
-        return /*VRInput.ButtonPressed(hand, InputHelpers.Button.SecondaryButton)
-            && */VRInput.ButtonPressed(hand, InputHelpers.Button.Grip)
-            // && !VRInput.ButtonPressed(hand, InputHelpers.Button.Trigger)
-            && Vector3.Distance(rightHand.position, playerCenter.position) <= handDistanceFromCenter;
     }
 
     protected override void ObjectsCollidingListChanged()
     {
-
-    }
-
-    protected override void NewObjectCollided(GameObject newObject)
-    {
-        currentSource = newObject.GetComponent<ElementSource>();
-        if (currentSource != null) currentSource.ShowSource();
-        /*if (newObject.TryGetComponent<ElementSource>(out currentSource))
+        switch (currentState)
         {
-            currentSource.ShowSource();
-        }*/
-    }
+            case SourceFinderState.none:
+                return;
 
-    protected override void NewObjectUncollided(GameObject newObject)
-    {
-        currentSource = newObject.GetComponent<ElementSource>();
-        if (currentSource != null && currentSource != foundObject) currentSource.HideSource();
-        /*if (newObject.TryGetComponent<ElementSource>(out currentSource))
-        {
-            currentSource.HideSource();
-        }*/
+            case SourceFinderState.searching:
+                List<GameObject> collidingObjects = GetObjectsColliding();
+                if (collidingObjects.Count <= 0)
+                {
+                    if (highlightedSource != null) highlightedSource.HideSource();
+                    highlightedSource = null;
+                    return;
+                }
+                tempSource = collidingObjects[collidingObjects.Count - 1].GetComponent<ElementSource>();
+                if (tempSource == null)
+                {
+                    if (highlightedSource != null) highlightedSource.HideSource();
+                    highlightedSource = null;
+                    return;
+                }
+                if (highlightedSource != null) highlightedSource.HideSource();
+                highlightedSource = tempSource;
+                highlightedSource.ShowSource();
+                break;
+
+            case SourceFinderState.pulling:
+                return;
+
+            case SourceFinderState.pulled:
+                return;
+
+            default:
+                return;
+        }
     }
 }

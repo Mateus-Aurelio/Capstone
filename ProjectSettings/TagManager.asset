@@ -9,6 +9,8 @@ TagManager:
   - AirSource
   - FireSource
   - WaterSource
+  - TruePlayerParent
+  - PlayerGrounder
   layers:
   - Default
   - TransparentFX

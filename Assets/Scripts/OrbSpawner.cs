@@ -40,7 +40,14 @@ public class OrbSpawner : MonoBehaviour
             currentParent = movingParent;
             if (currentOrb != null) currentOrb.transform.parent = currentParent.transform;
         }*/
-        else if (moving && !VRInput.ButtonPressed(XRNode.RightHand, InputHelpers.Button.Grip))
+    }
+
+    private void FixedUpdate()
+    {
+        if (movementChecker.Count > maxMovementChecks) movementChecker.RemoveAt(0);
+        movementChecker.Add(spawnPos.position);
+
+        if (!input && moving && !VRInput.ButtonPressed(XRNode.RightHand, InputHelpers.Button.Grip))
         {
             moving = false;
             currentParent = normalParent;
@@ -57,15 +64,9 @@ public class OrbSpawner : MonoBehaviour
                 currentOrb.GetComponent<Rigidbody>().velocity = (sum / movementChecker.Count) / (Time.fixedDeltaTime * maxMovementChecks);*/
                 Vector3 startPos = movementChecker[movementChecker.Count - 1];
                 Vector3 endPos = movementChecker[0];
-                currentOrb.GetComponent<Rigidbody>().velocity = (startPos - endPos) / (Time.fixedDeltaTime * 15 / 2);
+                currentOrb.GetComponent<Rigidbody>().velocity = (startPos - endPos) / (Time.fixedDeltaTime * maxMovementChecks);
             }
         }
-    }
-
-    private void FixedUpdate()
-    {
-        if (movementChecker.Count > maxMovementChecks) movementChecker.RemoveAt(0);
-        movementChecker.Add(spawnPos.position);
     }
 
     private void OrbInputCheck()

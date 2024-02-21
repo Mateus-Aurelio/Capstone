@@ -117,6 +117,7 @@ namespace UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets
             // This is the same check as the base method.
             if (input == Vector2.zero)
                 return Vector3.zero;
+                // return new Vector3(0, -1, 0);
 
             // Initialize the Head Transform if necessary, getting the Camera from XR Origin
             if (m_HeadTransform == null)

@@ -9,6 +9,7 @@ public class ChildParent : MonoBehaviour
     [SerializeField] private List<string> tagsToCollect = new List<string>();
     [SerializeField] private List<string> layersToCollect = new List<string>();
     private List<Transform> collectedChildren = new List<Transform>();
+    [SerializeField] private bool grabTruePlayerParentTagInsteadOfPlayerGrounderTag = false;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -42,13 +43,25 @@ public class ChildParent : MonoBehaviour
 
     private void TryToCollect(Transform given)
     {
-        Debug.Log("Trying to collect");
+        if (grabTruePlayerParentTagInsteadOfPlayerGrounderTag && given.CompareTag("PlayerGrounder"))
+        {
+            given = GameObject.FindGameObjectWithTag("TruePlayerParent").transform;
+            given.SetParent(this.gameObject.transform);
+            collectedChildren.Add(given);
+            Debug.Log("Collected TruePlayerParent");
+            return;
+        }
+        Debug.Log("Trying to collect " + given.name);
         if (collectedChildren.Contains(given)) return;
         foreach (string tag in tagsToCollect)
         {
             if (given.CompareTag(tag))
             {
-                Debug.Log("collected!");
+                Debug.Log("collected! " + given.name);
+                if (grabTruePlayerParentTagInsteadOfPlayerGrounderTag && tag == "PlayerGrounder")
+                {
+                    given = GameObject.FindGameObjectWithTag("TruePlayerParent").transform; 
+                }
                 given.SetParent(this.gameObject.transform);
                 collectedChildren.Add(given);
                 return;
@@ -58,25 +71,34 @@ public class ChildParent : MonoBehaviour
         {
             if (given.gameObject.layer == LayerMask.NameToLayer(layer))
             {
-                Debug.Log("collected!");
+                Debug.Log("collected! " + given.name);
                 given.SetParent(this.gameObject.transform);
                 collectedChildren.Add(given);
                 return;
             }
         }
-        Debug.Log("NOT in layers nor tags");
+        Debug.Log("NOT in layers nor tags " + given.name);
     }
 
     private void TryToUncollect(Transform given)
     {
-        if (!collectedChildren.Contains(given)) return;
-        Debug.Log("Trying to uncollect");
+        if (grabTruePlayerParentTagInsteadOfPlayerGrounderTag && given.CompareTag("PlayerGrounder"))
+        {
+            given = GameObject.FindGameObjectWithTag("TruePlayerParent").transform;
+            given.SetParent(null);
+            collectedChildren.Remove(given);
+            Debug.Log("Uncollected TruePlayerParent");
+            return;
+        }
+
+        if (!collectedChildren.Contains(given) && !grabTruePlayerParentTagInsteadOfPlayerGrounderTag) return;
+        Debug.Log("Trying to uncollect " + given.name);
 
         foreach (string tag in tagsToCollect)
         {
             if (given.gameObject.CompareTag(tag))
             {
-                Debug.Log("uncollected!");
+                Debug.Log("uncollected! " + given.name);
                 given.SetParent(null);
                 collectedChildren.Remove(given);
                 return;
@@ -86,13 +108,13 @@ public class ChildParent : MonoBehaviour
         {
             if (given.gameObject.layer == LayerMask.NameToLayer(layer))
             {
-                Debug.Log("uncollected!");
+                Debug.Log("uncollected! " + given.name);
                 given.SetParent(null);
                 collectedChildren.Remove(given);
                 return;
             }
         }
-        Debug.Log("NOT in layers nor tags");
+        Debug.Log("NOT in layers nor tags " + given.name);
     }
 
     private void OnDestroy()

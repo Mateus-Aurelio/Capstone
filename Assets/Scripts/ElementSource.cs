@@ -6,6 +6,7 @@ public class ElementSource : ZoneEffect
 {
     public static List<ElementSource> sources = new List<ElementSource>();
     [SerializeField] private List<GameObject> gameObjectsWhenShowing = new List<GameObject>();
+    [SerializeField] private List<GameObject> gameObjectsWhenPulling = new List<GameObject>();
     [SerializeField] private Element element = Element.none;
 
     private void Start()
@@ -35,6 +36,22 @@ public class ElementSource : ZoneEffect
     public void HideSource()
     {
         foreach (GameObject g in gameObjectsWhenShowing)
+        {
+            g.SetActive(false);
+        }
+    }
+
+    public void ShowPulling()
+    {
+        foreach (GameObject g in gameObjectsWhenPulling)
+        {
+            g.SetActive(true);
+        }
+    }
+
+    public void HidePulling()
+    {
+        foreach (GameObject g in gameObjectsWhenPulling)
         {
             g.SetActive(false);
         }

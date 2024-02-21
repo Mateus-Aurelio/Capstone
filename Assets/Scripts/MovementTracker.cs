@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class MovementTracker : MonoBehaviour
 {
@@ -12,8 +14,20 @@ public class MovementTracker : MonoBehaviour
     private List<GameObject> pointsList = new List<GameObject>();
     private float distance;
 
+    private bool visualize = false;
+
     void Update()
     {
+        if (VRInput.ButtonPressed(XRNode.RightHand, InputHelpers.Button.PrimaryButton) && !visualize)
+        {
+            visualize = true;
+        }
+        if (!VRInput.ButtonPressed(XRNode.RightHand, InputHelpers.Button.PrimaryButton) && visualize)
+        {
+            visualize = false;
+        }
+        if (!visualize) return;
+
         if (pointsList.Count == 0)
         {
             AddPosition(movementSource.position);
