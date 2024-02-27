@@ -23,7 +23,7 @@ public class OrbSpawner : MonoBehaviour
     private float CD = 0;
 
     private List<Vector3> movementChecker = new List<Vector3>();
-    [SerializeField] private int maxMovementChecks = 50;
+    [SerializeField] private int maxMovementChecks = 3;
 
     void Start()
     {
@@ -45,7 +45,7 @@ public class OrbSpawner : MonoBehaviour
     private void FixedUpdate()
     {
         if (movementChecker.Count > maxMovementChecks) movementChecker.RemoveAt(0);
-        movementChecker.Add(spawnPos.position);
+        if (currentOrb != null) movementChecker.Add(currentOrb.transform.position);
 
         if (!input && moving && !VRInput.ButtonPressed(XRNode.RightHand, InputHelpers.Button.Grip))
         {
@@ -99,7 +99,9 @@ public class OrbSpawner : MonoBehaviour
 
         if (currentOrb != null) Destroy(currentOrb);
         if (prefab != null)
+        {
             currentOrb = Instantiate(prefab, spawnPos.position, Quaternion.identity, currentParent);
+        }
         StartCoroutine("Cooldown");
     }
 

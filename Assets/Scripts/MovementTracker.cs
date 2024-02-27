@@ -14,7 +14,7 @@ public class MovementTracker : MonoBehaviour
     private List<GameObject> pointsList = new List<GameObject>();
     private float distance;
 
-    private bool visualize = false;
+    [SerializeField] private bool visualize = false;
 
     void Update()
     {
@@ -52,8 +52,10 @@ public class MovementTracker : MonoBehaviour
 
     private void AddPosition(Vector3 pos)
     {
-        GameObject newPoint = Instantiate(visualizerPrefab, pos, visualizerPrefab.transform.rotation, trackerParent);
-        if (pointsList.Count > 0)
+        GameObject newPoint = new GameObject();
+        if (visualizerPrefab != null) newPoint = Instantiate(visualizerPrefab, pos, visualizerPrefab.transform.rotation, trackerParent);
+        else newPoint.transform.position = pos;
+        if (visualize && pointsList.Count > 0)
         {
             newPoint.GetComponent<LineRenderer>().SetPositions(new Vector3[] {
                 (pointsList[pointsList.Count - 1].transform.position - pos) / ((newPoint.transform.lossyScale.x + newPoint.transform.lossyScale.y + newPoint.transform.lossyScale.z) / 3),

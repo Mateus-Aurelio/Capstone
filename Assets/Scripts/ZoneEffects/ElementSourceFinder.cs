@@ -14,15 +14,21 @@ public enum SourceFinderState
 
 public class ElementSourceFinder : CollisionStorer
 {
-    [SerializeField] private Transform leftHand;
-    [SerializeField] private Transform rightHand;
-    [SerializeField] private Transform playerCenter;
-    [SerializeField] private float handDistanceFromCenter = 0.5f;
-    private SourceFinderState currentState = SourceFinderState.none;
-    [SerializeField] private GameObject searchingDisplayObject;
-    [SerializeField] private XRNode hand = XRNode.RightHand;
+    [SerializeField] private Transform handPos;
+    [SerializeField] private Transform searchPivot;
+    [SerializeField] private Transform cameraT;
+    [SerializeField] private Transform playerFeet;
+    [SerializeField] private float armLengthRatioToSearch = 0.75f;
+    [SerializeField] private float armLengthRatioToPull = 0.1f;
 
-    [SerializeField] private OrbSpawner orbSpawner;
+    private SourceFinderState currentState = SourceFinderState.none;
+
+    [SerializeField] private bool showSearchingDisplayObject = false;
+    [SerializeField] private GameObject searchingDisplayObject;
+
+    [SerializeField] private XRNode inputHand = XRNode.RightHand;
+
+    [SerializeField] private OrbSpawner orbSpawner; 
     [SerializeField] private GameObject waterOrbPrefab;
     [SerializeField] private GameObject earthOrbPrefab;
     [SerializeField] private GameObject fireOrbPrefab;
@@ -31,6 +37,8 @@ public class ElementSourceFinder : CollisionStorer
     private ElementSource tempSource = null;
     private ElementSource highlightedSource = null;
 
+    [SerializeField] private MovementTracker handMovementTracker;
+
     private void Start()
     {
 
@@ -38,6 +46,8 @@ public class ElementSourceFinder : CollisionStorer
 
     void Update()
     {
+        searchPivot.position = BodyData.shouldersCenter + cameraT.position;
+        searchPivot.LookAt(handPos.position, playerFeet.up);
         switch (currentState)
         {
             case SourceFinderState.none:
@@ -61,7 +71,7 @@ public class ElementSourceFinder : CollisionStorer
     {
         currentState = SourceFinderState.none;
         this.ClearListAndDisableColliders();
-        searchingDisplayObject.SetActive(false);
+        if (showSearchingDisplayObject && searchingDisplayObject != null) searchingDisplayObject.SetActive(false);
         if (highlightedSource != null)
         {
             highlightedSource.HideSource();
@@ -74,7 +84,7 @@ public class ElementSourceFinder : CollisionStorer
     {
         currentState = SourceFinderState.searching;
         this.EnableColliders();
-        searchingDisplayObject.SetActive(true);
+        if (showSearchingDisplayObject && searchingDisplayObject != null) searchingDisplayObject.SetActive(true);
     }
 
     private void EnterPullingState()
@@ -124,13 +134,12 @@ public class ElementSourceFinder : CollisionStorer
             default:
                 break;
         }
-        EnterNoneState();
     }
 
     private void NoneStateUpdate()
     {
-        if (!VRInput.ButtonPressed(hand, InputHelpers.Button.Grip)
-            && Vector3.Distance(rightHand.position, playerCenter.position) > handDistanceFromCenter)
+        if (!VRInput.ButtonPressed(inputHand, InputHelpers.Button.Grip)
+            && Vector3.Distance(handPos.position, BodyData.core + cameraT.position) > armLengthRatioToSearch * BodyData.armsLength)
         {
             EnterSearchingState();
         }
@@ -138,13 +147,13 @@ public class ElementSourceFinder : CollisionStorer
 
     private void SearchingStateUpdate()
     {
-        if (Vector3.Distance(rightHand.position, playerCenter.position) <= handDistanceFromCenter)
+        if (Vector3.Distance(handPos.position, BodyData.core + cameraT.position) <= armLengthRatioToSearch * BodyData.armsLength)
         {
             EnterNoneState();
             return;
         }
 
-        if (!VRInput.ButtonPressed(hand, InputHelpers.Button.Grip))
+        if (!VRInput.ButtonPressed(inputHand, InputHelpers.Button.Grip))
         {
             return;
         }
@@ -161,13 +170,15 @@ public class ElementSourceFinder : CollisionStorer
 
     private void PullingStateUpdate()
     {
-        if (!VRInput.ButtonPressed(hand, InputHelpers.Button.Grip))
+        if (!VRInput.ButtonPressed(inputHand, InputHelpers.Button.Grip))
         {
             EnterNoneState();
             return;
         }
-        if (Vector3.Distance(rightHand.position, playerCenter.position) <= handDistanceFromCenter
-            && VRInput.ButtonPressed(hand, InputHelpers.Button.Grip))
+        if (VRInput.ButtonPressed(inputHand, InputHelpers.Button.Grip)
+            && (Vector3.Distance(handPos.position, BodyData.shouldersCenter + cameraT.position) <= armLengthRatioToPull * BodyData.armsLength
+                || (handPos.position.y < BodyData.shouldersCenter.y + cameraT.position.y 
+                    && Vector3.Distance(new Vector3(handPos.position.x, (BodyData.shouldersCenter + cameraT.position).y, handPos.position.z), BodyData.shouldersCenter + cameraT.position) <= armLengthRatioToPull * BodyData.armsLength)))
         {
             EnterPulledState();
             return;
@@ -176,7 +187,11 @@ public class ElementSourceFinder : CollisionStorer
 
     private void PulledStateUpdate()
     {
-        
+        if (!VRInput.ButtonPressed(inputHand, InputHelpers.Button.Grip)) EnterNoneState();
+
+        List<GameObject> points = handMovementTracker.GetPoints();
+        Debug.Log("PulledStateUpdate, " + points.Count + " points");
+
     }
 
     protected override void ObjectsCollidingListChanged()
