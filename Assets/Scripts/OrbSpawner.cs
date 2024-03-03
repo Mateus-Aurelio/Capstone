@@ -17,6 +17,7 @@ public class OrbSpawner : MonoBehaviour
     [SerializeField] private Transform normalParent;
     [SerializeField] private Transform movingParent;
     [SerializeField] private Transform cameraTransform;
+    [SerializeField] private Transform handT;
     private Transform currentParent;
     private bool moving = false;
     private GameObject currentOrb = null;
@@ -55,7 +56,6 @@ public class OrbSpawner : MonoBehaviour
             if (currentOrb != null)
             {
                 currentOrb.transform.parent = null;
-                currentOrb.GetComponent<Rigidbody>().useGravity = true;
                 /*Vector3 sum = new Vector3();
                 foreach (Vector3 v in movementChecker)
                 {
@@ -64,7 +64,7 @@ public class OrbSpawner : MonoBehaviour
                 currentOrb.GetComponent<Rigidbody>().velocity = (sum / movementChecker.Count) / (Time.fixedDeltaTime * maxMovementChecks);*/
                 Vector3 startPos = movementChecker[movementChecker.Count - 1];
                 Vector3 endPos = movementChecker[0];
-                currentOrb.GetComponent<Rigidbody>().velocity = (startPos - endPos) / (Time.fixedDeltaTime * maxMovementChecks);
+                currentOrb.GetComponent<Orb>().ReleasedFromHand((startPos - endPos) / (Time.fixedDeltaTime * maxMovementChecks));
             }
         }
     }
@@ -101,6 +101,7 @@ public class OrbSpawner : MonoBehaviour
         if (prefab != null)
         {
             currentOrb = Instantiate(prefab, spawnPos.position, Quaternion.identity, currentParent);
+            currentOrb.GetComponent<Orb>().SetHandObject(handT.gameObject);
         }
         StartCoroutine("Cooldown");
     }

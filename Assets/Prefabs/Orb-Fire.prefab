@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 3637277725851527445}
   - component: {fileID: 8598478767801575152}
   - component: {fileID: 2897635111665250391}
+  - component: {fileID: -1303009043800532509}
   m_Layer: 6
   m_Name: Orb-Fire
   m_TagString: Untagged
@@ -218,6 +219,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
+--- !u!114 &-1303009043800532509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777067855996375140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ef40281236f0214785589f04a283cb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3601842685794420835
 GameObject:
   m_ObjectHideFlags: 0

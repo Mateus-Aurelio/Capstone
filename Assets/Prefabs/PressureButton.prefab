@@ -133,7 +133,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 122
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!1 &4774429142967261715
 GameObject:
   m_ObjectHideFlags: 0
@@ -226,6 +226,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1091982667339013582}
+  - component: {fileID: 6541946742723624620}
   m_Layer: 0
   m_Name: PressureButton
   m_TagString: Untagged
@@ -250,6 +251,25 @@ Transform:
   - {fileID: 1649439457624884597}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6541946742723624620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4906080755800680929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 775e7293f669a4a45bba0a067d15cfdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effects: []
+  conditionsNeeded: []
+  topPlateT: {fileID: 3093339702110516975}
+  restingYPos: 0.35
+  activatedYPos: 0.05
+  timeToActivate: 0.1
+  causeEveryFrame: 0
 --- !u!1 &8262880618346875373
 GameObject:
   m_ObjectHideFlags: 0

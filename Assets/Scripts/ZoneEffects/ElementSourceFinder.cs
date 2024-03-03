@@ -20,6 +20,7 @@ public class ElementSourceFinder : CollisionStorer
     [SerializeField] private Transform playerFeet;
     [SerializeField] private float armLengthRatioToSearch = 0.75f;
     [SerializeField] private float armLengthRatioToPull = 0.1f;
+    private Vector3 pullStartPos;
 
     private SourceFinderState currentState = SourceFinderState.none;
 
@@ -90,6 +91,7 @@ public class ElementSourceFinder : CollisionStorer
     private void EnterPullingState()
     {
         currentState = SourceFinderState.pulling;
+        pullStartPos = handPos.position;
         if (highlightedSource != null)
         {
             highlightedSource.HideSource();
@@ -176,9 +178,11 @@ public class ElementSourceFinder : CollisionStorer
             return;
         }
         if (VRInput.ButtonPressed(inputHand, InputHelpers.Button.Grip)
-            && (Vector3.Distance(handPos.position, BodyData.shouldersCenter + cameraT.position) <= armLengthRatioToPull * BodyData.armsLength
+            && Vector3.Distance(pullStartPos, handPos.position) > armLengthRatioToPull * BodyData.armsLength
+            /*(Vector3.Distance(handPos.position, BodyData.shouldersCenter + cameraT.position) <= armLengthRatioToPull * BodyData.armsLength
                 || (handPos.position.y < BodyData.shouldersCenter.y + cameraT.position.y 
-                    && Vector3.Distance(new Vector3(handPos.position.x, (BodyData.shouldersCenter + cameraT.position).y, handPos.position.z), BodyData.shouldersCenter + cameraT.position) <= armLengthRatioToPull * BodyData.armsLength)))
+                    && Vector3.Distance(new Vector3(handPos.position.x, (BodyData.shouldersCenter + cameraT.position).y, handPos.position.z), BodyData.shouldersCenter + cameraT.position) <= armLengthRatioToPull * BodyData.armsLength))*/
+                    )
         {
             EnterPulledState();
             return;
@@ -190,8 +194,7 @@ public class ElementSourceFinder : CollisionStorer
         if (!VRInput.ButtonPressed(inputHand, InputHelpers.Button.Grip)) EnterNoneState();
 
         List<GameObject> points = handMovementTracker.GetPoints();
-        Debug.Log("PulledStateUpdate, " + points.Count + " points");
-
+        // Debug.Log("PulledStateUpdate, " + points.Count + " points");
     }
 
     protected override void ObjectsCollidingListChanged()

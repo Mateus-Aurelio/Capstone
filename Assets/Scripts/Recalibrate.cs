@@ -7,7 +7,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class Recalibrate : MonoBehaviour
 {
-    [SerializeField] private Canvas calibrationCanvas;
+    [SerializeField] private GameObject calibrationCanvas;
     [SerializeField] private Transform leftHandT;
     [SerializeField] private Transform rightHandT;
     [SerializeField] private Transform cameraT;
@@ -58,7 +58,7 @@ public class Recalibrate : MonoBehaviour
 
     private void EnterCalibrationMode()
     {
-        calibrationCanvas.enabled = true;
+        calibrationCanvas.SetActive(true);
         calibrating = true;
     }
 
@@ -69,7 +69,7 @@ public class Recalibrate : MonoBehaviour
 
     private void ExitCalibrationMode()
     {
-        calibrationCanvas.enabled = false; 
+        calibrationCanvas.SetActive(false);
         calibrating = false; 
         midCalibrating = false; 
 
