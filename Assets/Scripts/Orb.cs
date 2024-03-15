@@ -31,7 +31,7 @@ public class Orb : MonoBehaviour
     {
         if (other.gameObject.CompareTag("PlayerHand") && other.gameObject != myHand)
         {
-            other.gameObject.GetComponent<PlayerHand>().EnterTouchSpellMode();
+            // other.gameObject.GetComponent<PlayerHand>().EnterTouchSpellMode();
 
             Destroy(gameObject, 0.01f);
         }

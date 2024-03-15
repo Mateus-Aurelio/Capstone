@@ -58,6 +58,7 @@ public class Recalibrate : MonoBehaviour
 
     private void EnterCalibrationMode()
     {
+        BodyData.dataExists = false;
         calibrationCanvas.SetActive(true);
         calibrating = true;
     }
@@ -130,11 +131,13 @@ public class Recalibrate : MonoBehaviour
         righthandDistance = Vector3.Distance(rightHandT.position, chestShoulderPos);
         armsLength = (lefthandDistance + righthandDistance) / 2;
         Debug.Log("armsLength: " + armsLength);*/
+        BodyData.dataExists = true;
     }
 }
 
 public static class BodyData
 {
+    public static bool dataExists;
     public static Vector3 leftShoulder;
     public static Vector3 rightShoulder;
     public static Vector3 core;

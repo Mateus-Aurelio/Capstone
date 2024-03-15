@@ -105,6 +105,7 @@
     <Compile Include="Assets\Scripts\Causes+Effects\Conditions\ACondition.cs" />
     <Compile Include="Assets\Scripts\Causes+Effects\Effects\MoveClampedEffect.cs" />
     <Compile Include="Assets\Scripts\Causes+Effects\Effects\AEffect.cs" />
+    <Compile Include="Assets\Scripts\Spellcasting.cs" />
     <Compile Include="Assets\Scripts\Health\Health.cs" />
     <Compile Include="Assets\PDollar\Scripts\PDollarGestureRecognizer\PointCloudRecognizer.cs" />
     <Compile Include="Assets\Scripts\Causes+Effects\Effects\SetActiveEffect.cs" />
@@ -1101,6 +1102,10 @@
       <HintPath>Library\ScriptAssemblies\Unity.XR.OpenXR.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.Splines.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Splines.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.XR.OpenXR.Features.MetaQuestSupport">
       <HintPath>Library\ScriptAssemblies\Unity.XR.OpenXR.Features.MetaQuestSupport.dll</HintPath>
       <Private>False</Private>
@@ -1291,6 +1296,10 @@
     </Reference>
     <Reference Include="Unity.Mathematics">
       <HintPath>Library\ScriptAssemblies\Unity.Mathematics.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Splines">
+      <HintPath>Library\ScriptAssemblies\Unity.Splines.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Shaders">
