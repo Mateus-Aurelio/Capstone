@@ -64,6 +64,7 @@
     <Compile Include="Assets\Scripts\ZoneEffects\WeightArea.cs" />
     <Compile Include="Assets\Scripts\Terrain\TerrainChange.cs" />
     <Compile Include="Assets\Scripts\Terrain\TerrainZone.cs" />
+    <Compile Include="Assets\Scripts\SpellPicker.cs" />
     <Compile Include="Assets\Scripts\Helpers\DevHelp.cs" />
     <Compile Include="Assets\Scripts\Causes+Effects\Causes\OnClickCause.cs" />
     <Compile Include="Assets\Scripts\Helpers\TestSpringsRaise.cs" />
@@ -123,6 +124,7 @@
     <Compile Include="Assets\Scripts\Causes+Effects\Effects\DestroyEffect.cs" />
     <Compile Include="Assets\Scripts\Spin.cs" />
     <Compile Include="Assets\PDollar\Scripts\Demo.cs" />
+    <Compile Include="Assets\Scripts\PickerSpot.cs" />
     <Compile Include="Assets\Scripts\Helpers\DelayedDestroy.cs" />
     <Compile Include="Assets\PDollar\Scripts\PDollarGestureRecognizer\Gesture.cs" />
     <Compile Include="Assets\Scripts\Health\Damage.cs" />
@@ -1098,12 +1100,12 @@
       <HintPath>Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.XR.OpenXR">
-      <HintPath>Library\ScriptAssemblies\Unity.XR.OpenXR.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Unity.Splines.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Splines.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.XR.OpenXR">
+      <HintPath>Library\ScriptAssemblies\Unity.XR.OpenXR.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.XR.OpenXR.Features.MetaQuestSupport">
