@@ -230,3 +230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ef40281236f0214785589f04a283cb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minGripTimeToGrab: 0
+  minGripTimeToPunch: 0.3
+  minVelocityToPunch: 0.5
+  maxMovementChecks: 3
