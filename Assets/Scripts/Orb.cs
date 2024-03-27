@@ -102,15 +102,16 @@ public class Orb : MonoBehaviour
     {
         SetHandObject(hand);
         transform.SetParent(parent);
+        hand.TriggerHaptic(.05f, 0.1f);
         orbState = OrbState.held;
     }
 
-    private void PunchOrb(PlayerHand hand, float velocity = 0)
+    private void PunchOrb(PlayerHand hand)
     {
-        velocity = hand.GetHandVelocity().magnitude * 3;
-        Debug.Log("Punch velocity magnitude: " + velocity + "");
-        hand.TriggerHaptic(Mathf.Lerp(0.1f, 1f, velocity / 18f), 0.1f);
-        ReleasedFromHand(hand.GetHandVelocity() * 3);
+        Vector3 velocity = hand.GetHandVelocity() * 3;
+        Debug.Log("Punch velocity magnitude: " + velocity.magnitude + "");
+        hand.TriggerHaptic(Mathf.Lerp(0.1f, 1f, velocity.magnitude / 18f), 0.1f);
+        ReleasedFromHand(velocity);
         orbState = OrbState.released;
     }
 
