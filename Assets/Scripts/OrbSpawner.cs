@@ -101,7 +101,7 @@ public class OrbSpawner : MonoBehaviour
         if (prefab != null)
         {
             currentOrb = Instantiate(prefab, spawnPos.position, Quaternion.identity, currentParent);
-            currentOrb.GetComponent<Orb>().SetHandObject(handT.gameObject);
+            currentOrb.GetComponent<Orb>().SetHandObject(handT.GetComponent<PlayerHand>());
         }
         StartCoroutine("Cooldown");
     }
