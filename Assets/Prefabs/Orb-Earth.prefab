@@ -92,11 +92,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2453192450893461255}
+  - component: {fileID: 1925398987005402927}
   - component: {fileID: 1599788595053653778}
   - component: {fileID: 3637277725851527445}
   - component: {fileID: 7144189265098106971}
   - component: {fileID: 5588309621971099684}
-  - component: {fileID: 1925398987005402927}
   m_Layer: 0
   m_Name: Orb-Earth
   m_TagString: Untagged
@@ -122,6 +122,22 @@ Transform:
   - {fileID: 2400948069825922631}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1925398987005402927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777067855996375140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ef40281236f0214785589f04a283cb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minGripTimeToGrab: 0
+  minGripTimeToPunch: 0.125
+  minVelocityToPunch: 1
+  maxMovementChecks: 3
 --- !u!33 &1599788595053653778
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -220,22 +236,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
---- !u!114 &1925398987005402927
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 777067855996375140}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ef40281236f0214785589f04a283cb6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minGripTimeToGrab: 0
-  minGripTimeToPunch: 0.3
-  minVelocityToPunch: 0.5
-  maxMovementChecks: 3
 --- !u!1001 &265465924247541696
 PrefabInstance:
   m_ObjectHideFlags: 0

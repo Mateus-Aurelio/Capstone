@@ -47,6 +47,7 @@ public class Orb : MonoBehaviour
 
     public void ReleasedFromHand(Vector3 velocity)
     {
+        Debug.Log("ReleasedFromHand velocity magnitude: " + velocity.magnitude);
         GetComponent<Rigidbody>().useGravity = true;
         GetComponent<Rigidbody>().velocity = velocity;
         transform.parent = null;
@@ -60,17 +61,14 @@ public class Orb : MonoBehaviour
             {
                 case OrbState.floating:
                     PlayerHand hand = other.GetComponent<PlayerHand>();
-                    if (hand == null || hand.GetGripTime() <= minGripTimeToGrab) return;
-                    else if (hand.HandButtonPressed(UnityEngine.XR.Interaction.Toolkit.InputHelpers.Button.Grip) && hand.GetGripTime() >= minGripTimeToPunch && hand.GetHandVelocity().magnitude > minVelocityToPunch)
+                    if (hand == null || hand.GetGripTime() < minGripTimeToGrab || !hand.HandButtonPressed(UnityEngine.XR.Interaction.Toolkit.InputHelpers.Button.Grip)) return;
+                    else if (hand.GetGripTime() >= minGripTimeToPunch && hand.GetHandVelocity().magnitude > minVelocityToPunch)
                     {
-                        orbState = OrbState.released;
-                        ReleasedFromHand(hand.GetHandVelocity());
+                        PunchOrb(hand);
                     }
                     else
                     {
-                        SetHandObject(hand);
-                        transform.SetParent(other.transform);
-                        orbState = OrbState.held;
+                        GrabOrb(hand, other.transform);
                     }
                     break;
                 case OrbState.held:
@@ -92,14 +90,28 @@ public class Orb : MonoBehaviour
         if (other.gameObject.CompareTag("PlayerHand") && orbState == OrbState.floating)
         {
             PlayerHand hand = other.GetComponent<PlayerHand>();
-            if (hand == null || hand.GetGripTime() <= minGripTimeToGrab) return;
-            else if (hand.HandButtonPressed(UnityEngine.XR.Interaction.Toolkit.InputHelpers.Button.Grip) && hand.GetGripTime() > minGripTimeToPunch)
+            if (hand == null || !hand.HandButtonPressed(UnityEngine.XR.Interaction.Toolkit.InputHelpers.Button.Grip) || hand.GetGripTime() < minGripTimeToGrab) return;
+            else if (hand.GetGripTime() >= minGripTimeToGrab)
             {
-                SetHandObject(hand);
-                transform.SetParent(other.transform);
-                orbState = OrbState.held;
+                GrabOrb(hand, other.transform);
             }
         }
+    }
+
+    private void GrabOrb(PlayerHand hand, Transform parent)
+    {
+        SetHandObject(hand);
+        transform.SetParent(parent);
+        orbState = OrbState.held;
+    }
+
+    private void PunchOrb(PlayerHand hand, float velocity = 0)
+    {
+        velocity = hand.GetHandVelocity().magnitude * 3;
+        Debug.Log("Punch velocity magnitude: " + velocity + "");
+        hand.TriggerHaptic(Mathf.Lerp(0.1f, 1f, velocity / 18f), 0.1f);
+        ReleasedFromHand(hand.GetHandVelocity() * 3);
+        orbState = OrbState.released;
     }
 
     private void TouchedOtherHand()
