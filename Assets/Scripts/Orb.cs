@@ -8,8 +8,13 @@ public class Orb : MonoBehaviour
     private OrbState orbState;
 
     [SerializeField] private float minGripTimeToGrab = 0;
+    [SerializeField] private float maxGripTimeToGrab = 0.15f;
     [SerializeField] private float minGripTimeToPunch = 0.3f;
     [SerializeField] private float minVelocityToPunch = 0.5f;
+
+    [SerializeField] private float minPunchVelocity = 10f;
+    [SerializeField] private float maxPunchVelocity = 20f;
+    [SerializeField] private float punchModifier = 4f;
 
     private List<Vector3> movementChecker = new List<Vector3>();
     [SerializeField] private int maxMovementChecks = 3;
@@ -45,11 +50,11 @@ public class Orb : MonoBehaviour
         myHand = givenHand;
     }
 
-    public void ReleasedFromHand(Vector3 velocity)
+    public void ReleasedFromHand(Vector3 velocity, bool useGravity=true)
     {
         Debug.Log("ReleasedFromHand velocity magnitude: " + velocity.magnitude);
-        GetComponent<Rigidbody>().useGravity = true;
-        GetComponent<Rigidbody>().velocity = velocity;
+        GetComponent<Rigidbody>().useGravity = useGravity;
+        GetComponent<Rigidbody>().velocity = velocity * 1.1f;
         transform.parent = null;
     }
 
@@ -87,11 +92,11 @@ public class Orb : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.CompareTag("PlayerHand") && orbState == OrbState.floating)
+        if (other.gameObject.CompareTag("PlayerHand") && orbState == OrbState.floating || orbState == OrbState.released)
         {
             PlayerHand hand = other.GetComponent<PlayerHand>();
             if (hand == null || !hand.HandButtonPressed(UnityEngine.XR.Interaction.Toolkit.InputHelpers.Button.Grip) || hand.GetGripTime() < minGripTimeToGrab) return;
-            else if (hand.GetGripTime() >= minGripTimeToGrab)
+            else if (hand.GetGripTime() >= minGripTimeToGrab && hand.GetGripTime() <= maxGripTimeToGrab)
             {
                 GrabOrb(hand, other.transform);
             }
@@ -104,14 +109,17 @@ public class Orb : MonoBehaviour
         transform.SetParent(parent);
         hand.TriggerHaptic(.05f, 0.1f);
         orbState = OrbState.held;
+        GetComponent<Rigidbody>().useGravity = false;
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
 
     private void PunchOrb(PlayerHand hand)
     {
-        Vector3 velocity = hand.GetHandVelocity() * 3;
-        Debug.Log("Punch velocity magnitude: " + velocity.magnitude + "");
-        hand.TriggerHaptic(Mathf.Lerp(0.1f, 1f, velocity.magnitude / 18f), 0.1f);
-        ReleasedFromHand(velocity);
+        Vector3 velocity = hand.GetHandVelocity() * (Mathf.Clamp(hand.GetHandVelocity().magnitude * punchModifier, minPunchVelocity, maxPunchVelocity) / hand.GetHandVelocity().magnitude);
+        Debug.Log("Punch velocity magnitude: " + velocity.magnitude + " from hand velocity magnitude " + hand.GetHandVelocity().magnitude);
+        AttemptAutoAim(velocity);
+        hand.TriggerHaptic(Mathf.Lerp(0.1f, 1f, velocity.magnitude / maxPunchVelocity), 0.1f);
+        ReleasedFromHand(velocity, false);
         orbState = OrbState.released;
     }
 
@@ -120,6 +128,25 @@ public class Orb : MonoBehaviour
 
     }
 
+    private void AttemptAutoAim(Vector3 velocity)
+    {
+        Debug.DrawRay(transform.position, velocity, Color.white);
+        RaycastHit hit;
+        foreach (Transform t in AutoAimPosList.GetList())
+        {
+            if (Physics.Raycast(transform.position, t.position - transform.position, out hit, Mathf.Infinity))
+            {
+                Debug.Log("angle: " + Vector3.Angle(velocity.normalized, (t.position - transform.position).normalized));
+                Debug.DrawRay(transform.position, t.position - transform.position * hit.distance, Color.cyan);
+                Debug.Log("Did Hit");
+            }
+            else
+            {
+                Debug.DrawRay(transform.position, t.position - transform.position * 50, Color.red);
+                Debug.Log("Did not Hit");
+            }
+        }
+    }
 }
 
 public enum OrbState

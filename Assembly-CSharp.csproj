@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Causes+Effects\Effects\PlayAudioEffect.cs" />
     <Compile Include="Assets\Scripts\ZoneEffects\WeightArea.cs" />
+    <Compile Include="Assets\Scripts\AlternateImage.cs" />
     <Compile Include="Assets\Scripts\Terrain\TerrainChange.cs" />
     <Compile Include="Assets\Scripts\Terrain\TerrainZone.cs" />
     <Compile Include="Assets\Scripts\SpellPicker.cs" />
@@ -119,6 +120,7 @@
     <Compile Include="Assets\VRTemplateAssets\Scripts\LaunchProjectile.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\StepManager.cs" />
     <Compile Include="Assets\Scripts\Causes+Effects\Conditions\InverseConditional.cs" />
+    <Compile Include="Assets\Scripts\AutoAimPos.cs" />
     <Compile Include="Assets\Scripts\OrbSpawner.cs" />
     <Compile Include="Assets\PDollar\Scripts\PDollarGestureRecognizer\Result.cs" />
     <Compile Include="Assets\Scripts\Causes+Effects\Effects\DestroyEffect.cs" />
@@ -126,6 +128,7 @@
     <Compile Include="Assets\PDollar\Scripts\Demo.cs" />
     <Compile Include="Assets\Scripts\PickerSpot.cs" />
     <Compile Include="Assets\Scripts\Helpers\DelayedDestroy.cs" />
+    <Compile Include="Assets\Scripts\Scale.cs" />
     <Compile Include="Assets\PDollar\Scripts\PDollarGestureRecognizer\Gesture.cs" />
     <Compile Include="Assets\Scripts\Health\Damage.cs" />
     <Compile Include="Assets\Scripts\Recalibrate.cs" />

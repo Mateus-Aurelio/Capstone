@@ -9,6 +9,7 @@ public class PressurePlateCause : ACause
     [SerializeField] private float activatedYPos = 0.0f; 
     [SerializeField] private float timeToActivate = 0.1f; 
     [SerializeField] private bool causeEveryFrame = false; 
+    [SerializeField] private bool continuedCheck = false; 
     private float timeActive = 0;
     private bool activated = false;
 

@@ -15,6 +15,7 @@ public class SpellPicker : MonoBehaviour
     [SerializeField] private PlayerHand mainHand;
 
     [SerializeField] private float maxPosToStay = 0.5f;
+    private bool waitToUngrip = false;
     [SerializeField] private bool hideElementsOnceSelected = true;
     [SerializeField] private bool adjustPositionOnceElementSelected = true;
     [SerializeField] private bool includeElementsInSpellsState = false;
@@ -52,6 +53,7 @@ public class SpellPicker : MonoBehaviour
 
         if (pickState != PickerState.noneShown && Vector3.Distance(transform.position, mainHandT.position) > maxPosToStay)
         {
+            waitToUngrip = true;
             EnterNoneState();
         }
 
@@ -68,6 +70,11 @@ public class SpellPicker : MonoBehaviour
 
     private void NoneShownUpdate()
     {
+        if (waitToUngrip)
+        {
+            waitToUngrip = mainHand.HandButtonPressed(UnityEngine.XR.Interaction.Toolkit.InputHelpers.Button.Trigger);
+            return;
+        }
         if (mainHand.HandButtonPressed(UnityEngine.XR.Interaction.Toolkit.InputHelpers.Button.Trigger))
         {
             EnterElementsState();
@@ -102,17 +109,17 @@ public class SpellPicker : MonoBehaviour
         {
             if (spellSpot.GetComponent<Collider>().bounds.Contains(mainHandT.transform.position))
             {
-                spellSpot.HandTouched();
+                spellSpot.HandTouched(mainHand, this);
                 if (!mainHand.HandButtonPressed(UnityEngine.XR.Interaction.Toolkit.InputHelpers.Button.Trigger))
                 {
-                    spellSpot.HandReleased(mainHand);
+                    spellSpot.HandReleased(mainHand, this);
                     EnterNoneState();
                     return;
                 }
             }
             else
             {
-                spellSpot.HandNotTouched();
+                spellSpot.HandNotTouched(this);
             }
         }
         if (includeElementsInSpellsState)
@@ -122,14 +129,14 @@ public class SpellPicker : MonoBehaviour
                 if (elementSpot.GetComponent<Collider>().bounds.Contains(mainHandT.transform.position))
                 {
                     elementSpot.RevealSubSpots();
-                    elementSpot.HandTouched();
+                    elementSpot.HandTouched(mainHand, this);
                     foreach (PickerSpot otherElementSpot in elementPickerSpots)
                     {
                         if (otherElementSpot != elementSpot) otherElementSpot.HideSubSpots();
                     }
                     if (!mainHand.HandButtonPressed(UnityEngine.XR.Interaction.Toolkit.InputHelpers.Button.Trigger))
                     {
-                        elementSpot.HandReleased(mainHand);
+                        elementSpot.HandReleased(mainHand, this);
                         EnterNoneState();
                         return;
                     }
@@ -139,7 +146,7 @@ public class SpellPicker : MonoBehaviour
                 }
                 else
                 {
-                    elementSpot.HandNotTouched();
+                    elementSpot.HandNotTouched(this);
                 }
             }
         }
@@ -157,6 +164,7 @@ public class SpellPicker : MonoBehaviour
         {
             elementSpot.HideSpot();
         }
+        elementsCanvas.SetActive(false);
         if (spellPickerSpots == null)
         {
             return;
@@ -173,6 +181,7 @@ public class SpellPicker : MonoBehaviour
         pickState = PickerState.elementsShown;
         transform.position = mainHandT.position;
         transform.LookAt(cameraT);
+        elementsCanvas.SetActive(true);
         foreach (PickerSpot elementSpot in elementPickerSpots)
         {
             elementSpot.RevealSpot();

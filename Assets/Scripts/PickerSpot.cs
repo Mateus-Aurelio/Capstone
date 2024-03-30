@@ -9,6 +9,7 @@ public class PickerSpot : MonoBehaviour
     [SerializeField] private GameObject spellPrefab;
     private Color startColor;
     [SerializeField] private bool hideSelfWhenReveal = false;
+    [SerializeField] private string displayName = "";
 
     private void Awake()
     {
@@ -16,9 +17,9 @@ public class PickerSpot : MonoBehaviour
         if (startColor.a <= 0) startColor = Color.gray;
     }
 
-    public void HandTouched()
+    public void HandTouched(PlayerHand hand, SpellPicker spellPicker)
     {
-        GetComponent<Image>().color = Color.white;
+        GetComponent<Image>().color = new Color(1, 1, 1, startColor.a);
         if (subSpots != null && subSpots.Count > 0)
         {
             RevealSubSpots();
@@ -26,17 +27,18 @@ public class PickerSpot : MonoBehaviour
         }
     }
 
-    public void HandNotTouched()
+    public void HandNotTouched(SpellPicker spellPicker)
     {
         GetComponent<Image>().color = startColor;
     }
 
-    public void HandReleased(PlayerHand hand)
+    public void HandReleased(PlayerHand hand, SpellPicker spellPicker)
     {
         if (spellPrefab == null)
             return;
-        GameObject spell = Instantiate(spellPrefab, transform.position, spellPrefab.transform.rotation);
-        spell.GetComponent<Orb>().SetHandObject(hand);
+        GameObject spell = Instantiate(spellPrefab, spellPicker.transform.position, spellPrefab.transform.rotation);
+        Orb orb = spell.GetComponent<Orb>();
+        if (orb != null) orb.SetHandObject(hand);
     }
 
     public void RevealSpot()
