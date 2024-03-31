@@ -180,7 +180,8 @@ public class SpellPicker : MonoBehaviour
     {
         pickState = PickerState.elementsShown;
         transform.position = mainHandT.position;
-        transform.LookAt(cameraT);
+        // transform.LookAt(cameraT);
+        transform.LookAt(transform.position - (cameraT.position - transform.position));
         elementsCanvas.SetActive(true);
         foreach (PickerSpot elementSpot in elementPickerSpots)
         {

@@ -36,9 +36,10 @@ public class PickerSpot : MonoBehaviour
     {
         if (spellPrefab == null)
             return;
-        GameObject spell = Instantiate(spellPrefab, spellPicker.transform.position, spellPrefab.transform.rotation);
-        Orb orb = spell.GetComponent<Orb>();
-        if (orb != null) orb.SetHandObject(hand);
+        GameObject spellObj = Instantiate(spellPrefab, spellPicker.transform.position, spellPrefab.transform.rotation);
+        Spell spellScript = spellObj.GetComponent<Spell>();
+        if (spellScript != null) spellScript.SpellInit(hand);
+        else Debug.LogWarning("Spell prefab missing Spell component! GameObject " + spellObj.name);
     }
 
     public void RevealSpot()

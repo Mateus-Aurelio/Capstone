@@ -7,3 +7,4 @@ public abstract class AHealth : MonoBehaviour
     public abstract void Damage(float given);
     public abstract void Heal(float given);
 }
+ 

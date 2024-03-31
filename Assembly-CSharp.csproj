@@ -128,16 +128,20 @@
     <Compile Include="Assets\PDollar\Scripts\Demo.cs" />
     <Compile Include="Assets\Scripts\PickerSpot.cs" />
     <Compile Include="Assets\Scripts\Helpers\DelayedDestroy.cs" />
+    <Compile Include="Assets\Scripts\Helpers\PlayerTracker.cs" />
+    <Compile Include="Assets\Scripts\SpawnSpell.cs" />
     <Compile Include="Assets\Scripts\Scale.cs" />
     <Compile Include="Assets\PDollar\Scripts\PDollarGestureRecognizer\Gesture.cs" />
     <Compile Include="Assets\Scripts\Health\Damage.cs" />
     <Compile Include="Assets\Scripts\Recalibrate.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\AnchorVisuals.cs" />
     <Compile Include="Assets\Scripts\Causes+Effects\Causes\OnTouchCause.cs" />
+    <Compile Include="Assets\Scripts\Health\HealthObserver.cs" />
     <Compile Include="Assets\Scripts\Elevator.cs" />
     <Compile Include="Assets\Scripts\Helpers\MoveOverTime.cs" />
     <Compile Include="Assets\Scripts\Causes+Effects\Effects\SpinEffect.cs" />
     <Compile Include="Assets\Scripts\Helpers\ChildParent.cs" />
+    <Compile Include="Assets\Scripts\Spell.cs" />
     <Compile Include="Assets\Scripts\Causes+Effects\Causes\OnMouseExitCause.cs" />
     <Compile Include="Assets\Scripts\Health\DamageOverTime.cs" />
   </ItemGroup>

@@ -5,12 +5,12 @@ using UnityEngine.UI;
 
 public class Health : AHealth
 {
-    [SerializeField] private float maxHealth;
+    [SerializeField] private float maxHealth = 10;
     private float health;
     [SerializeField] private Slider hpSlider;
     [SerializeField] private Slider damageSlider;
     [SerializeField] private bool hideSliderAtStart;
-    [SerializeField] private int goldToPlayers;
+    //[SerializeField] private int goldToPlayers;
     [SerializeField] private GameObject deathPrefab;
     [SerializeField] private float damageResistance = 0;
     [SerializeField] private bool slidersFacePlayer = true;
@@ -23,7 +23,7 @@ public class Health : AHealth
         if (hideSliderAtStart) damageSlider.gameObject.SetActive(false);
         if (slidersFacePlayer)
         {
-            faceTransform = GameObject.FindGameObjectWithTag("Player").transform;
+            faceTransform = PlayerTracker.GetPlayer().transform;
             if (faceTransform != null && faceTransform.GetComponentInChildren<Camera>() != null)
             {
                 faceTransform = faceTransform.GetComponentInChildren<Camera>().transform;

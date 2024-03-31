@@ -12,6 +12,7 @@ TagManager:
   - TruePlayerParent
   - PlayerGrounder
   - PlayerHand
+  - Enemy
   layers:
   - Default
   - TransparentFX

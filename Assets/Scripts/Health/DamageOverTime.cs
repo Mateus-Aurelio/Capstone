@@ -19,29 +19,29 @@ public class DamageOverTime : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (!damageOnCollision) return;
-        /*if (damageEnemies && (collision.gameObject.GetComponent<Enemy>() != null || collision.gameObject.CompareTag("Enemy")))
+        if (damageEnemies && (collision.gameObject/*.GetComponent<Enemy>()*/ != null && collision.gameObject.CompareTag("Enemy")))
         {
-            if (collision.gameObject.GetComponent<AHealth>() != null) gameObjectsInside.Add((collision.gameObject, 0));
+            if (collision.gameObject.GetComponent<AHealth>() != null) gameObjectsInside.Add((collision.gameObject, -1));
         }
 
-        if (damagePlayers && (collision.gameObject.GetComponent<PlayerMove>() != null || collision.gameObject.CompareTag("Player")))
+        if (damagePlayers && (collision.gameObject/*.GetComponent<PlayerMove>()*/ != null && collision.gameObject.CompareTag("Player")))
         {
-            if (collision.gameObject.GetComponent<AHealth>() != null) gameObjectsInside.Add((collision.gameObject, 0));
-        }*/
+            if (collision.gameObject.GetComponent<AHealth>() != null) gameObjectsInside.Add((collision.gameObject, -1));
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (!damageOnTrigger) return;
-        /*if (damageEnemies && (other.gameObject.GetComponent<Enemy>() != null || other.CompareTag("Enemy")))
+        if (damageEnemies && (other.gameObject/*.GetComponent<Enemy>()*/ != null && other.CompareTag("Enemy")))
         {
-            if (other.gameObject.GetComponent<AHealth>() != null) gameObjectsInside.Add((other.gameObject, 0));
+            if (other.gameObject.GetComponent<AHealth>() != null) gameObjectsInside.Add((other.gameObject, -1));
         }
 
-        if (damagePlayers && (other.gameObject.GetComponent<PlayerMove>() != null || other.CompareTag("Player")))
+        if (damagePlayers && (other.gameObject/*.GetComponent<PlayerMove>()*/ != null && other.CompareTag("Player")))
         {
-            if (other.gameObject.GetComponent<AHealth>() != null) gameObjectsInside.Add((other.gameObject, 0));
-        }*/
+            if (other.gameObject.GetComponent<AHealth>() != null) gameObjectsInside.Add((other.gameObject, -1));
+        }
     }
 
     private void OnCollisionExit(Collision collision)
@@ -77,7 +77,7 @@ public class DamageOverTime : MonoBehaviour
         {
             if (pair.Item1 == collision.gameObject)
             {
-                if (pair.Item2 >= 1 / maxTriggersPerSecond)
+                if (pair.Item2 == -1 || pair.Item2 >= 1 / maxTriggersPerSecond)
                 {
                     pair.Item1.GetComponent<AHealth>().Damage(damagePerSecond / maxTriggersPerSecond);
                     gameObjectsInside.Add((pair.Item1, 0));
@@ -98,7 +98,7 @@ public class DamageOverTime : MonoBehaviour
         {
             if (pair.Item1 == other.gameObject)
             {
-                if (pair.Item2 >= 1 / maxTriggersPerSecond)
+                if (pair.Item2 == -1 || pair.Item2 >= 1 / maxTriggersPerSecond)
                 {
                     pair.Item1.GetComponent<AHealth>().Damage(damagePerSecond / maxTriggersPerSecond);
                     gameObjectsInside.Add((pair.Item1, 0));
@@ -110,6 +110,11 @@ public class DamageOverTime : MonoBehaviour
                 return;
             }
         }
+    }
+
+    private void Update()
+    {
+
     }
 
     /*public void ChangeDamage(float change)

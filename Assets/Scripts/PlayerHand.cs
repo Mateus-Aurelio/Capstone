@@ -75,6 +75,11 @@ public class PlayerHand : MonoBehaviour
         }
     }
 
+    public Transform GetRelativeTransform()
+    {
+        return relativeTransform;
+    }
+
     public Vector3 GetHandPosition()
     {
         return transform.position - relativeTransform.position;

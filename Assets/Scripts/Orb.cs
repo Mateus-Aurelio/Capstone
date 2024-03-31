@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Orb : MonoBehaviour
+public class Orb : Spell
 {
     private PlayerHand myHand;
     private OrbState orbState;
@@ -45,9 +45,9 @@ public class Orb : MonoBehaviour
         movementChecker.Add(transform.position);
     }
 
-    public void SetHandObject(PlayerHand givenHand)
+    public override void SpellInit(PlayerHand mainHand)
     {
-        myHand = givenHand;
+        myHand = mainHand;
     }
 
     public void ReleasedFromHand(Vector3 velocity, bool useGravity=true)
@@ -105,7 +105,7 @@ public class Orb : MonoBehaviour
 
     private void GrabOrb(PlayerHand hand, Transform parent)
     {
-        SetHandObject(hand);
+        SpellInit(hand);
         transform.SetParent(parent);
         hand.TriggerHaptic(.05f, 0.1f);
         orbState = OrbState.held;
@@ -117,7 +117,7 @@ public class Orb : MonoBehaviour
     {
         Vector3 velocity = hand.GetHandVelocity() * (Mathf.Clamp(hand.GetHandVelocity().magnitude * punchModifier, minPunchVelocity, maxPunchVelocity) / hand.GetHandVelocity().magnitude);
         Debug.Log("Punch velocity magnitude: " + velocity.magnitude + " from hand velocity magnitude " + hand.GetHandVelocity().magnitude);
-        AttemptAutoAim(velocity);
+        //AttemptAutoAim(velocity);
         hand.TriggerHaptic(Mathf.Lerp(0.1f, 1f, velocity.magnitude / maxPunchVelocity), 0.1f);
         ReleasedFromHand(velocity, false);
         orbState = OrbState.released;
