@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1438716685825092481}
   - component: {fileID: 2952344569871493489}
   - component: {fileID: 4022636884800879556}
-  - component: {fileID: 5312765891676690760}
   - component: {fileID: 8699462026661931154}
   m_Layer: 2
   m_Name: Spell4
@@ -94,27 +93,6 @@ MonoBehaviour:
   spellPrefab: {fileID: 0}
   hideSelfWhenReveal: 1
   displayName: 
---- !u!135 &5312765891676690760
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 119498541089033023}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Radius: 0.05
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &8699462026661931154
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -134,7 +112,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.06
+  m_Radius: 0.045
   m_Height: 0.2
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
@@ -255,7 +233,6 @@ GameObject:
   - component: {fileID: 9182305634207712911}
   - component: {fileID: 2050550603245208387}
   - component: {fileID: 4852597942882361925}
-  - component: {fileID: 6606069270155216877}
   - component: {fileID: 4118020936153620685}
   m_Layer: 2
   m_Name: Spell2
@@ -337,27 +314,6 @@ MonoBehaviour:
   spellPrefab: {fileID: 0}
   hideSelfWhenReveal: 1
   displayName: 
---- !u!135 &6606069270155216877
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 165987266420552813}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Radius: 0.05
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &4118020936153620685
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -377,7 +333,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.06
+  m_Radius: 0.045
   m_Height: 0.2
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
@@ -392,7 +348,7 @@ GameObject:
   - component: {fileID: 1165846074700093083}
   - component: {fileID: 8090579812548111242}
   m_Layer: 2
-  m_Name: SpellPicker
+  m_Name: SpellPicker3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -436,6 +392,7 @@ MonoBehaviour:
   cameraT: {fileID: 0}
   mainHandT: {fileID: 0}
   mainHand: {fileID: 0}
+  useSameHand: 1
   maxPosToStay: 0.5
   hideElementsOnceSelected: 0
   adjustPositionOnceElementSelected: 0
@@ -558,7 +515,6 @@ GameObject:
   - component: {fileID: 3516182493823662953}
   - component: {fileID: 8975077312918007282}
   - component: {fileID: 8352816226081178173}
-  - component: {fileID: 3360946672767834538}
   - component: {fileID: 3795259979677691399}
   m_Layer: 2
   m_Name: Spell4
@@ -640,27 +596,6 @@ MonoBehaviour:
   spellPrefab: {fileID: 0}
   hideSelfWhenReveal: 1
   displayName: 
---- !u!135 &3360946672767834538
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 773106069412614193}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Radius: 0.05
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &3795259979677691399
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -680,7 +615,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.06
+  m_Radius: 0.045
   m_Height: 0.2
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
@@ -696,7 +631,6 @@ GameObject:
   - component: {fileID: 5077077799095029821}
   - component: {fileID: 4887781737493283815}
   - component: {fileID: 1679609970043421618}
-  - component: {fileID: 975061523425527271}
   - component: {fileID: 5499254901969625437}
   m_Layer: 2
   m_Name: Spell4
@@ -778,27 +712,6 @@ MonoBehaviour:
   spellPrefab: {fileID: 0}
   hideSelfWhenReveal: 1
   displayName: 
---- !u!135 &975061523425527271
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1448152876612845800}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Radius: 0.05
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &5499254901969625437
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -818,7 +731,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.06
+  m_Radius: 0.045
   m_Height: 0.2
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
@@ -834,7 +747,6 @@ GameObject:
   - component: {fileID: 1361537534449286590}
   - component: {fileID: 5819018642045611750}
   - component: {fileID: 7450834076490032962}
-  - component: {fileID: 1441008230323754974}
   - component: {fileID: 3945184817329136108}
   m_Layer: 2
   m_Name: Spell3
@@ -916,27 +828,6 @@ MonoBehaviour:
   spellPrefab: {fileID: 0}
   hideSelfWhenReveal: 1
   displayName: 
---- !u!135 &1441008230323754974
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1787471635278279509}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Radius: 0.05
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &3945184817329136108
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -956,7 +847,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.06
+  m_Radius: 0.045
   m_Height: 0.2
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
@@ -972,7 +863,6 @@ GameObject:
   - component: {fileID: 3370964082514999120}
   - component: {fileID: 6206112645514212383}
   - component: {fileID: 4163209256725987869}
-  - component: {fileID: 4243280998470696217}
   - component: {fileID: 7975620244339638879}
   m_Layer: 2
   m_Name: Spell2
@@ -1054,27 +944,6 @@ MonoBehaviour:
   spellPrefab: {fileID: 0}
   hideSelfWhenReveal: 1
   displayName: 
---- !u!135 &4243280998470696217
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1827809840378172749}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Radius: 0.05
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &7975620244339638879
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1094,7 +963,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.06
+  m_Radius: 0.045
   m_Height: 0.2
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
@@ -1216,7 +1085,6 @@ GameObject:
   - component: {fileID: 4225622452723145959}
   - component: {fileID: 1791325795588423795}
   - component: {fileID: 4581717346541295209}
-  - component: {fileID: 7498351377879219237}
   - component: {fileID: 8591987835402040564}
   m_Layer: 2
   m_Name: Spell1
@@ -1299,27 +1167,6 @@ MonoBehaviour:
   spellPrefab: {fileID: 8560289713251362189, guid: df68ecd70ef54b946afef8a4cdf9a957, type: 3}
   hideSelfWhenReveal: 1
   displayName: 
---- !u!135 &7498351377879219237
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3157405313435143131}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Radius: 0.05
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &8591987835402040564
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1339,7 +1186,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.06
+  m_Radius: 0.045
   m_Height: 0.2
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
@@ -1771,7 +1618,6 @@ GameObject:
   - component: {fileID: 2054157628325056479}
   - component: {fileID: 2153624702435423635}
   - component: {fileID: 4220805138796411091}
-  - component: {fileID: 3481019933817273688}
   - component: {fileID: 4271514087015055020}
   m_Layer: 2
   m_Name: Spell3
@@ -1853,27 +1699,6 @@ MonoBehaviour:
   spellPrefab: {fileID: 0}
   hideSelfWhenReveal: 1
   displayName: 
---- !u!135 &3481019933817273688
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4745302039669262748}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Radius: 0.05
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &4271514087015055020
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1893,7 +1718,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.06
+  m_Radius: 0.045
   m_Height: 0.2
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
@@ -2027,7 +1852,6 @@ GameObject:
   - component: {fileID: 8514395560726908521}
   - component: {fileID: 6823457222197988357}
   - component: {fileID: 4797690414092383550}
-  - component: {fileID: 8860086853756091955}
   - component: {fileID: 1852404892827493737}
   m_Layer: 2
   m_Name: Spell1
@@ -2109,27 +1933,6 @@ MonoBehaviour:
   spellPrefab: {fileID: 0}
   hideSelfWhenReveal: 1
   displayName: 
---- !u!135 &8860086853756091955
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4844180939094973136}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Radius: 0.05
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &1852404892827493737
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2149,7 +1952,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.06
+  m_Radius: 0.045
   m_Height: 0.2
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
@@ -2270,7 +2073,6 @@ GameObject:
   - component: {fileID: 500375129703266063}
   - component: {fileID: 2967683289874589471}
   - component: {fileID: 7660778618076162861}
-  - component: {fileID: 6345156305047319866}
   - component: {fileID: 6990952809825368138}
   m_Layer: 2
   m_Name: Spell3
@@ -2352,27 +2154,6 @@ MonoBehaviour:
   spellPrefab: {fileID: 0}
   hideSelfWhenReveal: 1
   displayName: 
---- !u!135 &6345156305047319866
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5153617812661381973}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Radius: 0.05
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &6990952809825368138
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2392,7 +2173,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.06
+  m_Radius: 0.045
   m_Height: 0.2
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
@@ -2408,7 +2189,6 @@ GameObject:
   - component: {fileID: 7930588138825054780}
   - component: {fileID: 8563813661097835374}
   - component: {fileID: 5627612472065793631}
-  - component: {fileID: 3160132684898517297}
   - component: {fileID: 6824116646764119686}
   m_Layer: 2
   m_Name: Spell3
@@ -2490,27 +2270,6 @@ MonoBehaviour:
   spellPrefab: {fileID: 0}
   hideSelfWhenReveal: 1
   displayName: 
---- !u!135 &3160132684898517297
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5598716236484552825}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Radius: 0.05
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &6824116646764119686
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2530,7 +2289,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.06
+  m_Radius: 0.045
   m_Height: 0.2
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
@@ -2546,7 +2305,6 @@ GameObject:
   - component: {fileID: 8318002183297438881}
   - component: {fileID: 9043251071966109502}
   - component: {fileID: 4125578115070791100}
-  - component: {fileID: 1700401412303011865}
   - component: {fileID: 1950782022550197374}
   m_Layer: 2
   m_Name: Spell2
@@ -2572,7 +2330,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 0.105, y: -0.297}
+  m_AnchoredPosition: {x: 0.11, y: -0.288}
   m_SizeDelta: {x: 0.3, y: 0.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8318002183297438881
@@ -2626,30 +2384,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   subSpots: []
-  spellPrefab: {fileID: 6567944683054488724, guid: 2f75f74293b679646a3112e59e8b94ab, type: 3}
+  spellPrefab: {fileID: 7607927053975962790, guid: 6c0680c5070625d43925407a52505c19, type: 3}
   hideSelfWhenReveal: 1
   displayName: 
---- !u!135 &1700401412303011865
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7124315951974072900}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Radius: 0.05
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &1950782022550197374
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2669,7 +2406,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.06
+  m_Radius: 0.045
   m_Height: 0.2
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
@@ -2685,7 +2422,6 @@ GameObject:
   - component: {fileID: 852703603789139520}
   - component: {fileID: 3934107905002695202}
   - component: {fileID: 1838394800017488170}
-  - component: {fileID: 7173595962268950828}
   - component: {fileID: 954507129456807349}
   m_Layer: 2
   m_Name: Spell4
@@ -2767,27 +2503,6 @@ MonoBehaviour:
   spellPrefab: {fileID: 0}
   hideSelfWhenReveal: 1
   displayName: 
---- !u!135 &7173595962268950828
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7167354362502364812}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Radius: 0.05
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &954507129456807349
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2807,7 +2522,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.06
+  m_Radius: 0.045
   m_Height: 0.2
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
@@ -2823,7 +2538,6 @@ GameObject:
   - component: {fileID: 62743357493595061}
   - component: {fileID: 1143721552006976602}
   - component: {fileID: 7654685435781558089}
-  - component: {fileID: 1022935329775325339}
   - component: {fileID: 5919203839203198705}
   m_Layer: 2
   m_Name: Spell1
@@ -2905,27 +2619,6 @@ MonoBehaviour:
   spellPrefab: {fileID: 0}
   hideSelfWhenReveal: 1
   displayName: 
---- !u!135 &1022935329775325339
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7320823819440447927}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Radius: 0.05
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &5919203839203198705
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2945,7 +2638,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.06
+  m_Radius: 0.045
   m_Height: 0.2
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
@@ -2961,7 +2654,6 @@ GameObject:
   - component: {fileID: 477104679518487894}
   - component: {fileID: 4586292401796869944}
   - component: {fileID: 2012020362408856834}
-  - component: {fileID: 1714391200051348824}
   - component: {fileID: 6609156798565988482}
   m_Layer: 2
   m_Name: Spell1
@@ -3043,27 +2735,6 @@ MonoBehaviour:
   spellPrefab: {fileID: 0}
   hideSelfWhenReveal: 1
   displayName: 
---- !u!135 &1714391200051348824
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7497661306625740575}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Radius: 0.05
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &6609156798565988482
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3083,7 +2754,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.06
+  m_Radius: 0.045
   m_Height: 0.2
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
@@ -3174,7 +2845,6 @@ GameObject:
   - component: {fileID: 5496450402803222123}
   - component: {fileID: 2857995204442493958}
   - component: {fileID: 8405176686482653064}
-  - component: {fileID: 1903202583898431301}
   - component: {fileID: 5107452769010162381}
   m_Layer: 2
   m_Name: Spell2
@@ -3256,27 +2926,6 @@ MonoBehaviour:
   spellPrefab: {fileID: 0}
   hideSelfWhenReveal: 1
   displayName: 
---- !u!135 &1903202583898431301
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8000069584819074969}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Radius: 0.05
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &5107452769010162381
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3296,7 +2945,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.06
+  m_Radius: 0.045
   m_Height: 0.2
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}

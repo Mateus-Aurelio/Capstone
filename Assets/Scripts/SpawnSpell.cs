@@ -17,16 +17,16 @@ public class SpawnSpell : Spell
         {
             relativeTransform = PlayerTracker.GetPlayer().transform;
         }
-        /*else if (spawnRelativeToHand)
+        else if (spawnRelativeToHand)
         {
-            mainHand.transform
-        }*/
+            relativeTransform = mainHand.transform;
+        }
         transform.position = relativeTransform.position;
         transform.rotation = Quaternion.Euler(0, mainHand.GetRelativeTransform().rotation.eulerAngles.y, 0);
         transform.Translate(relativeSpawnPos, transform);
         if (spawnGrounded)
         {
-            Collider[] environmentColliders = Physics.OverlapSphere(transform.position, 9, LayerMask.NameToLayer("Environment"));
+            Collider[] environmentColliders = Physics.OverlapSphere(transform.position, 20, LayerMask.NameToLayer("Environment"));
             if (environmentColliders.Length <= 0) return;
             /*float minDistance = 99;
             foreach (Collider c in environmentColliders)

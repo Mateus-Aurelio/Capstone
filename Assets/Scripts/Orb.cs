@@ -103,6 +103,14 @@ public class Orb : Spell
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (orbState == OrbState.released)
+        {
+            GetComponent<Rigidbody>().useGravity = true;
+        }
+    }
+
     private void GrabOrb(PlayerHand hand, Transform parent)
     {
         SpellInit(hand);
@@ -117,7 +125,7 @@ public class Orb : Spell
     {
         Vector3 velocity = hand.GetHandVelocity() * (Mathf.Clamp(hand.GetHandVelocity().magnitude * punchModifier, minPunchVelocity, maxPunchVelocity) / hand.GetHandVelocity().magnitude);
         Debug.Log("Punch velocity magnitude: " + velocity.magnitude + " from hand velocity magnitude " + hand.GetHandVelocity().magnitude);
-        //AttemptAutoAim(velocity);
+        velocity = AttemptAutoAim(velocity);
         hand.TriggerHaptic(Mathf.Lerp(0.1f, 1f, velocity.magnitude / maxPunchVelocity), 0.1f);
         ReleasedFromHand(velocity, false);
         orbState = OrbState.released;
@@ -128,17 +136,29 @@ public class Orb : Spell
 
     }
 
-    private void AttemptAutoAim(Vector3 velocity)
+    private Vector3 AttemptAutoAim(Vector3 velocity)
     {
+        Debug.Log("AttemptAutoAim called");
         Debug.DrawRay(transform.position, velocity, Color.white);
         RaycastHit hit;
+        Debug.Log("Drew ray and created RaycastHit, now iterating through hit transforms");
+        float minDistance = 999;
         foreach (Transform t in AutoAimPosList.GetList())
         {
-            if (Physics.Raycast(transform.position, t.position - transform.position, out hit, Mathf.Infinity))
+            Debug.Log("Transform t: " + t.gameObject.name);
+            if (Physics.Raycast(transform.position, t.position - transform.position, out hit, 30))
             {
-                Debug.Log("angle: " + Vector3.Angle(velocity.normalized, (t.position - transform.position).normalized));
+                Debug.Log("Did Hit: angle: " + Vector3.Angle(velocity.normalized, (t.position - transform.position).normalized));
                 Debug.DrawRay(transform.position, t.position - transform.position * hit.distance, Color.cyan);
-                Debug.Log("Did Hit");
+                if (Vector3.Angle(velocity.normalized, (t.position - transform.position).normalized) < 20)
+                {
+                    if (minDistance > Vector3.Distance(transform.position, t.position))
+                    {
+                        Debug.Log("MinDistance found, auto aiming? Velocity was " + velocity + ", now is " + (t.position - transform.position).normalized * velocity.magnitude);
+                        minDistance = Vector3.Distance(transform.position, t.position);
+                        velocity = (t.position - transform.position).normalized * velocity.magnitude;
+                    }
+                }
             }
             else
             {
@@ -146,6 +166,7 @@ public class Orb : Spell
                 Debug.Log("Did not Hit");
             }
         }
+        return velocity;
     }
 }
 

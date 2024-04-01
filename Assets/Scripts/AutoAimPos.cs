@@ -54,11 +54,17 @@ public class AutoAimPos : MonoBehaviour
     void Awake()
     {
         if (setUpAutoAimSystem) SetUpAutoAimSystem();
-        AutoAimPosList.AddTransform(transform);
+        StartCoroutine("AddSelf");
     }
 
     private void SetUpAutoAimSystem()
     {
         AutoAimPosList.Reset();
+    }
+
+    private IEnumerator AddSelf()
+    {
+        yield return new WaitForEndOfFrame();
+        AutoAimPosList.AddTransform(transform);
     }
 }

@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 3637277725851527445}
   - component: {fileID: 7834051356874283326}
   - component: {fileID: -1201936250954226967}
+  - component: {fileID: -946355415183049322}
   m_Layer: 7
   m_Name: Orb-Air
   m_TagString: Untagged
@@ -136,6 +137,9 @@ MonoBehaviour:
   maxGripTimeToGrab: 0.125
   minGripTimeToPunch: 0.125
   minVelocityToPunch: 1
+  minPunchVelocity: 10
+  maxPunchVelocity: 20
+  punchModifier: 4
   maxMovementChecks: 3
 --- !u!33 &1599788595053653778
 MeshFilter:
@@ -235,3 +239,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
+--- !u!114 &-946355415183049322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777067855996375140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7821925a9ec0c31459c1252acf8426c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 3
+  damageEnemies: 1
+  damagePlayers: 0
+  damageOnTrigger: 0
+  damageOnCollision: 1
+  destroySelfOnDamage: 1
+  delayedDestroy: -1
+  delayedDestroyComponentList: []
+  delayedDestroyGameObjectList: []

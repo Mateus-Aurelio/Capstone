@@ -13,12 +13,15 @@ public class SpellPicker : MonoBehaviour
     //[SerializeField] private float distanceForHandTouch;
     [SerializeField] private Transform mainHandT;
     [SerializeField] private PlayerHand mainHand;
+    [SerializeField] private bool useSameHand = true;
 
     [SerializeField] private float maxPosToStay = 0.5f;
     private bool waitToUngrip = false;
     [SerializeField] private bool hideElementsOnceSelected = true;
     [SerializeField] private bool adjustPositionOnceElementSelected = true;
     [SerializeField] private bool includeElementsInSpellsState = false;
+
+    // [SerializeField] private GameObject spellPreview;
 
     private PickerState pickState;
     //private float fadingTimerElements;
@@ -87,12 +90,14 @@ public class SpellPicker : MonoBehaviour
         {
             EnterNoneState();
         }
+        transform.LookAt(transform.position - (cameraT.position - transform.position));
         foreach (PickerSpot elementSpot in elementPickerSpots)
         {
-            if (elementSpot.GetComponent<Collider>().bounds.Contains(mainHandT.transform.position))
+            if ((useSameHand && elementSpot.GetComponent<Collider>().bounds.Contains(mainHandT.transform.position))
+                    || (!useSameHand && elementSpot.GetComponent<Collider>().bounds.Contains(mainHand.GetOtherHand().transform.position)))
             {
                 elementSpot.RevealSubSpots();
-                foreach (PickerSpot otherElementSpot in elementPickerSpots)
+                foreach (PickerSpot otherElementSpot in elementPickerSpots) 
                 {
                     if (otherElementSpot != elementSpot) otherElementSpot.HideSubSpots();
                 }
@@ -105,9 +110,11 @@ public class SpellPicker : MonoBehaviour
 
     private void SpellsShownUpdate()
     {
+        transform.LookAt(transform.position - (cameraT.position - transform.position));
         foreach (PickerSpot spellSpot in spellPickerSpots)
         {
-            if (spellSpot.GetComponent<Collider>().bounds.Contains(mainHandT.transform.position))
+            if ((useSameHand && spellSpot.GetComponent<Collider>().bounds.Contains(mainHandT.transform.position))
+                    || (!useSameHand && spellSpot.GetComponent<Collider>().bounds.Contains(mainHand.GetOtherHand().transform.position)))
             {
                 spellSpot.HandTouched(mainHand, this);
                 if (!mainHand.HandButtonPressed(UnityEngine.XR.Interaction.Toolkit.InputHelpers.Button.Trigger))
@@ -126,7 +133,8 @@ public class SpellPicker : MonoBehaviour
         {
             foreach (PickerSpot elementSpot in elementPickerSpots)
             {
-                if (elementSpot.GetComponent<Collider>().bounds.Contains(mainHandT.transform.position))
+                if ((useSameHand && elementSpot.GetComponent<Collider>().bounds.Contains(mainHandT.transform.position))
+                    || (!useSameHand && elementSpot.GetComponent<Collider>().bounds.Contains(mainHand.GetOtherHand().transform.position)))
                 {
                     elementSpot.RevealSubSpots();
                     elementSpot.HandTouched(mainHand, this);
@@ -134,6 +142,8 @@ public class SpellPicker : MonoBehaviour
                     {
                         if (otherElementSpot != elementSpot) otherElementSpot.HideSubSpots();
                     }
+                    /*if ((useSameHand && !mainHand.HandButtonPressed(UnityEngine.XR.Interaction.Toolkit.InputHelpers.Button.Trigger))
+                        || (!useSameHand && !mainHand.GetOtherHand().HandButtonPressed(UnityEngine.XR.Interaction.Toolkit.InputHelpers.Button.Trigger)))*/
                     if (!mainHand.HandButtonPressed(UnityEngine.XR.Interaction.Toolkit.InputHelpers.Button.Trigger))
                     {
                         elementSpot.HandReleased(mainHand, this);

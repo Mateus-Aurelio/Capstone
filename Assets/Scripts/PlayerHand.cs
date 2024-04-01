@@ -80,6 +80,11 @@ public class PlayerHand : MonoBehaviour
         return relativeTransform;
     }
 
+    public PlayerHand GetOtherHand()
+    {
+        return otherHand;
+    }
+
     public Vector3 GetHandPosition()
     {
         return transform.position - relativeTransform.position;
