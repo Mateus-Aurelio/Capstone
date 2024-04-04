@@ -670,6 +670,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa19158a9485f2c45887490d2dd47295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  elementToCast: 2
+  edgesToCast: []
   spawnRelativeToBase: 1
   spawnRelativeToHand: 0
   relativeSpawnPos: {x: 0, y: 0, z: 0.6}

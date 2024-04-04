@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DamageOverTime : MonoBehaviour
 {
+    [SerializeField] private DamageType damageType;
     [SerializeField] private float damagePerSecond = 2;
     [SerializeField] private float maxTriggersPerSecond = 1;
 
@@ -79,7 +80,7 @@ public class DamageOverTime : MonoBehaviour
             {
                 if (pair.Item2 == -1 || pair.Item2 >= 1 / maxTriggersPerSecond)
                 {
-                    pair.Item1.GetComponent<AHealth>().Damage(damagePerSecond / maxTriggersPerSecond);
+                    pair.Item1.GetComponent<AHealth>().Damage(damagePerSecond / maxTriggersPerSecond, damageType);
                     gameObjectsInside.Add((pair.Item1, 0));
                     gameObjectsInside.Remove((pair.Item1, pair.Item2));
                     return;
@@ -100,7 +101,7 @@ public class DamageOverTime : MonoBehaviour
             {
                 if (pair.Item2 == -1 || pair.Item2 >= 1 / maxTriggersPerSecond)
                 {
-                    pair.Item1.GetComponent<AHealth>().Damage(damagePerSecond / maxTriggersPerSecond);
+                    pair.Item1.GetComponent<AHealth>().Damage(damagePerSecond / maxTriggersPerSecond, damageType);
                     gameObjectsInside.Add((pair.Item1, 0));
                     gameObjectsInside.Remove((pair.Item1, pair.Item2));
                     return;

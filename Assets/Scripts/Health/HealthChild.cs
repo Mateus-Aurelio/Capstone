@@ -40,9 +40,10 @@ public class HealthChild : AHealth
         }
     }*/
 
-    public override void Damage(float given)
+    public override void Damage(float given, DamageType damageType=DamageType.none)
     {
-        healthScript.Damage(given * damageModifer);
+        Debug.LogError("HealthChild Damage NOT IMPLEMENTED");
+        // healthScript.Damage(given * damageModifer);
         //if (!hpSlider.gameObject.activeInHierarchy) hpSlider.gameObject.SetActive(true);
         //if (!damageSlider.gameObject.activeInHierarchy) damageSlider.gameObject.SetActive(true);
         //health = Mathf.Clamp(health - given, 0, 100000);

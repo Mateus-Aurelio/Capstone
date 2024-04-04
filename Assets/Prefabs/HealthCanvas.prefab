@@ -86,7 +86,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &2973505242332279684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -353,6 +353,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4553183008530388043}
+  - component: {fileID: 4280641053694349579}
   - component: {fileID: 3611041805042504872}
   m_Layer: 5
   m_Name: DamageEffectSlider
@@ -382,6 +383,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &4280641053694349579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2153605127665327445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 257f439bd2acafb4bbf8303f6d3d7414, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageSlider: {fileID: 3611041805042504872}
+  speed: 6
+  hideSliderAtStart: 1
+  background: {fileID: 6690310388400929414}
 --- !u!114 &3611041805042504872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -853,6 +870,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9015567919076586407}
+  - component: {fileID: 7044311377202794849}
   - component: {fileID: 7307649894189843881}
   m_Layer: 5
   m_Name: HealthSlider
@@ -882,6 +900,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &7044311377202794849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6951293176446360780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 124b7c78fb5118b4bbbb80de854d76d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthSlider: {fileID: 7307649894189843881}
+  hideSliderAtStart: 1
 --- !u!114 &7307649894189843881
 MonoBehaviour:
   m_ObjectHideFlags: 0

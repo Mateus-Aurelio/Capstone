@@ -69,9 +69,12 @@
     <Compile Include="Assets\Scripts\Helpers\DevHelp.cs" />
     <Compile Include="Assets\Scripts\Causes+Effects\Causes\OnClickCause.cs" />
     <Compile Include="Assets\Scripts\Helpers\TestSpringsRaise.cs" />
+    <Compile Include="Assets\Scripts\Health\AHealthTracker.cs" />
     <Compile Include="Assets\Scripts\ZoneEffects\ElementSourceFinder.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\DestroyObject.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\VideoTimeScrubControl.cs" />
+    <Compile Include="Assets\Scripts\Health\DamageSlider.cs" />
+    <Compile Include="Assets\Scripts\Health\DamageType.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\VideoPlayerRenderTexture.cs" />
     <Compile Include="Assets\Scripts\ZoneEffects\ZoneEffect.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\Rotator.cs" />
@@ -84,6 +87,7 @@
     <Compile Include="Assets\Scripts\Health\AHealth.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\RayAttachModifier.cs" />
     <Compile Include="Assets\PDollar\Scripts\PDollarGestureRecognizer\Geometry.cs" />
+    <Compile Include="Assets\Scripts\SpellCirclePoint.cs" />
     <Compile Include="Assets\Scripts\Helpers\Helpers.cs" />
     <Compile Include="Assets\Scripts\ZoneEffects\CollisionStorer.cs" />
     <Compile Include="Assets\Scripts\PlayerHand.cs" />
@@ -99,6 +103,7 @@
     <Compile Include="Assets\Scripts\ElementSource.cs" />
     <Compile Include="Assets\Scripts\Helpers\SceneChanger.cs" />
     <Compile Include="Assets\Scripts\Causes+Effects\Effects\ChangeConditionEffect.cs" />
+    <Compile Include="Assets\Scripts\SpellCircle.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\Elements.cs" />
     <Compile Include="Assets\PDollar\Scripts\PDollarGestureRecognizer\Point.cs" />
@@ -107,6 +112,7 @@
     <Compile Include="Assets\Scripts\Causes+Effects\Effects\SetConditionEffect.cs" />
     <Compile Include="Assets\Scripts\Causes+Effects\Conditions\ACondition.cs" />
     <Compile Include="Assets\Scripts\Causes+Effects\Effects\MoveClampedEffect.cs" />
+    <Compile Include="Assets\Scripts\Health\HealthSlider.cs" />
     <Compile Include="Assets\Scripts\Causes+Effects\Effects\AEffect.cs" />
     <Compile Include="Assets\Scripts\Spellcasting.cs" />
     <Compile Include="Assets\Scripts\Health\Health.cs" />
@@ -136,6 +142,7 @@
     <Compile Include="Assets\Scripts\Health\Damage.cs" />
     <Compile Include="Assets\Scripts\Recalibrate.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\AnchorVisuals.cs" />
+    <Compile Include="Assets\Scripts\Health\DamageModifier.cs" />
     <Compile Include="Assets\Scripts\Causes+Effects\Causes\OnTouchCause.cs" />
     <Compile Include="Assets\Scripts\Health\HealthObserver.cs" />
     <Compile Include="Assets\Scripts\Elevator.cs" />
@@ -1160,12 +1167,12 @@
       <HintPath>Library\ScriptAssemblies\Unity.ProBuilder.AssetIdRemapUtility.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.VSCode.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Unity.AI.Navigation.Editor.ConversionSystem">
       <HintPath>Library\ScriptAssemblies\Unity.AI.Navigation.Editor.ConversionSystem.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.VSCode.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.XR.OpenXR.Features.OculusQuestSupport">

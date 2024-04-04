@@ -5,6 +5,7 @@ using UnityEngine;
 public class Damage : MonoBehaviour
 {
     [SerializeField] private float damage;
+    [SerializeField] private DamageType damageType;
 
     [SerializeField] private bool damageEnemies = true;
     [SerializeField] private bool damagePlayers = false;
@@ -32,7 +33,7 @@ public class Damage : MonoBehaviour
         if (damageEnemies && (collision.gameObject/*.GetComponent<Enemy>()*/ != null && collision.gameObject.CompareTag("Enemy")))
         {
             AHealth health = collision.gameObject.GetComponent<AHealth>();
-            if (health != null) health.Damage(damage);
+            if (health != null) health.Damage(damage, damageType);
             else Debug.LogWarning("Health component missing on gameObject " + gameObject);
             if (!destroy && destroySelfOnDamage) destroy = true;
         }
@@ -40,7 +41,7 @@ public class Damage : MonoBehaviour
         if (damagePlayers && (collision.gameObject/*.GetComponent<PlayerMove>()*/ != null && collision.gameObject.CompareTag("Player")))
         {
             AHealth health = collision.gameObject.GetComponent<AHealth>();
-            if (health != null) health.Damage(damage);
+            if (health != null) health.Damage(damage, damageType);
             else Debug.LogWarning("Health component missing on gameObject " + gameObject);
             if (!destroy && destroySelfOnDamage) destroy = true;
         }
@@ -55,14 +56,14 @@ public class Damage : MonoBehaviour
         if (damageEnemies && (other.gameObject/*.GetComponent<Enemy>()*/ != null || other.CompareTag("Enemy")))
         {
             AHealth health = other.gameObject.GetComponent<AHealth>();
-            if (health != null) health.Damage(damage);
+            if (health != null) health.Damage(damage, damageType);
             if (!destroy && destroySelfOnDamage) destroy = true;
         }
 
         if (damagePlayers && (other.gameObject/*.GetComponent<PlayerMove>()*/ != null || other.CompareTag("Player")))
         {
             AHealth health = other.gameObject.GetComponent<AHealth>();
-            if (health != null) health.Damage(damage);
+            if (health != null) health.Damage(damage, damageType);
             if (!destroy && destroySelfOnDamage) destroy = true;
         }
 

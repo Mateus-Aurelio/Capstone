@@ -4876,6 +4876,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 418785d628351fc479043cfa068fa372, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageType: 2
   damagePerSecond: 4
   maxTriggersPerSecond: 4
   damageEnemies: 1
@@ -4977,6 +4978,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa19158a9485f2c45887490d2dd47295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  elementToCast: 2
+  edgesToCast: []
   spawnRelativeToBase: 1
   spawnRelativeToHand: 0
   relativeSpawnPos: {x: 0, y: 0, z: 3}

@@ -1388,7 +1388,6 @@ GameObject:
   - component: {fileID: 1215450373143272335}
   - component: {fileID: 8267653101066143154}
   - component: {fileID: 7360838637338821269}
-  - component: {fileID: 6193119397042632606}
   - component: {fileID: 2002695655307003872}
   m_Layer: 0
   m_Name: Eye (1)
@@ -1462,27 +1461,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &6193119397042632606
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2656119557245828328}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2002695655307003872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13138,7 +13116,7 @@ GameObject:
   - component: {fileID: 8476581197497676937}
   - component: {fileID: 3991268965230974215}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Choppy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13176,12 +13154,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10
-  hpSlider: {fileID: 7245788024179031253}
-  damageSlider: {fileID: 3745647364355386836}
-  hideSliderAtStart: 1
+  healthTrackers:
+  - {fileID: 6928122740730325021}
+  - {fileID: 4215419102040483959}
+  damageModifiers:
+  - damageType: 1
+    modifier: 10
+  - damageType: 3
+    modifier: 0.5
   deathPrefab: {fileID: 9149298981587626215, guid: 71cd66b4e98c8804398d6477b5b21421, type: 3}
-  damageResistance: 0
-  slidersFacePlayer: 1
 --- !u!114 &3822761898943290415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13278,7 +13259,6 @@ GameObject:
   - component: {fileID: 5517567236739881611}
   - component: {fileID: 6953449056831304841}
   - component: {fileID: 6505811582763610730}
-  - component: {fileID: 5923546034642034504}
   - component: {fileID: 7190877113977894177}
   m_Layer: 0
   m_Name: Eye
@@ -13352,27 +13332,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &5923546034642034504
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4454051880313139935}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7190877113977894177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26236,25 +26195,25 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3495561062762010597, guid: ece9b8ab1f101d549be4962a66676b74, type: 3}
   m_PrefabInstance: {fileID: 137299371411847548}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3745647364355386836 stripped
+--- !u!114 &4215419102040483959 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3611041805042504872, guid: ece9b8ab1f101d549be4962a66676b74, type: 3}
+  m_CorrespondingSourceObject: {fileID: 4280641053694349579, guid: ece9b8ab1f101d549be4962a66676b74, type: 3}
   m_PrefabInstance: {fileID: 137299371411847548}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Script: {fileID: 11500000, guid: 257f439bd2acafb4bbf8303f6d3d7414, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7245788024179031253 stripped
+--- !u!114 &6928122740730325021 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7307649894189843881, guid: ece9b8ab1f101d549be4962a66676b74, type: 3}
+  m_CorrespondingSourceObject: {fileID: 7044311377202794849, guid: ece9b8ab1f101d549be4962a66676b74, type: 3}
   m_PrefabInstance: {fileID: 137299371411847548}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Script: {fileID: 11500000, guid: 124b7c78fb5118b4bbbb80de854d76d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

@@ -5094,7 +5094,7 @@ GameObject:
   - component: {fileID: 1287925846}
   - component: {fileID: 1287925845}
   m_Layer: 5
-  m_Name: World Space Canvas
+  m_Name: FPS Tracker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9133,12 +9133,12 @@ SceneRoots:
   m_Roots:
   - {fileID: 299639869}
   - {fileID: 452463679}
+  - {fileID: 1045359968}
   - {fileID: 1036497747}
   - {fileID: 1506959391}
+  - {fileID: 1970246855}
   - {fileID: 1287925848}
-  - {fileID: 1045359968}
   - {fileID: 899545209}
   - {fileID: 1177011927}
   - {fileID: 1383744352}
   - {fileID: 994026646}
-  - {fileID: 1970246855}

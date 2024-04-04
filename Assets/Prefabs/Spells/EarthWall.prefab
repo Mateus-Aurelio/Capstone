@@ -151,6 +151,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa19158a9485f2c45887490d2dd47295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  elementToCast: 0
+  edgesToCast: []
   spawnRelativeToBase: 1
   spawnRelativeToHand: 0
   relativeSpawnPos: {x: 0, y: 0, z: 3}
@@ -165,7 +167,7 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.3, y: 0.25, z: 0.05}
+  m_Extents: {x: 0.75, y: 0.25, z: 0.1}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
