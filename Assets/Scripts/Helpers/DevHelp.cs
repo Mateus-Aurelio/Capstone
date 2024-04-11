@@ -9,11 +9,12 @@ using TMPro;
 public class DevHelp : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI fpsCounter;
+    [SerializeField] private bool breakOnLeftMenu = false;
 
     void Update()
     {
         fpsCounter.text = "FPS: " + (int)(1 / Time.deltaTime);
-        if (VRInput.ButtonPressed(XRNode.LeftHand, InputHelpers.Button.MenuButton))
+        if (breakOnLeftMenu && VRInput.ButtonPressed(XRNode.LeftHand, InputHelpers.Button.MenuButton))
         {
             Debug.Break();
         }

@@ -103,14 +103,14 @@ public class Recalibrate : MonoBehaviour
             Instantiate(visualizationPrefab, loweredRightHandPos, visualizationPrefab.transform.rotation);
             Instantiate(visualizationPrefab, corePos, visualizationPrefab.transform.rotation);
         }
-        Debug.Log("extendedLeftHandPos " + extendedLeftHandPos);
+        /*Debug.Log("extendedLeftHandPos " + extendedLeftHandPos);
         Debug.Log("extendedRightHandPos " + extendedRightHandPos);
         Debug.Log("loweredLeftHandPos " + loweredLeftHandPos);
         Debug.Log("loweredRightHandPos " + loweredRightHandPos);
         Debug.Log("leftShoulderPos " + leftShoulderPos);
         Debug.Log("rightShoulderPos " + rightShoulderPos);
         Debug.Log("corePos " + corePos);
-        Debug.Log("armsLength " + armsLength);
+        Debug.Log("armsLength " + armsLength);*/
 
         /*Debug.Log("Feet pos: " + feetT.position);
         Debug.Log("Camera pos: " + cameraT.position);

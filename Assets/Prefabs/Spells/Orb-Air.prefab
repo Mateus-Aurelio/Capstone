@@ -93,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2453192450893461255}
   - component: {fileID: 2294625116028021337}
-  - component: {fileID: -946355415183049322}
+  - component: {fileID: -7737874931601293835}
   - component: {fileID: 1599788595053653778}
   - component: {fileID: 3637277725851527445}
   - component: {fileID: 7834051356874283326}
@@ -134,7 +134,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   elementToCast: 4
-  edgesToCast: []
+  spellEdgesOptions:
+  - spellCircleEdges:
+    - location1: 7
+      location2: 3
   minGripTimeToGrab: 0
   maxGripTimeToGrab: 0.125
   minGripTimeToPunch: 0.125
@@ -143,7 +146,7 @@ MonoBehaviour:
   maxPunchVelocity: 20
   punchModifier: 4
   maxMovementChecks: 3
---- !u!114 &-946355415183049322
+--- !u!114 &-7737874931601293835
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -152,19 +155,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 777067855996375140}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7821925a9ec0c31459c1252acf8426c3, type: 3}
+  m_Script: {fileID: 11500000, guid: ae4ef9e6cd3b37a4e94cd7e036741e21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 3
-  damageType: 4
+  damage:
+    damageAmount: 3
+    damageType: 4
+    effectsToInflict: []
   damageEnemies: 1
   damagePlayers: 0
   damageOnTrigger: 0
   damageOnCollision: 1
   destroySelfOnDamage: 1
-  delayedDestroy: -1
-  delayedDestroyComponentList: []
-  delayedDestroyGameObjectList: []
 --- !u!33 &1599788595053653778
 MeshFilter:
   m_ObjectHideFlags: 0

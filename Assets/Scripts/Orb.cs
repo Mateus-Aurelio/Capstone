@@ -138,23 +138,23 @@ public class Orb : Spell
 
     private Vector3 AttemptAutoAim(Vector3 velocity)
     {
-        Debug.Log("AttemptAutoAim called");
+        //Debug.Log("AttemptAutoAim called");
         Debug.DrawRay(transform.position, velocity, Color.white);
         RaycastHit hit;
-        Debug.Log("Drew ray and created RaycastHit, now iterating through hit transforms");
+        //Debug.Log("Drew ray and created RaycastHit, now iterating through hit transforms");
         float minDistance = 999;
         foreach (Transform t in AutoAimPosList.GetList())
         {
-            Debug.Log("Transform t: " + t.gameObject.name);
+            //Debug.Log("Transform t: " + t.gameObject.name);
             if (Physics.Raycast(transform.position, t.position - transform.position, out hit, 30))
             {
-                Debug.Log("Did Hit: angle: " + Vector3.Angle(velocity.normalized, (t.position - transform.position).normalized));
-                Debug.DrawRay(transform.position, t.position - transform.position * hit.distance, Color.cyan);
+                //Debug.Log("Did Hit: angle: " + Vector3.Angle(velocity.normalized, (t.position - transform.position).normalized));
+                //Debug.DrawRay(transform.position, t.position - transform.position * hit.distance, Color.cyan);
                 if (Vector3.Angle(velocity.normalized, (t.position - transform.position).normalized) < 20)
                 {
                     if (minDistance > Vector3.Distance(transform.position, t.position))
                     {
-                        Debug.Log("MinDistance found, auto aiming? Velocity was " + velocity + ", now is " + (t.position - transform.position).normalized * velocity.magnitude);
+                        //Debug.Log("MinDistance found, auto aiming? Velocity was " + velocity + ", now is " + (t.position - transform.position).normalized * velocity.magnitude);
                         minDistance = Vector3.Distance(transform.position, t.position);
                         velocity = (t.position - transform.position).normalized * velocity.magnitude;
                     }
@@ -162,8 +162,8 @@ public class Orb : Spell
             }
             else
             {
-                Debug.DrawRay(transform.position, t.position - transform.position * 50, Color.red);
-                Debug.Log("Did not Hit");
+                //Debug.DrawRay(transform.position, t.position - transform.position * 50, Color.red);
+                //Debug.Log("Did not Hit");
             }
         }
         return velocity;

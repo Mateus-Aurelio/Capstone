@@ -6,25 +6,30 @@ using UnityEngine;
 public class Spell : MonoBehaviour
 {
     [SerializeField] private Element elementToCast;
-    [SerializeField] private List<SpellEdges> edgesToCast = new List<SpellEdges>();
+    [SerializeField] private List<SpellEdgesOption> spellEdgesOptions = new List<SpellEdgesOption>();
 
-    public List<SpellEdges> GetSpellEdges()
+    public List<SpellEdgesOption> GetSpellEdgesOptions()
     {
-        return edgesToCast;
+        return spellEdgesOptions;
     }
 
     public virtual void SpellInit(PlayerHand mainHand)
     {
 
     }
+
+    public Element GetElementToCast()
+    {
+        return elementToCast;
+    }
 }
 
 [Serializable]
-public struct SpellEdges
+public struct SpellEdgesOption
 {
     public List<SpellCircleEdge> spellCircleEdges;
 
-    public SpellEdges(List<SpellCircleEdge> given)
+    public SpellEdgesOption(List<SpellCircleEdge> given)
     {
         spellCircleEdges = given;
     }

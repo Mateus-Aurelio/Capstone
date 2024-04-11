@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class DamageOverTime : MonoBehaviour
 {
-    [SerializeField] private DamageType damageType;
-    [SerializeField] private float damagePerSecond = 2;
+    /*[SerializeField] private DamageType damageType;
+    [SerializeField] private float damagePerSecond = 2;*/
+    [SerializeField] private Damage damage;
     [SerializeField] private float maxTriggersPerSecond = 1;
 
     [SerializeField] private bool damageEnemies = true;
@@ -13,95 +14,81 @@ public class DamageOverTime : MonoBehaviour
     [SerializeField] private bool damageOnTrigger;
     [SerializeField] private bool damageOnCollision;
 
-    // private List<GameObject> gameObjectsInside = new List<GameObject>();
     private List<(GameObject, float)> gameObjectsInside = new List<(GameObject, float)>();
 
 
     private void OnCollisionEnter(Collision collision)
     {
         if (!damageOnCollision) return;
-        if (damageEnemies && (collision.gameObject/*.GetComponent<Enemy>()*/ != null && collision.gameObject.CompareTag("Enemy")))
-        {
-            if (collision.gameObject.GetComponent<AHealth>() != null) gameObjectsInside.Add((collision.gameObject, -1));
-        }
-
-        if (damagePlayers && (collision.gameObject/*.GetComponent<PlayerMove>()*/ != null && collision.gameObject.CompareTag("Player")))
-        {
-            if (collision.gameObject.GetComponent<AHealth>() != null) gameObjectsInside.Add((collision.gameObject, -1));
-        }
+        AttemptToAddObject(collision.gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (!damageOnTrigger) return;
-        if (damageEnemies && (other.gameObject/*.GetComponent<Enemy>()*/ != null && other.CompareTag("Enemy")))
-        {
-            if (other.gameObject.GetComponent<AHealth>() != null) gameObjectsInside.Add((other.gameObject, -1));
-        }
-
-        if (damagePlayers && (other.gameObject/*.GetComponent<PlayerMove>()*/ != null && other.CompareTag("Player")))
-        {
-            if (other.gameObject.GetComponent<AHealth>() != null) gameObjectsInside.Add((other.gameObject, -1));
-        }
+        AttemptToAddObject(other.gameObject);
     }
 
     private void OnCollisionExit(Collision collision)
     {
         if (!damageOnCollision) return;
-        foreach ((GameObject, float) pair in gameObjectsInside)
-        {
-            if (pair.Item1 == collision.gameObject)
-            {
-                gameObjectsInside.Remove((pair.Item1, pair.Item2));
-                return;
-            }
-        }
+        AttemptToRemoveObject(collision.gameObject);
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (!damageOnTrigger) return;
-        foreach ((GameObject, float) pair in gameObjectsInside)
-        {
-            if (pair.Item1 == other.gameObject)
-            {
-                gameObjectsInside.Remove((pair.Item1, pair.Item2));
-                return;
-            }
-        }
+        AttemptToRemoveObject(other.gameObject);
     }
 
     private void OnCollisionStay(Collision collision)
     {
         if (!damageOnCollision) return;
-        foreach ((GameObject, float) pair in gameObjectsInside)
-        {
-            if (pair.Item1 == collision.gameObject)
-            {
-                if (pair.Item2 == -1 || pair.Item2 >= 1 / maxTriggersPerSecond)
-                {
-                    pair.Item1.GetComponent<AHealth>().Damage(damagePerSecond / maxTriggersPerSecond, damageType);
-                    gameObjectsInside.Add((pair.Item1, 0));
-                    gameObjectsInside.Remove((pair.Item1, pair.Item2));
-                    return;
-                }
-                gameObjectsInside.Add((pair.Item1, pair.Item2 + Time.deltaTime));
-                gameObjectsInside.Remove((pair.Item1, pair.Item2));
-                return;
-            }
-        }
+        AttemptToDamageObject(collision.gameObject);
     }
 
     private void OnTriggerStay(Collider other)
     {
         if (!damageOnTrigger) return;
+        AttemptToDamageObject(other.gameObject);
+    }
+
+    private void AttemptToAddObject(GameObject obj)
+    {
+        if (damageEnemies && (obj/*.GetComponent<Enemy>()*/ != null && obj.CompareTag("Enemy")))
+        {
+            if (obj.GetComponent<AHealth>() != null) gameObjectsInside.Add((obj, -1));
+        }
+
+        if (damagePlayers && (obj/*.GetComponent<PlayerMove>()*/ != null && obj.CompareTag("Player")))
+        {
+            if (obj.GetComponent<AHealth>() != null) gameObjectsInside.Add((obj, -1));
+        }
+    }
+
+    private void AttemptToRemoveObject(GameObject obj)
+    {
         foreach ((GameObject, float) pair in gameObjectsInside)
         {
-            if (pair.Item1 == other.gameObject)
+            if (pair.Item1 == obj)
+            {
+                gameObjectsInside.Remove((pair.Item1, pair.Item2));
+                return;
+            }
+        }
+    }
+
+    private void AttemptToDamageObject(GameObject obj)
+    {
+        foreach ((GameObject, float) pair in gameObjectsInside)
+        {
+            if (pair.Item1 == obj)
             {
                 if (pair.Item2 == -1 || pair.Item2 >= 1 / maxTriggersPerSecond)
                 {
-                    pair.Item1.GetComponent<AHealth>().Damage(damagePerSecond / maxTriggersPerSecond, damageType);
+                    // pair.Item1.GetComponent<AHealth>().Damage(damagePerSecond / maxTriggersPerSecond, damageType);
+                    damage.DealDamage(pair.Item1.GetComponent<AHealth>());
+                    // pair.Item1.GetComponent<AHealth>().Damage(damagePerSecond / maxTriggersPerSecond, damageType);
                     gameObjectsInside.Add((pair.Item1, 0));
                     gameObjectsInside.Remove((pair.Item1, pair.Item2));
                     return;
@@ -112,19 +99,4 @@ public class DamageOverTime : MonoBehaviour
             }
         }
     }
-
-    private void Update()
-    {
-
-    }
-
-    /*public void ChangeDamage(float change)
-    {
-        damage += change;
-    }
-
-    public void SetDamage(float newDamage)
-    {
-        damage = newDamage;
-    }*/
 }

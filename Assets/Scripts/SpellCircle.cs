@@ -2,21 +2,74 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SpellCircle : MonoBehaviour
 {
     private SpellCircleLocation lastLocation = SpellCircleLocation.none;
     private List<SpellCircleEdge> edges = new List<SpellCircleEdge>();
+    [SerializeField] private GameObject visualsGameObject;
+    [SerializeField] private Image circleImage;
+    [SerializeField] private LineRenderer line;
+    private Vector3[] linePositions = new Vector3[0];
+    [SerializeField] private Transform playerCamera;
     [SerializeField] private List<GameObject> spells = new List<GameObject>();
     [SerializeField] private List<PlayerHand> hands = new List<PlayerHand>();
+    private List<SpellCirclePoint> spellCirclePoints = new List<SpellCirclePoint>();
     private PlayerHand castingHand = null;
+    private PlayerHand preparingHand = null;
+    private PlayerHand ignoreUntilUninput = null;
+    private Element element = Element.earth;
+
+    [SerializeField] private float resourceGainSpeed = 1;
+    [SerializeField] private ElementResource earthResource;
+    [SerializeField] private ElementResource waterResource;
+    [SerializeField] private ElementResource airResource;
+    [SerializeField] private ElementResource fireResource;
+    private float earthAmount = 8;
+    private float waterAmount = 8;
+    private float airAmount = 8;
+    private float fireAmount = 8;
+
+    private void Awake()
+    {
+        SetElement(element);
+        ResetCasting();
+    }
 
     private void Update()
     {
-        foreach (PlayerHand hand in hands)
+        UpdateResources();
+        if (lastLocation == SpellCircleLocation.none)
         {
-            // if (hand.HandButtonPressed(UnityEngine.XR.Interaction.Toolkit.InputHelpers.Button.Grip))
+            if (VRInput.ButtonPressed(UnityEngine.XR.XRNode.LeftHand, UnityEngine.XR.Interaction.Toolkit.InputHelpers.Button.PrimaryButton)) SetElement(Element.earth);
+            else if (VRInput.ButtonPressed(UnityEngine.XR.XRNode.LeftHand, UnityEngine.XR.Interaction.Toolkit.InputHelpers.Button.SecondaryButton)) SetElement(Element.air);
+            else if (VRInput.ButtonPressed(UnityEngine.XR.XRNode.RightHand, UnityEngine.XR.Interaction.Toolkit.InputHelpers.Button.PrimaryButton)) SetElement(Element.water);
+            else if (VRInput.ButtonPressed(UnityEngine.XR.XRNode.RightHand, UnityEngine.XR.Interaction.Toolkit.InputHelpers.Button.SecondaryButton)) SetElement(Element.fire);
         }
+
+        if (ignoreUntilUninput != null && !ignoreUntilUninput.HandButtonPressed(UnityEngine.XR.Interaction.Toolkit.InputHelpers.Button.Trigger)) ignoreUntilUninput = null;
+
+        if (preparingHand == null)
+        {
+            foreach (PlayerHand hand in hands)
+            {
+                if (hand.GetHand() != Hand.right && hand != ignoreUntilUninput && hand.HandButtonPressed(UnityEngine.XR.Interaction.Toolkit.InputHelpers.Button.Trigger))
+                {
+                    ResetCasting();
+                    visualsGameObject.SetActive(true);
+                    preparingHand = hand;
+                    transform.position = preparingHand.transform.position;
+                }
+            }
+        } 
+        else if (!preparingHand.HandButtonPressed(UnityEngine.XR.Interaction.Toolkit.InputHelpers.Button.Trigger))
+        {
+            ResetCasting();
+            return;
+        }
+
+        visualsGameObject.transform.LookAt(visualsGameObject.transform.position - (playerCamera.position - visualsGameObject.transform.position));
 
         if (castingHand == null) return; 
 
@@ -26,52 +79,205 @@ public class SpellCircle : MonoBehaviour
         }
     }
 
-    public void SpellCirclePointTouched(SpellCircleLocation circleLocation)
+    public bool SpellCirclePointTouched(SpellCircleLocation circleLocation, SpellCirclePoint point)
     {
-        if (lastLocation == circleLocation || circleLocation == SpellCircleLocation.none) return;
+        if (lastLocation == circleLocation) return true;
+        if (circleLocation == SpellCircleLocation.none) return false;
+
+        if ((element == Element.fire && fireAmount <= edges.Count + 1.99f) ||
+            (element == Element.water && waterAmount <= edges.Count + 1.99f) ||
+            (element == Element.air && airAmount <= edges.Count + 1.99f) ||
+            (element == Element.earth && earthAmount <= edges.Count + 1.99f))
+        {
+            point.ResetSpellCirclePoint();
+            return false;
+        }
 
         if (lastLocation != SpellCircleLocation.none)
         {
+            if (edges.Count == 0) UpdateLines(lastLocation);
             edges.Add(new SpellCircleEdge(lastLocation, circleLocation));
+            UpdateLines(circleLocation);
         }
-
         lastLocation = circleLocation;
+        return true;
+    }
+
+    private void UpdateResources()
+    {
+        earthAmount = Mathf.Clamp(earthAmount + Time.deltaTime * resourceGainSpeed, 0, 8);
+        airAmount = Mathf.Clamp(airAmount + Time.deltaTime * resourceGainSpeed, 0, 8);
+        fireAmount = Mathf.Clamp(fireAmount + Time.deltaTime * resourceGainSpeed, 0, 8);
+        waterAmount = Mathf.Clamp(waterAmount + Time.deltaTime * resourceGainSpeed, 0, 8);
+        earthResource.UpdateResource(earthAmount);
+        fireResource.UpdateResource(fireAmount);
+        waterResource.UpdateResource(waterAmount);
+        airResource.UpdateResource(airAmount);
+    }
+
+    private void UpdateLines(SpellCircleLocation circleLocation)
+    {
+        Vector3[] newLinePositions = new Vector3[linePositions.Length + 1];
+        for (int i = 0; i < linePositions.Length; i++)
+        {
+            newLinePositions[i] = linePositions[i];
+        }
+        switch (circleLocation)
+        {
+            case SpellCircleLocation.top:
+                newLinePositions[linePositions.Length] = new Vector3(0, 0.196f, 0) / 0.4f;
+                break;
+            case SpellCircleLocation.topRight:
+                newLinePositions[linePositions.Length] = new Vector3(0.1386f, 0.1386f, 0) / 0.4f;
+                break;
+            case SpellCircleLocation.right:
+                newLinePositions[linePositions.Length] = new Vector3(0.196f, 0, 0) / 0.4f;
+                break;
+            case SpellCircleLocation.bottomRight:
+                newLinePositions[linePositions.Length] = new Vector3(0.1386f, -0.1386f, 0) / 0.4f;
+                break;
+            case SpellCircleLocation.bottom:
+                newLinePositions[linePositions.Length] = new Vector3(0, -0.196f, 0) / 0.4f;
+                break;
+            case SpellCircleLocation.bottomLeft:
+                newLinePositions[linePositions.Length] = new Vector3(-0.1386f, -0.1386f, 0) / 0.4f;
+                break;
+            case SpellCircleLocation.left:
+                newLinePositions[linePositions.Length] = new Vector3(-0.196f, 0, 0) / 0.4f;
+                break;
+            case SpellCircleLocation.topLeft:
+                newLinePositions[linePositions.Length] = new Vector3(-0.1386f, 0.1386f, 0) / 0.4f;
+                break;
+            default:
+                newLinePositions[linePositions.Length] = new Vector3(0, 0, 0) / 0.4f;
+                break;
+        }
+        linePositions = newLinePositions;
+        line.positionCount = newLinePositions.Length;
+        line.SetPositions(linePositions);
     }
 
     public void CastAttempt()
     {
-        if (edges.Count <= 1)
+        if (edges.Count <= 0)
         {
-            lastLocation = SpellCircleLocation.none;
-            edges.Clear();
-            castingHand = null;
+            ResetCasting();
             return;
         }
 
-        foreach (GameObject prefab in spells)
+        foreach (GameObject spellPrefab in spells)
         {
-            if (prefab.GetComponent<Spell>() == null) return;
-            
-            foreach (SpellEdges edgeToCast in prefab.GetComponent<Spell>().GetSpellEdges())
+            //Debug.Log("Checking prefab " + spellPrefab);
+            if (spellPrefab.GetComponent<Spell>() == null) continue;
+            if (spellPrefab.GetComponent<Spell>().GetElementToCast() != element) continue;
+
+            //Debug.Log("Checking prefab's edgesOptions");
+            foreach (SpellEdgesOption edgesOption in spellPrefab.GetComponent<Spell>().GetSpellEdgesOptions())
             {
                 foreach (SpellCircleEdge spellEdgeInEdges in edges)
                 {
-                    if (!edgeToCast.spellCircleEdges.Contains(spellEdgeInEdges))
+                    if (edges.Count != edgesOption.spellCircleEdges.Count)
                     {
+                        //Debug.Log("edgesOptions mismatched length " + edges.Count + " " + edgesOption.spellCircleEdges.Count);
+                        continue;
+                    }
+
+                    //Debug.Log("edgesOption count matched : " + spellPrefab.name);
+
+                    foreach (SpellCircleEdge e in edgesOption.spellCircleEdges)
+                    {
+                        if (!SpellCircleEdge.ListContainsSameEdge(edges, e))
+                        {
+                            Debug.Log("missing edge " + e.location1 + " & " + e.location2);
+                            continue;
+                        }
+                        CastSpell(spellPrefab);
                         return;
                     }
+                    //Debug.Log("could not find matching edges with spellprefab " + spellPrefab.name);
                 }
             }
         }
+        //Debug.Log("No spell cast");
+        ResetCasting();
+    }
 
+    public void ResetCasting()
+    {
         lastLocation = SpellCircleLocation.none;
+        visualsGameObject.SetActive(false);
         edges.Clear();
+        ignoreUntilUninput = preparingHand;
         castingHand = null;
+        preparingHand = null;
+        foreach (SpellCirclePoint point in spellCirclePoints)
+        {
+            point.ResetSpellCirclePoint();
+        }
+        linePositions = new Vector3[0];
+        line.positionCount = 0;
+        line.SetPositions(linePositions);
+    }
+
+    private void CastSpell(GameObject spellPrefab)
+    {
+        //Debug.Log("CastSpell");
+        Instantiate(spellPrefab, visualsGameObject.transform.position, spellPrefab.transform.rotation).GetComponent<Spell>().SpellInit(castingHand);
+
+        // GameObject spellObj = Instantiate(spellPrefab, transform.position, spellPrefab.transform.rotation);
+        // Spell spellScript = spellObj.GetComponent<Spell>();
+        // spellScript.SpellInit(castingHand);
+
+        switch (element)
+        {
+            case Element.water:
+                waterAmount -= edges.Count + 1;
+                break;
+            case Element.earth:
+                earthAmount -= edges.Count + 1;
+                break;
+            case Element.fire:
+                fireAmount -= edges.Count + 1;
+                break;
+            case Element.air:
+                airAmount -= edges.Count + 1;
+                break;
+        }
+
+        ResetCasting();
+    }
+
+    public void SetElement(Element given)
+    {
+        element = given;
+        Color newColor = Color.white;
+        switch (element)
+        {
+            case Element.water:
+                newColor = new Color(0.15f, 0.5f, 0.9f);
+                break;
+            case Element.earth:
+                newColor = new Color(0.7f, 0.5f, 0.2f);
+                break;
+            case Element.fire:
+                newColor = Color.red;
+                break;
+            case Element.air:
+                newColor = new Color(0.85f, 0.95f, 0.95f);
+                break;
+        }
+        circleImage.color = newColor;
+        line.startColor = newColor;
+        line.endColor = newColor;
     }
 
     public PlayerHand GetCastingHand()
     {
         return castingHand;
+    }
+    public PlayerHand GetPreparingHand()
+    {
+        return preparingHand;
     }
 
     public void SetCastingHand(PlayerHand given)
@@ -79,8 +285,13 @@ public class SpellCircle : MonoBehaviour
         castingHand = given;
     }
 
+    public void AddSpellCirclePoint(SpellCirclePoint point)
+    {
+        spellCirclePoints.Add(point);
+    }
 }
 
+[Serializable]
 public enum SpellCircleLocation
 {
     none = 0,
@@ -101,6 +312,20 @@ public struct SpellCircleEdge
     {
         location1 = given1;
         location2 = given2;
+    }
+
+    public bool SameEdge(SpellCircleEdge other)
+    {
+        return (location1 == other.location1 && location2 == other.location2)
+            || location2 == other.location1 && location1 == other.location2;
+    }
+
+    public static bool ListContainsSameEdge(List<SpellCircleEdge> edges, SpellCircleEdge edge)
+    {
+        foreach (SpellCircleEdge e in edges)
+            if (edge.SameEdge(e))
+                return true;
+        return false;
     }
 
     public SpellCircleLocation location1;

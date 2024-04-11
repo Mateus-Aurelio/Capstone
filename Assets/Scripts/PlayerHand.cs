@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 
+[Serializable]
 public enum Hand
 {
     right = 0,
@@ -73,6 +75,11 @@ public class PlayerHand : MonoBehaviour
         {
             gripTime = 0;
         }
+    }
+
+    public Hand GetHand()
+    {
+        return hand;
     }
 
     public Transform GetRelativeTransform()

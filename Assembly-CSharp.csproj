@@ -93,14 +93,18 @@
     <Compile Include="Assets\Scripts\PlayerHand.cs" />
     <Compile Include="Assets\Scripts\MovementTracker.cs" />
     <Compile Include="Assets\Scripts\Causes+Effects\Causes\OnExitCause.cs" />
+    <Compile Include="Assets\Scripts\StatusEffects\BurnStatusEffect.cs" />
     <Compile Include="Assets\Scripts\Causes+Effects\Causes\UpdateCause.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\Callout.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\XRPokeFollowAffordanceFill.cs" />
+    <Compile Include="Assets\Scripts\StatusEffects\SlowStatusEffect.cs" />
     <Compile Include="Assets\Scripts\Helpers\VRInput.cs" />
     <Compile Include="Assets\Scripts\Causes+Effects\Causes\OnTimerCause.cs" />
+    <Compile Include="Assets\Scripts\ElementResource.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\CalloutGazeController.cs" />
     <Compile Include="Assets\Scripts\Causes+Effects\Causes\ACause.cs" />
     <Compile Include="Assets\Scripts\ElementSource.cs" />
+    <Compile Include="Assets\Scripts\Health\DamageOnTouch.cs" />
     <Compile Include="Assets\Scripts\Helpers\SceneChanger.cs" />
     <Compile Include="Assets\Scripts\Causes+Effects\Effects\ChangeConditionEffect.cs" />
     <Compile Include="Assets\Scripts\SpellCircle.cs" />
@@ -115,6 +119,8 @@
     <Compile Include="Assets\Scripts\Health\HealthSlider.cs" />
     <Compile Include="Assets\Scripts\Causes+Effects\Effects\AEffect.cs" />
     <Compile Include="Assets\Scripts\Spellcasting.cs" />
+    <Compile Include="Assets\Scripts\StatusEffects\StatusEffectHandler.cs" />
+    <Compile Include="Assets\Scripts\StatusEffects\StatusEffect.cs" />
     <Compile Include="Assets\Scripts\Health\Health.cs" />
     <Compile Include="Assets\PDollar\Scripts\PDollarGestureRecognizer\PointCloudRecognizer.cs" />
     <Compile Include="Assets\Scripts\Causes+Effects\Effects\SetActiveEffect.cs" />
@@ -127,6 +133,7 @@
     <Compile Include="Assets\VRTemplateAssets\Scripts\LaunchProjectile.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\StepManager.cs" />
     <Compile Include="Assets\Scripts\Causes+Effects\Conditions\InverseConditional.cs" />
+    <Compile Include="Assets\Scripts\Spellbook.cs" />
     <Compile Include="Assets\Scripts\AutoAimPos.cs" />
     <Compile Include="Assets\Scripts\OrbSpawner.cs" />
     <Compile Include="Assets\PDollar\Scripts\PDollarGestureRecognizer\Result.cs" />
