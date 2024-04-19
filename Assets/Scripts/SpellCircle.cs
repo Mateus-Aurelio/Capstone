@@ -14,11 +14,13 @@ public class SpellCircle : MonoBehaviour
     private Vector3[] linePositions = new Vector3[0];
     [SerializeField] private Transform playerCamera;
     [SerializeField] private List<GameObject> spells = new List<GameObject>();
-    [SerializeField] private List<PlayerHand> hands = new List<PlayerHand>();
     private List<SpellCirclePoint> spellCirclePoints = new List<SpellCirclePoint>();
+    /*[SerializeField] private List<PlayerHand> hands = new List<PlayerHand>();
+    private PlayerHand preparingHand = null;*/
     private PlayerHand castingHand = null;
-    private PlayerHand preparingHand = null;
-    private PlayerHand ignoreUntilUninput = null;
+    [SerializeField] private PlayerHand leftHand = null;
+    [SerializeField] private PlayerHand rightHand = null;
+    private bool ignoreUntilUninput = false;
     private Element element = Element.earth;
 
     [SerializeField] private float resourceGainSpeed = 1;
@@ -48,7 +50,7 @@ public class SpellCircle : MonoBehaviour
             else if (VRInput.ButtonPressed(UnityEngine.XR.XRNode.RightHand, UnityEngine.XR.Interaction.Toolkit.InputHelpers.Button.SecondaryButton)) SetElement(Element.fire);
         }
 
-        if (ignoreUntilUninput != null && !ignoreUntilUninput.HandButtonPressed(UnityEngine.XR.Interaction.Toolkit.InputHelpers.Button.Trigger)) ignoreUntilUninput = null;
+        /* if (ignoreUntilUninput != null && !ignoreUntilUninput.HandButtonPressed(UnityEngine.XR.Interaction.Toolkit.InputHelpers.Button.Trigger)) ignoreUntilUninput = null;
 
         if (preparingHand == null)
         {
@@ -67,11 +69,19 @@ public class SpellCircle : MonoBehaviour
         {
             ResetCasting();
             return;
+        }*/
+
+        if (leftHand.HandButtonPressed(UnityEngine.XR.Interaction.Toolkit.InputHelpers.Button.Trigger))
+        {
+            ResetCasting();
+            visualsGameObject.SetActive(true);
+            // transform.position = leftHand.transform.position;
         }
 
         visualsGameObject.transform.LookAt(visualsGameObject.transform.position - (playerCamera.position - visualsGameObject.transform.position));
 
-        if (castingHand == null) return; 
+        castingHand = rightHand;
+        // if (castingHand == null) return; 
 
         if (!castingHand.HandButtonPressed(UnityEngine.XR.Interaction.Toolkit.InputHelpers.Button.Trigger))
         {
@@ -183,14 +193,18 @@ public class SpellCircle : MonoBehaviour
                     }
 
                     //Debug.Log("edgesOption count matched : " + spellPrefab.name);
-
+                    bool cast = true;
                     foreach (SpellCircleEdge e in edgesOption.spellCircleEdges)
                     {
                         if (!SpellCircleEdge.ListContainsSameEdge(edges, e))
                         {
                             Debug.Log("missing edge " + e.location1 + " & " + e.location2);
-                            continue;
+                            cast = false;
+                            break;
                         }
+                    }
+                    if (cast)
+                    {
                         CastSpell(spellPrefab);
                         return;
                     }
@@ -207,9 +221,9 @@ public class SpellCircle : MonoBehaviour
         lastLocation = SpellCircleLocation.none;
         visualsGameObject.SetActive(false);
         edges.Clear();
-        ignoreUntilUninput = preparingHand;
+        //ignoreUntilUninput = preparingHand;
         castingHand = null;
-        preparingHand = null;
+        //preparingHand = null;
         foreach (SpellCirclePoint point in spellCirclePoints)
         {
             point.ResetSpellCirclePoint();
@@ -271,7 +285,7 @@ public class SpellCircle : MonoBehaviour
         line.endColor = newColor;
     }
 
-    public PlayerHand GetCastingHand()
+    /*public PlayerHand GetCastingHand()
     {
         return castingHand;
     }
@@ -283,7 +297,7 @@ public class SpellCircle : MonoBehaviour
     public void SetCastingHand(PlayerHand given)
     {
         castingHand = given;
-    }
+    }*/
 
     public void AddSpellCirclePoint(SpellCirclePoint point)
     {

@@ -6,7 +6,11 @@ public class Spellbook : MonoBehaviour
 {
     [SerializeField] private SpellCircle spellCircle;
     [SerializeField] private GameObject spellBook;
+    [SerializeField] private Transform spellBookBook;
     [SerializeField] private Camera playerCamera;
+    [SerializeField] private Transform leftPivot;
+    [SerializeField] private Transform rightPivot;
+    [SerializeField] private PlayerHand lefthand;
     private bool castingMode = true;
     private bool waitForUninput = false;
 
@@ -17,6 +21,8 @@ public class Spellbook : MonoBehaviour
 
     void Update()
     {
+        UpdateBookPivots();
+
         if (!waitForUninput && VRInput.ButtonPressed(UnityEngine.XR.XRNode.LeftHand, UnityEngine.XR.Interaction.Toolkit.InputHelpers.Button.MenuButton))
         {
             waitForUninput = true;
@@ -38,8 +44,17 @@ public class Spellbook : MonoBehaviour
         }
     }
 
+    private void UpdateBookPivots()
+    {
+        float gripAmount = VRInput.ButtonPressedAmountInTenths(lefthand.GetInputHand(), UnityEngine.XR.Interaction.Toolkit.InputHelpers.Button.Grip);
+        leftPivot.localRotation = Quaternion.Euler(0, 0, Mathf.Lerp(-2, -90, gripAmount));
+        rightPivot.localRotation = Quaternion.Euler(0, 0, Mathf.Lerp(2, 90, gripAmount));
+        spellBookBook.localPosition = new Vector3(Mathf.Lerp(.06f, 0.01f, gripAmount), -0.021f, -0.035f);
+    }
+
     public void SetCastingMode(bool given)
     {
+        if (castingMode == given) return;
         castingMode = given;
         if (!castingMode) spellCircle.ResetCasting();
         spellCircle.gameObject.SetActive(castingMode);

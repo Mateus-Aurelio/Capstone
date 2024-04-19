@@ -530,4 +530,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80041a656e2ed274bbd82b3a40c3f773, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spin: {x: 0, y: 0, z: -300}
+  spin: {x: 0, y: 0, z: -420}

@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 9124701444582202944}
   - component: {fileID: 1451346875372978980}
   - component: {fileID: 7415217249219684610}
+  - component: {fileID: 4580935139211681187}
   - component: {fileID: 3863463071420575299}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: SpellCirclePoint BottomLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,11 +112,32 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.06
   m_Height: 0.3
   m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &4580935139211681187
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 94884852789637543}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.1, y: 0.1, z: 0.04}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &3863463071420575299
 Rigidbody:
@@ -157,8 +179,9 @@ GameObject:
   - component: {fileID: 4747709654792925504}
   - component: {fileID: 3562748904949249444}
   - component: {fileID: 2506018842507847445}
+  - component: {fileID: 2703021957665028068}
   - component: {fileID: 4125643965491728736}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: SpellCirclePoint Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -255,11 +278,32 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.06
   m_Height: 0.3
   m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &2703021957665028068
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 405540869443512217}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.1, y: 0.1, z: 0.04}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &4125643965491728736
 Rigidbody:
@@ -299,7 +343,7 @@ GameObject:
   - component: {fileID: 8361606818226157969}
   - component: {fileID: 5105772602181099538}
   - component: {fileID: 8604309312109321462}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: ElementColor idk (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -374,7 +418,7 @@ GameObject:
   - component: {fileID: 4559992098422928298}
   - component: {fileID: 6965007897719906135}
   - component: {fileID: 2022800940544656887}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: FilledCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -449,7 +493,7 @@ GameObject:
   - component: {fileID: 2070687021839167542}
   - component: {fileID: 3492527461631932567}
   - component: {fileID: 2805010442863828809}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: ElementColor idk (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -524,7 +568,7 @@ GameObject:
   - component: {fileID: 6609436127610598477}
   - component: {fileID: 4843562088445370636}
   - component: {fileID: 3532302540426946179}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: ElementColor idk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -601,8 +645,9 @@ GameObject:
   - component: {fileID: 8374720247223493587}
   - component: {fileID: 650129756715894105}
   - component: {fileID: 6161000482417309852}
-  m_Layer: 5
-  m_Name: World\Canvas
+  - component: {fileID: 6559882593529719964}
+  m_Layer: 3
+  m_Name: SpellCircle Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -809,6 +854,27 @@ LineRenderer:
   m_UseWorldSpace: 0
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!65 &6559882593529719964
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3057566714445127471}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.2, y: 1.2, z: 0.02}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3307713043844800918
 GameObject:
   m_ObjectHideFlags: 0
@@ -820,7 +886,7 @@ GameObject:
   - component: {fileID: 1972315968186165954}
   - component: {fileID: 5420837097590612350}
   - component: {fileID: 8074472015976512125}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: FilledCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -895,7 +961,7 @@ GameObject:
   - component: {fileID: 7239926616222801172}
   - component: {fileID: 8472811743285878745}
   - component: {fileID: 1157764334843439148}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: FilledCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -972,8 +1038,9 @@ GameObject:
   - component: {fileID: 8373185058589303159}
   - component: {fileID: 5352257183495344325}
   - component: {fileID: 3046334898935855049}
+  - component: {fileID: 2830511491320701397}
   - component: {fileID: 1005725677849054946}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: SpellCirclePoint TopRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1070,11 +1137,32 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.06
   m_Height: 0.3
   m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &2830511491320701397
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3573580832930710021}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.1, y: 0.1, z: 0.04}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &1005725677849054946
 Rigidbody:
@@ -1116,8 +1204,9 @@ GameObject:
   - component: {fileID: 6908001255283969106}
   - component: {fileID: 4213142389163855888}
   - component: {fileID: 8226690050972006743}
+  - component: {fileID: 1215124261556976751}
   - component: {fileID: 2276533873639302079}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: SpellCirclePoint Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1214,11 +1303,32 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.06
   m_Height: 0.3
   m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &1215124261556976751
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3812775960861350036}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.1, y: 0.1, z: 0.04}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &2276533873639302079
 Rigidbody:
@@ -1258,7 +1368,7 @@ GameObject:
   - component: {fileID: 6321879183040383674}
   - component: {fileID: 1462816902408726050}
   - component: {fileID: 7362390772228094915}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: CircleImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1333,7 +1443,7 @@ GameObject:
   - component: {fileID: 7115089554788767282}
   - component: {fileID: 7753590421206652456}
   - component: {fileID: 6266892250436203937}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SpellCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1382,7 +1492,8 @@ MonoBehaviour:
   - {fileID: 6567944683054488724, guid: 877a463b10c5a124991772be65c4aa50, type: 3}
   - {fileID: 6567944683054488724, guid: 8276b178594f38e41838c5196608744b, type: 3}
   - {fileID: 6567944683054488724, guid: 5785a3ef73918044fb87ccfad85ca2ce, type: 3}
-  hands: []
+  leftHand: {fileID: 0}
+  rightHand: {fileID: 0}
   resourceGainSpeed: 0.6
   earthResource: {fileID: 8692378440885610118}
   waterResource: {fileID: 6230599402271442019}
@@ -1501,7 +1612,7 @@ GameObject:
   - component: {fileID: 1711332765001641866}
   - component: {fileID: 3367136337592412724}
   - component: {fileID: 2906657367492606790}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: FilledCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1576,7 +1687,7 @@ GameObject:
   - component: {fileID: 404968885495865490}
   - component: {fileID: 1978164768957985088}
   - component: {fileID: 1758734399839531441}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: FilledCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1651,7 +1762,7 @@ GameObject:
   - component: {fileID: 7769649828144525421}
   - component: {fileID: 307313591774153660}
   - component: {fileID: 1243531616691555063}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: FilledCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1728,8 +1839,9 @@ GameObject:
   - component: {fileID: 4085787845638584167}
   - component: {fileID: 8891872095104967771}
   - component: {fileID: 5948989060553126543}
+  - component: {fileID: 617647560364993238}
   - component: {fileID: 509383672389836102}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: SpellCirclePoint Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1826,11 +1938,32 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.06
   m_Height: 0.3
   m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &617647560364993238
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4701390739174139275}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.1, y: 0.1, z: 0.04}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &509383672389836102
 Rigidbody:
@@ -1872,8 +2005,9 @@ GameObject:
   - component: {fileID: 5578184588915677764}
   - component: {fileID: 556007166710476936}
   - component: {fileID: 6230771185822205364}
+  - component: {fileID: 6479500404772411591}
   - component: {fileID: 6414721431797150774}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: SpellCirclePoint Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1970,11 +2104,32 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.06
   m_Height: 0.3
   m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &6479500404772411591
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5890151125899755463}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.1, y: 0.1, z: 0.04}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &6414721431797150774
 Rigidbody:
@@ -2014,7 +2169,7 @@ GameObject:
   - component: {fileID: 8110157586012571631}
   - component: {fileID: 6949450247917890704}
   - component: {fileID: 6591759569920151960}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: ElementColor idk (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2091,8 +2246,9 @@ GameObject:
   - component: {fileID: 4451472504225864863}
   - component: {fileID: 486510855486555374}
   - component: {fileID: 2962728473217358657}
+  - component: {fileID: 3371957198283388235}
   - component: {fileID: 1500261476974110194}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: SpellCirclePoint TopLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2189,11 +2345,32 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.06
   m_Height: 0.3
   m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &3371957198283388235
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6195387531447639129}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.1, y: 0.1, z: 0.04}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &1500261476974110194
 Rigidbody:
@@ -2233,7 +2410,7 @@ GameObject:
   - component: {fileID: 2817988128212384364}
   - component: {fileID: 1776008371066767468}
   - component: {fileID: 5828983864620919579}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: FilledCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2310,8 +2487,9 @@ GameObject:
   - component: {fileID: 3263300077653087635}
   - component: {fileID: 4746439332954970992}
   - component: {fileID: 4286588381303894514}
+  - component: {fileID: 6076306023936358708}
   - component: {fileID: 8537492422492360108}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: SpellCirclePoint BottomRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2408,11 +2586,32 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.06
   m_Height: 0.3
   m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &6076306023936358708
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8309429418851793180}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.1, y: 0.1, z: 0.04}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &8537492422492360108
 Rigidbody:
@@ -2452,7 +2651,7 @@ GameObject:
   - component: {fileID: 2803836367229665440}
   - component: {fileID: 7880944092149633077}
   - component: {fileID: 8979706671800226391}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: FilledCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2536,6 +2735,14 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.08235294
       objectReference: {fileID: 0}
+    - target: {fileID: 342259290227990727, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 409816892760199546, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1267729034241115125, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
       propertyPath: m_Color.b
       value: 0.86666673
@@ -2547,6 +2754,14 @@ PrefabInstance:
     - target: {fileID: 1267729034241115125, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
       propertyPath: m_Color.r
       value: 0.08235294
+      objectReference: {fileID: 0}
+    - target: {fileID: 1568940448903221566, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242881427028441576, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2600296867958770906, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
       propertyPath: m_Color.b
@@ -2572,6 +2787,22 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.08235294
       objectReference: {fileID: 0}
+    - target: {fileID: 4059232289825530607, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4300318814759710624, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4612287361880702290, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5349386364998070301, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5425536219033199141, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
       propertyPath: m_Color.b
       value: 0.86666673
@@ -2583,6 +2814,10 @@ PrefabInstance:
     - target: {fileID: 5425536219033199141, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
       propertyPath: m_Color.r
       value: 0.08235294
+      objectReference: {fileID: 0}
+    - target: {fileID: 5511929747827998758, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6065324302343786043, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
       propertyPath: m_LocalScale.x
@@ -2643,6 +2878,14 @@ PrefabInstance:
     - target: {fileID: 6253080853451663145, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
       propertyPath: m_Name
       value: ElementResource water
+      objectReference: {fileID: 0}
+    - target: {fileID: 6253080853451663145, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6544290842758147516, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6949301882259034163, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
       propertyPath: m_Color.b
@@ -2721,6 +2964,42 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3174648085697093869}
     m_Modifications:
+    - target: {fileID: 342259290227990727, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 409816892760199546, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1568940448903221566, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242881427028441576, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4059232289825530607, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4300318814759710624, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4612287361880702290, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5349386364998070301, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5511929747827998758, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6065324302343786043, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.5
@@ -2781,6 +3060,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ElementResource earth
       objectReference: {fileID: 0}
+    - target: {fileID: 6253080853451663145, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6544290842758147516, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2822,6 +3109,14 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.740566
       objectReference: {fileID: 0}
+    - target: {fileID: 342259290227990727, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 409816892760199546, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1267729034241115125, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -2833,6 +3128,14 @@ PrefabInstance:
     - target: {fileID: 1267729034241115125, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
       propertyPath: m_Color.r
       value: 0.740566
+      objectReference: {fileID: 0}
+    - target: {fileID: 1568940448903221566, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242881427028441576, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2600296867958770906, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
       propertyPath: m_Color.b
@@ -2858,6 +3161,22 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.740566
       objectReference: {fileID: 0}
+    - target: {fileID: 4059232289825530607, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4300318814759710624, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4612287361880702290, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5349386364998070301, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5425536219033199141, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -2869,6 +3188,10 @@ PrefabInstance:
     - target: {fileID: 5425536219033199141, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
       propertyPath: m_Color.r
       value: 0.740566
+      objectReference: {fileID: 0}
+    - target: {fileID: 5511929747827998758, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6065324302343786043, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
       propertyPath: m_LocalScale.x
@@ -2929,6 +3252,14 @@ PrefabInstance:
     - target: {fileID: 6253080853451663145, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
       propertyPath: m_Name
       value: ElementResource air
+      objectReference: {fileID: 0}
+    - target: {fileID: 6253080853451663145, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6544290842758147516, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6949301882259034163, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
       propertyPath: m_Color.b
@@ -3019,6 +3350,14 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.9960785
       objectReference: {fileID: 0}
+    - target: {fileID: 342259290227990727, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 409816892760199546, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1267729034241115125, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
       propertyPath: m_Color.b
       value: 0
@@ -3030,6 +3369,14 @@ PrefabInstance:
     - target: {fileID: 1267729034241115125, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
       propertyPath: m_Color.r
       value: 0.9960785
+      objectReference: {fileID: 0}
+    - target: {fileID: 1568940448903221566, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242881427028441576, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2600296867958770906, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
       propertyPath: m_Color.b
@@ -3055,6 +3402,22 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.9960785
       objectReference: {fileID: 0}
+    - target: {fileID: 4059232289825530607, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4300318814759710624, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4612287361880702290, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5349386364998070301, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5425536219033199141, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
       propertyPath: m_Color.b
       value: 0
@@ -3066,6 +3429,10 @@ PrefabInstance:
     - target: {fileID: 5425536219033199141, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
       propertyPath: m_Color.r
       value: 0.9960785
+      objectReference: {fileID: 0}
+    - target: {fileID: 5511929747827998758, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6065324302343786043, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
       propertyPath: m_LocalScale.x
@@ -3126,6 +3493,14 @@ PrefabInstance:
     - target: {fileID: 6253080853451663145, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
       propertyPath: m_Name
       value: ElementResource fire
+      objectReference: {fileID: 0}
+    - target: {fileID: 6253080853451663145, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6544290842758147516, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6949301882259034163, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
       propertyPath: m_Color.b

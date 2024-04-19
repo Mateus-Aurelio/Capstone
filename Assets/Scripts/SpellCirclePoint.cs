@@ -13,9 +13,13 @@ public class SpellCirclePoint : MonoBehaviour
     {
         filledCircle.enabled = false;
         spellCircle.AddSpellCirclePoint(this);
+        if (circleLocation == SpellCircleLocation.none)
+        {
+            Debug.LogError("SpellCirclePoint has a SpellCircleLocation of none!");
+        }
     }
 
-    private void OnTriggerStay(Collider other)
+    /*private void OnTriggerStay(Collider other)
     {
         CollidedObjectCheck(other.gameObject);
     }
@@ -36,10 +40,16 @@ public class SpellCirclePoint : MonoBehaviour
         if (spellCircle.GetCastingHand() != null && hand != spellCircle.GetCastingHand()) return;
         if (spellCircle.GetCastingHand() == null) spellCircle.SetCastingHand(hand);
         filledCircle.enabled = spellCircle.SpellCirclePointTouched(circleLocation, this);
-    }
+    }*/
 
     public void ResetSpellCirclePoint()
     {
         filledCircle.enabled = false;
+    }
+
+    public void TouchedByRay()
+    {
+        // if (!filledCircle.enabled) 
+        filledCircle.enabled = spellCircle.SpellCirclePointTouched(circleLocation, this);
     }
 }

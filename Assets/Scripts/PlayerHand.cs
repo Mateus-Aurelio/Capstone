@@ -110,6 +110,11 @@ public class PlayerHand : MonoBehaviour
         return VRInput.ButtonPressed(inputHand, button, pushThreshold);
     }
 
+    public XRNode GetInputHand()
+    {
+        return inputHand;
+    }
+
     public float GetGripTime()
     {
         return gripTime;

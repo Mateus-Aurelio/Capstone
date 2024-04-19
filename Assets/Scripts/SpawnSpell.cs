@@ -38,16 +38,28 @@ public class SpawnSpell : Spell
         //Debug.Log("After translate forwards: " + transform.position + " rot " + transform.rotation.eulerAngles);
         if (spawnGrounded)
         {
-            Collider[] environmentColliders = Physics.OverlapSphere(transform.position, 20, LayerMask.NameToLayer("Environment"));
+            Collider[] environmentColliders = Physics.OverlapSphere(transform.position, 20, 1 << LayerMask.NameToLayer("Environment"));
             if (environmentColliders.Length <= 0)
                 return;
-            //Debug.Log("grounded at " + transform.position + " rot " + transform.rotation.eulerAngles);
+
+            Vector3 closestPoint = environmentColliders[0].ClosestPoint(transform.position);
+            foreach (Collider c in environmentColliders)
+            {
+                if (Vector3.Distance(transform.position, c.ClosestPoint(transform.position)) <= Vector3.Distance(transform.position, closestPoint))
+                {
+                    closestPoint = c.ClosestPoint(transform.position);
+                    //Debug.Log("new grounded closest point at" + closestPoint);
+                }
+            }
+
+            // Debug.Log("grounded to " + environmentColliders[0].gameObject.name);
             /*float minDistance = 99;
             foreach (Collider c in environmentColliders)
             {
                 minDistance = Mathf.Clamp(minDistance, Vector3.Distance(c.ClosestPoint(transform.position), transform.position), minDistance);
             }*/
-            transform.position = environmentColliders[0].ClosestPoint(transform.position);
+            transform.position = closestPoint;
+            //Debug.Log("grounded at " + transform.position + " rot " + transform.rotation.eulerAngles);
         }
     }
 
