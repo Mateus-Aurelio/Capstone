@@ -8,6 +8,11 @@ public class HandRay : MonoBehaviour
     [SerializeField] private PlayerHand hand;
     private LineRenderer lineRenderer;
 
+    [SerializeField] private Gradient defaultGradient; 
+    [SerializeField] private Gradient drawingGradient; 
+    [SerializeField] private Gradient offGradient;
+    private bool drawing = false;
+
     void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
@@ -18,12 +23,16 @@ public class HandRay : MonoBehaviour
         if (hand.HandButtonPressed(UnityEngine.XR.Interaction.Toolkit.InputHelpers.Button.Trigger))
         {
             SendRay();
+            if (!drawing)
+            {
+                drawing = true;
+            }
         }
-        else
+        else if (drawing)
         {
-            lineRenderer.SetPositions(new Vector3[2] { new Vector3(0, 0, 0), new Vector3(0, 0, 1) });
-            lineRenderer.endColor = new Color(1, 1, 1, 0);
-            lineRenderer.startColor = new Color(1, 1, 1, 0);
+            drawing = false;
+            lineRenderer.SetPositions(new Vector3[2] { new Vector3(0, 0, 0), new Vector3(0, 0, 0.75f) });
+            lineRenderer.colorGradient = offGradient;
         }
     }
 
@@ -32,25 +41,26 @@ public class HandRay : MonoBehaviour
         RaycastHit hit;
         int layerMask = 1 << 3;
 
-        lineRenderer.startColor = new Color(1, 1, 1, 1);
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 3, layerMask))
         {
             // if (hit.collider.GetComponent<SpellCircle>() != null)
             if (hit.collider.gameObject.name == "SpellCircle Canvas")
             {
+                Debug.Log("Hit canvas");
                 lineRenderer.SetPositions(new Vector3[2] { new Vector3(0, 0, 0), new Vector3(0, 0, Vector3.Distance(transform.position, hit.point)) });
-                lineRenderer.endColor = Color.white;
+                lineRenderer.colorGradient = drawingGradient;
                 return;
             }
             else if (hit.collider.GetComponent<SpellCirclePoint>() != null)
             {
+                Debug.Log("Hit point!");
                 lineRenderer.SetPositions(new Vector3[2] { new Vector3(0, 0, 0), new Vector3(0, 0, Vector3.Distance(transform.position, hit.point)) });
-                lineRenderer.endColor = Color.white;
+                lineRenderer.colorGradient = drawingGradient;
                 hit.collider.GetComponent<SpellCirclePoint>().TouchedByRay();
                 return;
             }
         }
         lineRenderer.SetPositions(new Vector3[2] { new Vector3(0, 0, 0), new Vector3(0, 0, 1) });
-        lineRenderer.endColor = new Color(1, 1, 1, 0);
+        lineRenderer.colorGradient = defaultGradient;
     }
 }

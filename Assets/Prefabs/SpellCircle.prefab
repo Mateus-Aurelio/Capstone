@@ -137,7 +137,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.1, y: 0.1, z: 0.04}
+  m_Size: {x: 0.1, y: 0.1, z: 0.03}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &3863463071420575299
 Rigidbody:
@@ -303,7 +303,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.1, y: 0.1, z: 0.04}
+  m_Size: {x: 0.1, y: 0.1, z: 0.03}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &4125643965491728736
 Rigidbody:
@@ -873,8 +873,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.2, y: 1.2, z: 0.02}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.25, y: 1.25, z: 0.01}
+  m_Center: {x: 0, y: 0, z: 0.005}
 --- !u!1 &3307713043844800918
 GameObject:
   m_ObjectHideFlags: 0
@@ -1162,7 +1162,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.1, y: 0.1, z: 0.04}
+  m_Size: {x: 0.1, y: 0.1, z: 0.03}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &1005725677849054946
 Rigidbody:
@@ -1328,7 +1328,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.1, y: 0.1, z: 0.04}
+  m_Size: {x: 0.1, y: 0.1, z: 0.03}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &2276533873639302079
 Rigidbody:
@@ -1963,7 +1963,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.1, y: 0.1, z: 0.04}
+  m_Size: {x: 0.1, y: 0.1, z: 0.03}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &509383672389836102
 Rigidbody:
@@ -2129,7 +2129,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.1, y: 0.1, z: 0.04}
+  m_Size: {x: 0.1, y: 0.1, z: 0.03}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &6414721431797150774
 Rigidbody:
@@ -2370,7 +2370,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.1, y: 0.1, z: 0.04}
+  m_Size: {x: 0.1, y: 0.1, z: 0.03}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &1500261476974110194
 Rigidbody:
@@ -2611,7 +2611,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.1, y: 0.1, z: 0.04}
+  m_Size: {x: 0.1, y: 0.1, z: 0.03}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &8537492422492360108
 Rigidbody:

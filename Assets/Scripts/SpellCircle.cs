@@ -71,10 +71,11 @@ public class SpellCircle : MonoBehaviour
             return;
         }*/
 
-        if (leftHand.HandButtonPressed(UnityEngine.XR.Interaction.Toolkit.InputHelpers.Button.Trigger))
+        if (!ignoreUntilUninput && rightHand.HandButtonPressed(UnityEngine.XR.Interaction.Toolkit.InputHelpers.Button.Trigger))
         {
             ResetCasting();
             visualsGameObject.SetActive(true);
+            ignoreUntilUninput = true;
             // transform.position = leftHand.transform.position;
         }
 
@@ -85,6 +86,7 @@ public class SpellCircle : MonoBehaviour
 
         if (!castingHand.HandButtonPressed(UnityEngine.XR.Interaction.Toolkit.InputHelpers.Button.Trigger))
         {
+            ignoreUntilUninput = false;
             CastAttempt();
         }
     }
@@ -198,7 +200,7 @@ public class SpellCircle : MonoBehaviour
                     {
                         if (!SpellCircleEdge.ListContainsSameEdge(edges, e))
                         {
-                            Debug.Log("missing edge " + e.location1 + " & " + e.location2);
+                            // Debug.Log("missing edge " + e.location1 + " & " + e.location2);
                             cast = false;
                             break;
                         }
