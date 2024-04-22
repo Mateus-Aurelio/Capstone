@@ -43,12 +43,14 @@ public class HandRay : MonoBehaviour
 
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 3, layerMask))
         {
+            if (hit.collider.GetComponent<SpellCircleImage>() != null)
             // if (hit.collider.GetComponent<SpellCircle>() != null)
-            if (hit.collider.gameObject.name == "SpellCircle Canvas")
+            // if (hit.collider.gameObject.name == "SpellCircle Canvas")
             {
                 Debug.Log("Hit canvas");
                 lineRenderer.SetPositions(new Vector3[2] { new Vector3(0, 0, 0), new Vector3(0, 0, Vector3.Distance(transform.position, hit.point)) });
                 lineRenderer.colorGradient = drawingGradient;
+                hit.collider.GetComponent<SpellCircleImage>().TouchedByRay();
                 return;
             }
             else if (hit.collider.GetComponent<SpellCirclePoint>() != null)

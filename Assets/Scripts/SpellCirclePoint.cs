@@ -51,5 +51,6 @@ public class SpellCirclePoint : MonoBehaviour
     {
         // if (!filledCircle.enabled) 
         filledCircle.enabled = spellCircle.SpellCirclePointTouched(circleLocation, this);
+        spellCircle.TouchedByRay();
     }
 }

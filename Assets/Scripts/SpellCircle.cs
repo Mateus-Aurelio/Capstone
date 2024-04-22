@@ -33,6 +33,11 @@ public class SpellCircle : MonoBehaviour
     private float airAmount = 8;
     private float fireAmount = 8;
 
+    private float lastTouchedTimer = 0f;
+    private float lastTouchedTimeSet = 4;
+    private float lastTouchFadeTime = 2;
+    private float circleImageMinAlpha = 0.25f;
+
     private void Awake()
     {
         SetElement(element);
@@ -41,6 +46,15 @@ public class SpellCircle : MonoBehaviour
 
     private void Update()
     {
+        if (lastTouchedTimer > 0)
+        {
+            lastTouchedTimer -= Time.deltaTime;
+            if (lastTouchedTimer <= 0)
+                circleImage.color = ColorHelpers.SetColorAlpha(circleImage.color, circleImageMinAlpha);
+            else if (lastTouchedTimer < lastTouchFadeTime)
+                circleImage.color = ColorHelpers.SetColorAlpha(circleImage.color, circleImageMinAlpha + lastTouchedTimer);
+        }
+        
         UpdateResources();
         if (lastLocation == SpellCircleLocation.none)
         {
@@ -220,6 +234,8 @@ public class SpellCircle : MonoBehaviour
 
     public void ResetCasting()
     {
+        circleImage.color = ColorHelpers.SetColorAlpha(circleImage.color, 1);
+        lastTouchedTimer = lastTouchedTimeSet;
         lastLocation = SpellCircleLocation.none;
         visualsGameObject.SetActive(false);
         edges.Clear();
@@ -265,6 +281,7 @@ public class SpellCircle : MonoBehaviour
 
     public void SetElement(Element given)
     {
+        lastTouchedTimer = lastTouchedTimeSet;
         element = given;
         Color newColor = Color.white;
         switch (element)
@@ -304,6 +321,12 @@ public class SpellCircle : MonoBehaviour
     public void AddSpellCirclePoint(SpellCirclePoint point)
     {
         spellCirclePoints.Add(point);
+    }
+
+    public void TouchedByRay()
+    {
+        lastTouchedTimer = lastTouchedTimeSet;
+        circleImage.color = ColorHelpers.SetColorAlpha(circleImage.color, 1);
     }
 }
 

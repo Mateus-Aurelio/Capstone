@@ -18,8 +18,8 @@ public class ElementResource : MonoBehaviour
         {
             if (amount >= i + 1) images[i].fillAmount = 1;
             else images[i].fillAmount = amount - i;
-            if (images[i].fillAmount >= 1f) images[i].color = new Color(images[i].color.r, images[i].color.g, images[i].color.b, 1);
-            else images[i].color = new Color(images[i].color.r, images[i].color.g, images[i].color.b, 0.5f);
+            if (images[i].fillAmount >= 1f) images[i].color = ColorHelpers.SetColorAlpha(images[i].color, 1);
+            else images[i].color = ColorHelpers.SetColorAlpha(images[i].color, 0.5f);
         }
     }
 }

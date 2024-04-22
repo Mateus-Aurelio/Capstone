@@ -645,7 +645,8 @@ GameObject:
   - component: {fileID: 8374720247223493587}
   - component: {fileID: 650129756715894105}
   - component: {fileID: 6161000482417309852}
-  - component: {fileID: 6559882593529719964}
+  - component: {fileID: 3136156479700561798}
+  - component: {fileID: 6860175923883175058}
   m_Layer: 3
   m_Name: SpellCircle Canvas
   m_TagString: Untagged
@@ -854,7 +855,7 @@ LineRenderer:
   m_UseWorldSpace: 0
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
---- !u!65 &6559882593529719964
+--- !u!65 &3136156479700561798
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -874,7 +875,20 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1.25, y: 1.25, z: 0.01}
-  m_Center: {x: 0, y: 0, z: 0.005}
+  m_Center: {x: 0, y: 0, z: -0.005}
+--- !u!114 &6860175923883175058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3057566714445127471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a54643c4e479ab94683280dea23a5f80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spellCircle: {fileID: 7753590421206652456}
 --- !u!1 &3307713043844800918
 GameObject:
   m_ObjectHideFlags: 0

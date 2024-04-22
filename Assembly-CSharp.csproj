@@ -82,6 +82,7 @@
     <Compile Include="Assets\Scripts\MovementRecognizer.cs" />
     <Compile Include="Assets\Scripts\Helpers\DelayedSpawn.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\BooleanToggleVisualsController.cs" />
+    <Compile Include="Assets\Scripts\Helpers\ColorHelpers.cs" />
     <Compile Include="Assets\Scripts\Health\HealthChild.cs" />
     <Compile Include="Assets\Scripts\Orb.cs" />
     <Compile Include="Assets\Scripts\Health\AHealth.cs" />
@@ -98,6 +99,7 @@
     <Compile Include="Assets\VRTemplateAssets\Scripts\Callout.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\XRPokeFollowAffordanceFill.cs" />
     <Compile Include="Assets\Scripts\StatusEffects\SlowStatusEffect.cs" />
+    <Compile Include="Assets\Scripts\SpellCircleImage.cs" />
     <Compile Include="Assets\Scripts\Helpers\VRInput.cs" />
     <Compile Include="Assets\Scripts\ElementResource.cs" />
     <Compile Include="Assets\Scripts\Causes+Effects\Causes\OnTimerCause.cs" />
