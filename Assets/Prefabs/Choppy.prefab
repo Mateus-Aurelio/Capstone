@@ -153,10 +153,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tree: {fileID: 0}
-  attackRange: 2
+  attackRange: 3
   spinWhenAttack: {fileID: 6531131140533142668}
-  spinVectorNormal: {x: 0, y: 0, z: -400}
-  spinVectorAttacking: {x: 0, y: 0, z: -600}
+  spinVectorNormal: {x: 0, y: 0, z: -200}
+  spinVectorAttacking: {x: 0, y: 0, z: -640}
 --- !u!114 &5571072200285201940
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scripts\Helpers\TestSpringsRaise.cs" />
     <Compile Include="Assets\Scripts\Health\AHealthTracker.cs" />
     <Compile Include="Assets\Scripts\ZoneEffects\ElementSourceFinder.cs" />
+    <Compile Include="Assets\Scripts\BowSpellHandSpot.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\DestroyObject.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\VideoTimeScrubControl.cs" />
     <Compile Include="Assets\Scripts\Health\DamageSlider.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="Assets\Scripts\Health\AHealth.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\RayAttachModifier.cs" />
     <Compile Include="Assets\PDollar\Scripts\PDollarGestureRecognizer\Geometry.cs" />
+    <Compile Include="Assets\Scripts\BowSpell.cs" />
     <Compile Include="Assets\Bitgem\StylisedWater\URP\Scripts\Bitgem\VFX\StylisedWater\WaterVolumeBase.cs" />
     <Compile Include="Assets\Scripts\SpellCirclePoint.cs" />
     <Compile Include="Assets\Scripts\Helpers\Helpers.cs" />
