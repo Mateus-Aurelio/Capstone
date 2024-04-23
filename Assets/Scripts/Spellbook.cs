@@ -6,8 +6,10 @@ public class Spellbook : MonoBehaviour
 {
     [SerializeField] private SpellCircle spellCircle;
     [SerializeField] private GameObject spellBook;
-    [SerializeField] private GameObject spellBookLeft;
-    [SerializeField] private GameObject spellBookRight;
+    [SerializeField] private GameObject spellBookLeftPage;
+    [SerializeField] private GameObject spellBookRightPage;
+    [SerializeField] private GameObject spellBookCastingLeftPage;
+    [SerializeField] private GameObject spellBookCastingRightPage;
     [SerializeField] private Transform spellBookBook;
     [SerializeField] private Camera playerCamera;
     [SerializeField] private Transform leftPivot;
@@ -45,8 +47,10 @@ public class Spellbook : MonoBehaviour
             if (!spellBook.gameObject.activeInHierarchy)
             {
                 spellBook.gameObject.SetActive(true);
-                spellBookLeft.gameObject.SetActive(true);
-                spellBookRight.gameObject.SetActive(true);
+                spellBookLeftPage.gameObject.SetActive(true);
+                spellBookRightPage.gameObject.SetActive(true);
+                spellBookCastingLeftPage.gameObject.SetActive(false);
+                spellBookCastingRightPage.gameObject.SetActive(false);
             }
             spellBook.transform.LookAt(spellBook.transform.position - (playerCamera.transform.position - spellBook.transform.position));
         }
@@ -55,8 +59,10 @@ public class Spellbook : MonoBehaviour
             if (spellBook.gameObject.activeInHierarchy)
             {
                 spellBook.gameObject.SetActive(false);
-                spellBookLeft.gameObject.SetActive(false);
-                spellBookRight.gameObject.SetActive(false);
+                spellBookLeftPage.gameObject.SetActive(false);
+                spellBookRightPage.gameObject.SetActive(false);
+                spellBookCastingLeftPage.gameObject.SetActive(true);
+                spellBookCastingRightPage.gameObject.SetActive(true);
             }
         }
     }
@@ -78,7 +84,9 @@ public class Spellbook : MonoBehaviour
         spellCircle.gameObject.SetActive(castingMode);
         if (castingMode) spellCircle.ResetCasting();
         spellBook.SetActive(!castingMode);
-        spellBookLeft.gameObject.SetActive(!castingMode);
-        spellBookRight.gameObject.SetActive(!castingMode);
+        spellBookLeftPage.gameObject.SetActive(!castingMode);
+        spellBookRightPage.gameObject.SetActive(!castingMode);
+        spellBookCastingLeftPage.gameObject.SetActive(castingMode);
+        spellBookCastingRightPage.gameObject.SetActive(castingMode);
     }
 }

@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 4624087345912832588}
   - component: {fileID: 4437552052247324664}
   m_Layer: 4
-  m_Name: Orb-Water
+  m_Name: Orb-Water AltCast
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -135,10 +135,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ef40281236f0214785589f04a283cb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementToCast: 1
+  elementToCast: 0
   spellEdgesOptions:
   - spellCircleEdges:
     - location1: 7
+      location2: 3
+    - location1: 4
       location2: 3
   minGripTimeToGrab: 0
   maxGripTimeToGrab: 0.125

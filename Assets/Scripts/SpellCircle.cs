@@ -22,6 +22,7 @@ public class SpellCircle : MonoBehaviour
     [SerializeField] private PlayerHand rightHand = null;
     private bool ignoreUntilUninput = false;
     private Element element = Element.earth;
+    [SerializeField] private bool setElementToNoneOnReset = false;
 
     [SerializeField] private float resourceGainSpeed = 1;
     [SerializeField] private ElementResource earthResource;
@@ -195,7 +196,7 @@ public class SpellCircle : MonoBehaviour
         {
             //Debug.Log("Checking prefab " + spellPrefab);
             if (spellPrefab.GetComponent<Spell>() == null) continue;
-            if (spellPrefab.GetComponent<Spell>().GetElementToCast() != element) continue;
+            if (element != Element.none && spellPrefab.GetComponent<Spell>().GetElementToCast() != Element.none && spellPrefab.GetComponent<Spell>().GetElementToCast() != element) continue;
 
             //Debug.Log("Checking prefab's edgesOptions");
             foreach (SpellEdgesOption edgesOption in spellPrefab.GetComponent<Spell>().GetSpellEdgesOptions())
@@ -249,6 +250,7 @@ public class SpellCircle : MonoBehaviour
         linePositions = new Vector3[0];
         line.positionCount = 0;
         line.SetPositions(linePositions);
+        if (setElementToNoneOnReset) SetElement(Element.none);
     }
 
     private void CastSpell(GameObject spellPrefab)
@@ -277,6 +279,11 @@ public class SpellCircle : MonoBehaviour
         }
 
         ResetCasting();
+    }
+
+    public Element GetElement()
+    {
+        return element;
     }
 
     public void SetElement(Element given)

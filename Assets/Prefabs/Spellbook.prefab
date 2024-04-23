@@ -1546,7 +1546,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7236910463323349921
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1652,7 +1652,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spellCircle: {fileID: 8295175668385781825}
   spellBook: {fileID: 7992742120347598207}
+  spellBookLeft: {fileID: 0}
+  spellBookRight: {fileID: 0}
+  spellBookBook: {fileID: 0}
   playerCamera: {fileID: 0}
+  leftPivot: {fileID: 0}
+  rightPivot: {fileID: 0}
+  lefthand: {fileID: 0}
+  bookSpeed: 5
 --- !u!1 &5062605690319674051
 GameObject:
   m_ObjectHideFlags: 0
@@ -1864,7 +1871,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2084415487559186651
 RectTransform:
   m_ObjectHideFlags: 0

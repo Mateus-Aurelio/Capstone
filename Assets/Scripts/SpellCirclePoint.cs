@@ -8,6 +8,10 @@ public class SpellCirclePoint : MonoBehaviour
     [SerializeField] private SpellCircle spellCircle;
     [SerializeField] private SpellCircleLocation circleLocation;
     [SerializeField] private Image filledCircle;
+    [SerializeField] private bool setElement = false;
+    [SerializeField] private Element elementToSet = Element.none;
+    [SerializeField] private bool ignoreTouchIfElementIsNone = false;
+    [SerializeField] private bool ignoreTouchIfElementExists = false;
 
     private void Awake()
     {
@@ -49,8 +53,11 @@ public class SpellCirclePoint : MonoBehaviour
 
     public void TouchedByRay()
     {
+        if (ignoreTouchIfElementIsNone && spellCircle.GetElement() == Element.none) return;
+        if (ignoreTouchIfElementExists && spellCircle.GetElement() != Element.none) return;
         // if (!filledCircle.enabled) 
-        filledCircle.enabled = spellCircle.SpellCirclePointTouched(circleLocation, this);
+        filledCircle.enabled = spellCircle.SpellCirclePointTouched(circleLocation, this) || filledCircle.enabled;
         spellCircle.TouchedByRay();
+        if (setElement) spellCircle.SetElement(elementToSet);
     }
 }
