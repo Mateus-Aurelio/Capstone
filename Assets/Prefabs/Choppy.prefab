@@ -152,8 +152,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9828f24aaafc3d84696b124d630157a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goal: {fileID: 0}
+  tree: {fileID: 0}
   attackRange: 2
+  spinWhenAttack: {fileID: 6531131140533142668}
+  spinVectorNormal: {x: 0, y: 0, z: -400}
+  spinVectorAttacking: {x: 0, y: 0, z: -600}
 --- !u!114 &5571072200285201940
 MonoBehaviour:
   m_ObjectHideFlags: 0

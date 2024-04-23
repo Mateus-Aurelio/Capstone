@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 4863166192316003804}
   - component: {fileID: 7102928361991444230}
   - component: {fileID: 8189340358549617559}
+  - component: {fileID: 6369397892089859614}
   m_Layer: 0
   m_Name: CastingImage
   m_TagString: Untagged
@@ -109,6 +110,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6369397892089859614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 275890996486483319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80041a656e2ed274bbd82b3a40c3f773, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spin: {x: 0, y: 0, z: 15}
 --- !u!1 &731101182418154974
 GameObject:
   m_ObjectHideFlags: 0
@@ -958,6 +972,7 @@ GameObject:
   - component: {fileID: 1710478570631017710}
   - component: {fileID: 6943563348766195590}
   - component: {fileID: 5716521652365599079}
+  - component: {fileID: 4471345947446509831}
   m_Layer: 0
   m_Name: CastingImage
   m_TagString: Untagged
@@ -1022,6 +1037,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4471345947446509831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6689605461619420848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80041a656e2ed274bbd82b3a40c3f773, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spin: {x: 0, y: 0, z: -15}
 --- !u!1 &7065381760994733583
 GameObject:
   m_ObjectHideFlags: 0

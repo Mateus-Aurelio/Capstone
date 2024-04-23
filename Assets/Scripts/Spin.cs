@@ -10,4 +10,9 @@ public class Spin : MonoBehaviour
     {
         transform.Rotate(spin * Time.deltaTime);
     }
+
+    public void SetSpinVector(Vector3 given)
+    {
+        spin = given;
+    }
 }

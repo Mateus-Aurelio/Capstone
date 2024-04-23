@@ -10,6 +10,10 @@ public class Enemy : MonoBehaviour
     private EnemyState enemyState = EnemyState.none;
     [SerializeField] private float attackRange = 2;
 
+    [SerializeField] private Spin spinWhenAttack;
+    [SerializeField] private Vector3 spinVectorNormal = new Vector3(0, 0, -400);
+    [SerializeField] private Vector3 spinVectorAttacking = new Vector3(0, 0, -600);
+
     void Start()
     {
         tree = GameObject.Find("TreeGoal");
@@ -70,6 +74,7 @@ public class Enemy : MonoBehaviour
     private void SetState(EnemyState givenState)
     {
         enemyState = givenState;
+        if (spinWhenAttack != null) spinWhenAttack.SetSpinVector(spinVectorNormal);
         switch (enemyState)
         {
             case EnemyState.none:
@@ -82,6 +87,7 @@ public class Enemy : MonoBehaviour
                 goal = PlayerTracker.GetPlayer();
                 break;
             case EnemyState.attacking:
+                if (spinWhenAttack != null) spinWhenAttack.SetSpinVector(spinVectorAttacking);
                 goal = null;
                 break;
         }
