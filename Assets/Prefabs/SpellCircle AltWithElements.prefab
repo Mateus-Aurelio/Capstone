@@ -95,10 +95,14 @@ MonoBehaviour:
   spellCircle: {fileID: 7753590421206652456}
   circleLocation: 6
   filledCircle: {fileID: 1243531616691555063}
+  elementCircle: {fileID: 125393449234654973}
   setElement: 1
   elementToSet: 2
+  onlySetElementIfNone: 1
+  doNotTouchIfSetElement: 1
+  doNotTouchIfFirst: 1
   ignoreTouchIfElementIsNone: 0
-  ignoreTouchIfElementExists: 1
+  ignoreTouchIfElementExists: 0
 --- !u!136 &7415217249219684610
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -265,8 +269,12 @@ MonoBehaviour:
   spellCircle: {fileID: 7753590421206652456}
   circleLocation: 1
   filledCircle: {fileID: 8979706671800226391}
+  elementCircle: {fileID: 0}
   setElement: 0
   elementToSet: 0
+  onlySetElementIfNone: 1
+  doNotTouchIfSetElement: 1
+  doNotTouchIfFirst: 0
   ignoreTouchIfElementIsNone: 1
   ignoreTouchIfElementExists: 0
 --- !u!136 &2506018842507847445
@@ -1142,10 +1150,14 @@ MonoBehaviour:
   spellCircle: {fileID: 7753590421206652456}
   circleLocation: 2
   filledCircle: {fileID: 1157764334843439148}
+  elementCircle: {fileID: 6465493762018210993}
   setElement: 1
   elementToSet: 3
+  onlySetElementIfNone: 1
+  doNotTouchIfSetElement: 1
+  doNotTouchIfFirst: 1
   ignoreTouchIfElementIsNone: 0
-  ignoreTouchIfElementExists: 1
+  ignoreTouchIfElementExists: 0
 --- !u!136 &3046334898935855049
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1312,8 +1324,12 @@ MonoBehaviour:
   spellCircle: {fileID: 7753590421206652456}
   circleLocation: 5
   filledCircle: {fileID: 2906657367492606790}
+  elementCircle: {fileID: 0}
   setElement: 0
   elementToSet: 0
+  onlySetElementIfNone: 1
+  doNotTouchIfSetElement: 1
+  doNotTouchIfFirst: 0
   ignoreTouchIfElementIsNone: 1
   ignoreTouchIfElementExists: 0
 --- !u!136 &8226690050972006743
@@ -1513,10 +1529,14 @@ MonoBehaviour:
   line: {fileID: 6161000482417309852}
   playerCamera: {fileID: 0}
   spells:
-  - {fileID: 777067855996375140, guid: 916b02571d2f9c94b9d6a4de07dddcb9, type: 3}
-  - {fileID: 777067855996375140, guid: 698a41b2f3102a841855def167899a09, type: 3}
-  - {fileID: 777067855996375140, guid: bfcab8863aa975c429f7dfdc5a02f57c, type: 3}
-  - {fileID: 777067855996375140, guid: 7263a191f5ac3fc41abf5da9a2bccd39, type: 3}
+  - {fileID: 777067855996375140, guid: 16561fd723d92954eb5146b2e50a90da, type: 3}
+  - {fileID: 777067855996375140, guid: a3a287adc0dd575418557ad13c63a17b, type: 3}
+  - {fileID: 777067855996375140, guid: b130a1b53feafbc4d900bad41e2ecfe6, type: 3}
+  - {fileID: 777067855996375140, guid: 44008a4639f2fa1458f923612c48a766, type: 3}
+  - {fileID: 6567944683054488724, guid: 877a463b10c5a124991772be65c4aa50, type: 3}
+  - {fileID: 6567944683054488724, guid: 2f75f74293b679646a3112e59e8b94ab, type: 3}
+  - {fileID: 6567944683054488724, guid: 5785a3ef73918044fb87ccfad85ca2ce, type: 3}
+  - {fileID: 6567944683054488724, guid: 8276b178594f38e41838c5196608744b, type: 3}
   leftHand: {fileID: 0}
   rightHand: {fileID: 0}
   setElementToNoneOnReset: 1
@@ -1947,8 +1967,12 @@ MonoBehaviour:
   spellCircle: {fileID: 7753590421206652456}
   circleLocation: 7
   filledCircle: {fileID: 8074472015976512125}
+  elementCircle: {fileID: 0}
   setElement: 0
   elementToSet: 0
+  onlySetElementIfNone: 1
+  doNotTouchIfSetElement: 1
+  doNotTouchIfFirst: 0
   ignoreTouchIfElementIsNone: 1
   ignoreTouchIfElementExists: 0
 --- !u!136 &5948989060553126543
@@ -2117,8 +2141,12 @@ MonoBehaviour:
   spellCircle: {fileID: 7753590421206652456}
   circleLocation: 3
   filledCircle: {fileID: 2022800940544656887}
+  elementCircle: {fileID: 0}
   setElement: 0
   elementToSet: 0
+  onlySetElementIfNone: 1
+  doNotTouchIfSetElement: 1
+  doNotTouchIfFirst: 0
   ignoreTouchIfElementIsNone: 1
   ignoreTouchIfElementExists: 0
 --- !u!136 &6230771185822205364
@@ -2362,10 +2390,14 @@ MonoBehaviour:
   spellCircle: {fileID: 7753590421206652456}
   circleLocation: 8
   filledCircle: {fileID: 1758734399839531441}
+  elementCircle: {fileID: 1844978198413259674}
   setElement: 1
   elementToSet: 4
+  onlySetElementIfNone: 1
+  doNotTouchIfSetElement: 1
+  doNotTouchIfFirst: 1
   ignoreTouchIfElementIsNone: 0
-  ignoreTouchIfElementExists: 1
+  ignoreTouchIfElementExists: 0
 --- !u!136 &2962728473217358657
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2607,10 +2639,14 @@ MonoBehaviour:
   spellCircle: {fileID: 7753590421206652456}
   circleLocation: 4
   filledCircle: {fileID: 5828983864620919579}
+  elementCircle: {fileID: 3416962916063921176}
   setElement: 1
   elementToSet: 1
+  onlySetElementIfNone: 1
+  doNotTouchIfSetElement: 1
+  doNotTouchIfFirst: 1
   ignoreTouchIfElementIsNone: 0
-  ignoreTouchIfElementExists: 1
+  ignoreTouchIfElementExists: 0
 --- !u!136 &4286588381303894514
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3066,6 +3102,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
+--- !u!114 &3416962916063921176 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2600296867958770906, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
+  m_PrefabInstance: {fileID: 827925187869673666}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6230599402271442019 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6704426869274741921, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
@@ -3283,6 +3330,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
+--- !u!114 &125393449234654973 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2600296867958770906, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
+  m_PrefabInstance: {fileID: 2714369389392865831}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &8180574066076967964 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6065324302343786043, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
@@ -3608,6 +3666,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
+--- !u!114 &1844978198413259674 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2600296867958770906, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
+  m_PrefabInstance: {fileID: 4435115291570962240}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6955344991930151905 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6704426869274741921, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
@@ -3949,3 +4018,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6065324302343786043, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
   m_PrefabInstance: {fileID: 9055631003886237803}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6465493762018210993 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2600296867958770906, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
+  m_PrefabInstance: {fileID: 9055631003886237803}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

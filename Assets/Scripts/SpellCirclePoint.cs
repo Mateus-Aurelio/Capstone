@@ -8,8 +8,13 @@ public class SpellCirclePoint : MonoBehaviour
     [SerializeField] private SpellCircle spellCircle;
     [SerializeField] private SpellCircleLocation circleLocation;
     [SerializeField] private Image filledCircle;
+
+    [SerializeField] private Image elementCircle;
     [SerializeField] private bool setElement = false;
     [SerializeField] private Element elementToSet = Element.none;
+    [SerializeField] private bool onlySetElementIfNone = true;
+    [SerializeField] private bool doNotTouchIfSetElement = true;
+    [SerializeField] private bool doNotTouchIfFirst = false;
     [SerializeField] private bool ignoreTouchIfElementIsNone = false;
     [SerializeField] private bool ignoreTouchIfElementExists = false;
 
@@ -49,15 +54,29 @@ public class SpellCirclePoint : MonoBehaviour
     public void ResetSpellCirclePoint()
     {
         filledCircle.enabled = false;
+        if (elementCircle != null) elementCircle.enabled = true;
     }
 
     public void TouchedByRay()
     {
         if (ignoreTouchIfElementIsNone && spellCircle.GetElement() == Element.none) return;
         if (ignoreTouchIfElementExists && spellCircle.GetElement() != Element.none) return;
-        // if (!filledCircle.enabled) 
+        if (setElement && (!onlySetElementIfNone || (onlySetElementIfNone & spellCircle.GetElement() == Element.none)))
+        {
+            spellCircle.SetElement(elementToSet);
+            if (doNotTouchIfSetElement)
+            {
+                return;
+            }
+        }
+        if (doNotTouchIfFirst && spellCircle.GetLastLocation() == SpellCircleLocation.none) return;
+
         filledCircle.enabled = spellCircle.SpellCirclePointTouched(circleLocation, this) || filledCircle.enabled;
         spellCircle.TouchedByRay();
-        if (setElement) spellCircle.SetElement(elementToSet);
+    }
+
+    public void ElementSet()
+    {
+        if (elementCircle != null) elementCircle.enabled = false;
     }
 }

@@ -54,7 +54,17 @@ public class Enemy : MonoBehaviour
 
     private void AttackUpdate()
     {
-
+        if (Vector3.Distance(goal.transform.position, transform.position) > attackRange +0.1f)
+        {
+            if (goal == PlayerTracker.GetPlayer())
+            {
+                SetState(EnemyState.walkToPlayer);
+            }
+            else
+            {
+                SetState(EnemyState.walkToTree);
+            }
+        }
     }
 
     private void SetState(EnemyState givenState)

@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 3637277725851527445}
   - component: {fileID: 7834051356874283326}
   - component: {fileID: -1201936250954226967}
+  - component: {fileID: 531008296878025172}
   m_Layer: 7
   m_Name: Orb-Air
   m_TagString: Untagged
@@ -265,3 +266,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
+--- !u!114 &531008296878025172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777067855996375140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c63746359693bdf47933076594c7915f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delayTime: 30

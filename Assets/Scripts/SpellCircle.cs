@@ -57,13 +57,13 @@ public class SpellCircle : MonoBehaviour
         }
         
         UpdateResources();
-        if (lastLocation == SpellCircleLocation.none)
+        /*if (lastLocation == SpellCircleLocation.none)
         {
             if (VRInput.ButtonPressed(UnityEngine.XR.XRNode.LeftHand, UnityEngine.XR.Interaction.Toolkit.InputHelpers.Button.PrimaryButton)) SetElement(Element.earth);
             else if (VRInput.ButtonPressed(UnityEngine.XR.XRNode.LeftHand, UnityEngine.XR.Interaction.Toolkit.InputHelpers.Button.SecondaryButton)) SetElement(Element.air);
             else if (VRInput.ButtonPressed(UnityEngine.XR.XRNode.RightHand, UnityEngine.XR.Interaction.Toolkit.InputHelpers.Button.PrimaryButton)) SetElement(Element.water);
             else if (VRInput.ButtonPressed(UnityEngine.XR.XRNode.RightHand, UnityEngine.XR.Interaction.Toolkit.InputHelpers.Button.SecondaryButton)) SetElement(Element.fire);
-        }
+        }*/
 
         /* if (ignoreUntilUninput != null && !ignoreUntilUninput.HandButtonPressed(UnityEngine.XR.Interaction.Toolkit.InputHelpers.Button.Trigger)) ignoreUntilUninput = null;
 
@@ -191,7 +191,19 @@ public class SpellCircle : MonoBehaviour
             ResetCasting();
             return;
         }
+        GameObject spell = DetermineSpellFromEdges();
+        if (spell != null)
+        {
+            CastSpell(spell);
+            return;
+        }
+        
+        //Debug.Log("No spell cast");
+        ResetCasting();
+    }
 
+    private GameObject DetermineSpellFromEdges()
+    {
         foreach (GameObject spellPrefab in spells)
         {
             //Debug.Log("Checking prefab " + spellPrefab);
@@ -222,15 +234,13 @@ public class SpellCircle : MonoBehaviour
                     }
                     if (cast)
                     {
-                        CastSpell(spellPrefab);
-                        return;
+                        return spellPrefab;
                     }
                     //Debug.Log("could not find matching edges with spellprefab " + spellPrefab.name);
                 }
             }
         }
-        //Debug.Log("No spell cast");
-        ResetCasting();
+        return null;
     }
 
     public void ResetCasting()
@@ -243,6 +253,7 @@ public class SpellCircle : MonoBehaviour
         //ignoreUntilUninput = preparingHand;
         castingHand = null;
         //preparingHand = null;
+        if (setElementToNoneOnReset) SetElement(Element.none);
         foreach (SpellCirclePoint point in spellCirclePoints)
         {
             point.ResetSpellCirclePoint();
@@ -250,7 +261,6 @@ public class SpellCircle : MonoBehaviour
         linePositions = new Vector3[0];
         line.positionCount = 0;
         line.SetPositions(linePositions);
-        if (setElementToNoneOnReset) SetElement(Element.none);
     }
 
     private void CastSpell(GameObject spellPrefab)
@@ -309,6 +319,10 @@ public class SpellCircle : MonoBehaviour
         circleImage.color = newColor;
         line.startColor = newColor;
         line.endColor = newColor;
+        foreach (SpellCirclePoint point in spellCirclePoints)
+        {
+            point.ElementSet();
+        }
     }
 
     /*public PlayerHand GetCastingHand()
@@ -334,6 +348,11 @@ public class SpellCircle : MonoBehaviour
     {
         lastTouchedTimer = lastTouchedTimeSet;
         circleImage.color = ColorHelpers.SetColorAlpha(circleImage.color, 1);
+    }
+
+    public SpellCircleLocation GetLastLocation()
+    {
+        return lastLocation;
     }
 }
 

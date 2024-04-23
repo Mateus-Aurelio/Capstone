@@ -16,6 +16,7 @@ public class Spellbook : MonoBehaviour
     [SerializeField] private Transform rightPivot;
     [SerializeField] private PlayerHand lefthand;
     [SerializeField] private float bookSpeed = 5;
+    [SerializeField] private float minGripAmount = 0.95f;
     private bool castingMode = true;
     private bool waitForUninput = false;
 
@@ -30,19 +31,19 @@ public class Spellbook : MonoBehaviour
         UpdateBookPivots(gripAmount);
 
         // if (!waitForUninput && VRInput.ButtonPressed(UnityEngine.XR.XRNode.LeftHand, UnityEngine.XR.Interaction.Toolkit.InputHelpers.Button.MenuButton))
-        if (!waitForUninput && gripAmount > 0.75f)
+        if (!waitForUninput && gripAmount > minGripAmount)
         {
             waitForUninput = true;
             SetCastingMode(!castingMode);
         }
         // else if (waitForUninput && !VRInput.ButtonPressed(UnityEngine.XR.XRNode.LeftHand, UnityEngine.XR.Interaction.Toolkit.InputHelpers.Button.MenuButton))
-        else if (waitForUninput && gripAmount < 0.75f)
+        else if (waitForUninput && gripAmount < minGripAmount)
         {
             waitForUninput = false;
         }
 
         // if (!castingMode && VRInput.ButtonPressed(UnityEngine.XR.XRNode.LeftHand, UnityEngine.XR.Interaction.Toolkit.InputHelpers.Button.Trigger))
-        if (!castingMode && gripAmount < 0.75f)
+        if (!castingMode && gripAmount < minGripAmount)
         {
             if (!spellBook.gameObject.activeInHierarchy)
             {
