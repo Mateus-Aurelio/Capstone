@@ -29,6 +29,7 @@ public class Orb : Spell
     {
         if (orbState != OrbState.held) return;
 
+        transform.localPosition = myHand.GetGrabSnapPos();
         if (myHand.GetGripTime() <= 0)
         {
             orbState = OrbState.released; 
@@ -115,6 +116,7 @@ public class Orb : Spell
     {
         SpellInit(hand);
         transform.SetParent(parent);
+        transform.localPosition = hand.GetGrabSnapPos();
         hand.TriggerHaptic(.05f, 0.1f);
         orbState = OrbState.held;
         GetComponent<Rigidbody>().useGravity = false;

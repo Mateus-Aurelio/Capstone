@@ -88,6 +88,7 @@
     <Compile Include="Assets\Scripts\Orb.cs" />
     <Compile Include="Assets\Bitgem\StylisedWater\URP\Scripts\Bitgem\VFX\StylisedWater\WaterVolumeBox.cs" />
     <Compile Include="Assets\Scripts\Health\AHealth.cs" />
+    <Compile Include="Assets\Scripts\FollowPlayerHead.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\RayAttachModifier.cs" />
     <Compile Include="Assets\PDollar\Scripts\PDollarGestureRecognizer\Geometry.cs" />
     <Compile Include="Assets\Scripts\BowSpell.cs" />

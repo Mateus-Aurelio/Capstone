@@ -286,6 +286,109 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   setUpAutoAimSystem: 0
+--- !u!1 &8710104445928869878
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7197714831232504374}
+  - component: {fileID: 6622485037041755707}
+  - component: {fileID: 1460573771704032708}
+  - component: {fileID: 8806904087383505808}
+  m_Layer: 12
+  m_Name: Damage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7197714831232504374
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8710104445928869878}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6461550493927091150}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &6622485037041755707
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8710104445928869878}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.01
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1460573771704032708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8710104445928869878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae4ef9e6cd3b37a4e94cd7e036741e21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage:
+    damageAmount: 3
+    damageType: 0
+    effectsToInflict: []
+  damageEnemies: 0
+  damagePlayers: 1
+  damageOnTrigger: 1
+  damageOnCollision: 1
+  destroySelfOnDamage: 0
+--- !u!54 &8806904087383505808
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8710104445928869878}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1001 &137299371411847548
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -505,7 +608,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 9137291202672274537, guid: ef08cf8f88ea0c542a5b139f9a33c829, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7197714831232504374}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6439614742208355566, guid: ef08cf8f88ea0c542a5b139f9a33c829, type: 3}
       insertIndex: -1
@@ -514,6 +620,11 @@ PrefabInstance:
 --- !u!4 &1066260761975927490 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3003402447416735077, guid: ef08cf8f88ea0c542a5b139f9a33c829, type: 3}
+  m_PrefabInstance: {fileID: 2837870432778127271}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6461550493927091150 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9137291202672274537, guid: ef08cf8f88ea0c542a5b139f9a33c829, type: 3}
   m_PrefabInstance: {fileID: 2837870432778127271}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &9096215038458436425 stripped

@@ -20,6 +20,7 @@ public class PlayerHand : MonoBehaviour
     [SerializeField] private PlayerHand otherHand;
     [SerializeField] private XRBaseController xrController;
     [SerializeField] private Transform relativeTransform;
+    [SerializeField] private Vector3 grabSnapPos;
     /*[SerializeField] private CharacterController characterController;
 
     private bool touchSpellMode = false;
@@ -127,7 +128,10 @@ public class PlayerHand : MonoBehaviour
         return (startPos - endPos) / (Time.fixedDeltaTime * maxMovementChecks);
     }
 
-
+    public Vector3 GetGrabSnapPos()
+    {
+        return grabSnapPos;
+    }
 
 
 
