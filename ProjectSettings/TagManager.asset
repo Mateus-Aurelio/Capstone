@@ -15,6 +15,7 @@ TagManager:
   - Enemy
   - PlayerHurtbox
   - Tree
+  - PlayerHandTabGrabber
   layers:
   - Default
   - TransparentFX

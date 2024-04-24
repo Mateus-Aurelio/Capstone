@@ -27614,18 +27614,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 848956679402306470, guid: 99739dce6389fbc4983f6246c188a2e2, type: 3}
-      propertyPath: spells.Array.data[12]
-      value: 
-      objectReference: {fileID: 8560289713251362189, guid: df68ecd70ef54b946afef8a4cdf9a957, type: 3}
-    - target: {fileID: 2171510503423149058, guid: 99739dce6389fbc4983f6246c188a2e2, type: 3}
-      propertyPath: m_TagString
-      value: PlayerHurtbox
-      objectReference: {fileID: 0}
-    - target: {fileID: 2349399390270099132, guid: 99739dce6389fbc4983f6246c188a2e2, type: 3}
-      propertyPath: m_Direction
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2369760924507586193, guid: 99739dce6389fbc4983f6246c188a2e2, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -27645,14 +27633,6 @@ PrefabInstance:
     - target: {fileID: 6069054288254487637, guid: 99739dce6389fbc4983f6246c188a2e2, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6431773984048186889, guid: 99739dce6389fbc4983f6246c188a2e2, type: 3}
-      propertyPath: m_Name
-      value: SpellCircle
-      objectReference: {fileID: 0}
-    - target: {fileID: 8642335065351528381, guid: 99739dce6389fbc4983f6246c188a2e2, type: 3}
-      propertyPath: m_Direction
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9204084872739095255, guid: 99739dce6389fbc4983f6246c188a2e2, type: 3}
       propertyPath: m_LocalPosition.x

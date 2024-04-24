@@ -10,12 +10,14 @@ public class SpellbookTab : MonoBehaviour
     private void OnCollisionExit(Collision collision)
     {
         if (!collision.gameObject.CompareTag("PlayerHandTabGrabber")) return;
+        if (collision.transform.parent.GetComponent<PlayerHand>().GetGripTime() <= 0) return;
         spellbook.TurnToTab(tabID);
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (!other.CompareTag("PlayerHandTabGrabber")) return;
+        if (other.transform.parent.GetComponent<PlayerHand>().GetGripTime() <= 0) return;
         spellbook.TurnToTab(tabID);
     }
 }
