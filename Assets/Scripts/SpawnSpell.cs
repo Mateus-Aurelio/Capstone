@@ -6,8 +6,9 @@ public class SpawnSpell : Spell
 {
     // [SerializeField] private GameObject prefab;
     [SerializeField] private GameObject preparedPrefab;
-    [SerializeField] private bool spawnRelativeToBase = true;
-    [SerializeField] private bool spawnRelativeToHand = false;
+    [SerializeField] private bool spawnRelativeToHandRot = false;
+    [SerializeField] private bool spawnRelativeToCameraRot = false;
+    [SerializeField] private bool spawnRelativeToFromCameraToHand = false;
     [SerializeField] private Vector3 relativeSpawnPos;
     [SerializeField] private bool spawnGrounded = true;
 
@@ -24,7 +25,7 @@ public class SpawnSpell : Spell
     public override void UpdatePreparedObject(Vector3 defaultSpawnPosition, PlayerHand mainHand, GameObject preparedObject)
     {
         preparedObject.transform.position = DetermineSpawnPos(defaultSpawnPosition, mainHand);
-        preparedObject.transform.LookAt(Camera.main.transform.position);
+        // preparedObject.transform.LookAt(Camera.main.transform.position);
     }
 
     private Vector3 DetermineSpawnPos(Vector3 defaultSpawnPosition, PlayerHand mainHand)
@@ -32,14 +33,6 @@ public class SpawnSpell : Spell
         Vector3 spawnPos = defaultSpawnPosition;
         //Debug.Log("started at " + transform.position + " rot " + transform.rotation.eulerAngles);
         Transform relativeTransform = mainHand.transform;
-        if (spawnRelativeToBase)
-        {
-            relativeTransform = PlayerTracker.GetPlayer().transform;
-        }
-        else if (spawnRelativeToHand)
-        {
-            relativeTransform = mainHand.transform;
-        }
         spawnPos = relativeTransform.position;
         //transform.rotation = Quaternion.Euler(0, mainHand.GetRelativeTransform().rotation.eulerAngles.y, 0);
         //transform.LookAt(spawnPos - (Camera.main.transform.position - spawnPos));
@@ -48,7 +41,18 @@ public class SpawnSpell : Spell
         Destroy(test.gameObject, 0.001f);
         relativeTransform = test;
         test.position = PlayerTracker.GetPlayer().transform.position;
-        test.LookAt(Camera.main.transform.position + Camera.main.transform.forward * 10);
+        if (spawnRelativeToCameraRot)
+        {
+            test.LookAt(Camera.main.transform.position + Camera.main.transform.forward * 10);
+        }
+        else if (spawnRelativeToHandRot)
+        {
+            test.LookAt(mainHand.transform.position + mainHand.transform.forward * 10);
+        }
+        else if(spawnRelativeToFromCameraToHand)
+        {
+            test.LookAt(Camera.main.transform.position + (mainHand.transform.position - Camera.main.transform.position) * 10);
+        }
         //Debug.Log("after LookAt: " + transform.position + " rot " + transform.rotation.eulerAngles);
         test.rotation = Quaternion.Euler(0, relativeTransform.rotation.eulerAngles.y, 0);
         //Debug.Log("after rotation clamp: " + spawnPos + " rot " + transform.rotation.eulerAngles);

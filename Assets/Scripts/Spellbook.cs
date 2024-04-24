@@ -5,9 +5,9 @@ using UnityEngine;
 public class Spellbook : MonoBehaviour
 {
     [SerializeField] private SpellCircle spellCircle;
-    [SerializeField] private Transform spellCircleParent;
+    /*[SerializeField] private Transform spellCircleParent;
     [SerializeField] private Vector3 spellCircleParentRelativeOffset;
-    [SerializeField] private bool unparentSpellCircleOnEnterCastMode = false;
+    [SerializeField] private bool unparentSpellCircleOnEnterCastMode = false;*/
     [SerializeField] private GameObject spellBook;
     [SerializeField] private GameObject spellBookLeftPage;
     [SerializeField] private GameObject spellBookRightPage;

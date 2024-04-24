@@ -4993,8 +4993,9 @@ MonoBehaviour:
     - location1: 6
       location2: 7
   preparedPrefab: {fileID: 6567944683054488724, guid: d8c90a552da74cb4ea3bd9740876744f, type: 3}
-  spawnRelativeToBase: 1
-  spawnRelativeToHand: 0
+  spawnRelativeToHandRot: 0
+  spawnRelativeToCameraRot: 0
+  spawnRelativeToFromCameraToHand: 1
   relativeSpawnPos: {x: 0, y: 0, z: 4}
   spawnGrounded: 1
 --- !u!1 &7255229599903495102

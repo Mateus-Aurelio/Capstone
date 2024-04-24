@@ -13,4 +13,9 @@ public static class ColorHelpers
     {
         return new Color(r, g, b, givenColor.a);
     }
+
+    public static Color SetColorRGB(Color givenColor, Color rgb)
+    {
+        return new Color(rgb.r, rgb.g, rgb.b, givenColor.a);
+    }
 }
