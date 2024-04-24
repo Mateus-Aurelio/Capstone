@@ -5,8 +5,8 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private GameObject tree;
-    private GameObject goal;
+    private bool wait = true;
+    private Transform goal;
     private EnemyState enemyState = EnemyState.none;
     [SerializeField] private float attackRange = 2;
 
@@ -16,14 +16,14 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        tree = GameObject.Find("TreeGoal");
-        goal = tree;
-        GetComponent<NavMeshAgent>().SetDestination(goal.transform.position);
-        SetState(EnemyState.walkToTree);
+        wait = true;
+        StartCoroutine("FindTree");
     }
 
     private void Update()
     {
+        if (wait) return;
+        if (goal == null) DetermineGoal();
         switch (enemyState)
         {
             case EnemyState.none:
@@ -71,6 +71,11 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    private void DetermineGoal()
+    {
+        SetState(EnemyState.walkToTree);
+    }
+
     private void SetState(EnemyState givenState)
     {
         enemyState = givenState;
@@ -81,16 +86,27 @@ public class Enemy : MonoBehaviour
                 goal = null;
                 break;
             case EnemyState.walkToTree:
-                goal = tree;
+                goal = TreePosList.GetList()[0];
                 break;
             case EnemyState.walkToPlayer:
-                goal = PlayerTracker.GetPlayer();
+                goal = PlayerTracker.GetPlayer().transform;
                 break;
             case EnemyState.attacking:
                 if (spinWhenAttack != null) spinWhenAttack.SetSpinVector(spinVectorAttacking);
                 goal = null;
                 break;
         }
+    }
+
+    private IEnumerator FindTree()
+    {
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
+        goal = TreePosList.GetList()[0];
+        GetComponent<NavMeshAgent>().SetDestination(goal.position);
+        SetState(EnemyState.walkToTree);
+        wait = false;
     }
 }
 

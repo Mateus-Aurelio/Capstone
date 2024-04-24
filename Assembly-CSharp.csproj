@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\Terrain\TerrainChange.cs" />
     <Compile Include="Assets\Scripts\Terrain\TerrainZone.cs" />
     <Compile Include="Assets\Scripts\SpellPicker.cs" />
+    <Compile Include="Assets\Scripts\Tree.cs" />
     <Compile Include="Assets\Scripts\Helpers\DevHelp.cs" />
     <Compile Include="Assets\Scripts\Causes+Effects\Causes\OnClickCause.cs" />
     <Compile Include="Assets\Scripts\Helpers\TestSpringsRaise.cs" />

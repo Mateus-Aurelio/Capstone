@@ -138,15 +138,18 @@ MonoBehaviour:
   - spellCircleEdges:
     - location1: 7
       location2: 3
-    - location1: 7
-      location2: 8
+    - location1: 0
+      location2: 0
+  preparedPrefab: {fileID: 0}
   minGripTimeToGrab: 0
   maxGripTimeToGrab: 0.125
   minGripTimeToPunch: 0.125
   minVelocityToPunch: 1
+  throwModifier: 3
   minPunchVelocity: 10
   maxPunchVelocity: 20
   punchModifier: 4
+  punchGravityDelay: 1
   maxMovementChecks: 3
 --- !u!114 &-7737874931601293835
 MonoBehaviour:
@@ -162,7 +165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage:
     damageAmount: 3
-    damageType: 4
+    damageType: 0
     effectsToInflict: []
   damageEnemies: 1
   damagePlayers: 0

@@ -10,6 +10,7 @@ public class DamageOnTouch : MonoBehaviour
 
     [SerializeField] private bool damageEnemies = true;
     [SerializeField] private bool damagePlayers = false;
+    [SerializeField] private bool damageTrees = false;
     [SerializeField] private bool damageOnTrigger;
     [SerializeField] private bool damageOnCollision;
     [SerializeField] private bool destroySelfOnDamage = false;
@@ -33,13 +34,19 @@ public class DamageOnTouch : MonoBehaviour
         if (healthScript == null) return;
 
         bool destroy = false;
-        if (damageEnemies && (obj/*.GetComponent<Enemy>()*/ != null && obj.CompareTag("Enemy")))
+        if (damageEnemies && (obj != null && obj.CompareTag("Enemy")))
         {
             damage.DealDamage(healthScript);
             if (!destroy && destroySelfOnDamage) destroy = true;
         }
 
-        if (damagePlayers && obj.CompareTag("Player"))
+        if (damagePlayers && obj.CompareTag("PlayerHurtbox"))
+        {
+            damage.DealDamage(healthScript);
+            if (!destroy && destroySelfOnDamage) destroy = true;
+        }
+
+        if (damageTrees && obj.CompareTag("Tree"))
         {
             damage.DealDamage(healthScript);
             if (!destroy && destroySelfOnDamage) destroy = true;

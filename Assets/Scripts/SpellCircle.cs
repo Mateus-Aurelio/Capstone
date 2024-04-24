@@ -16,6 +16,8 @@ public class SpellCircle : MonoBehaviour
     private GameObject preparedSpellCastVisual;
     [SerializeField] private Image circleImage;
     [SerializeField] private Image circleImageInner;
+    [SerializeField] private Sprite circleImageInnerColored;
+    [SerializeField] private Sprite circleImageInnerWhite;
 
     [SerializeField] private LineRenderer line;
     private Vector3[] linePositions = new Vector3[0];
@@ -34,11 +36,11 @@ public class SpellCircle : MonoBehaviour
     private Element element = Element.earth;
     [SerializeField] private bool setElementToNoneOnReset = false;
 
-    [SerializeField] private float resourceGainSpeed = 1;
+    /*[SerializeField] private float resourceGainSpeed = 1;
     [SerializeField] private ElementResource earthResource;
     [SerializeField] private ElementResource waterResource;
     [SerializeField] private ElementResource airResource;
-    [SerializeField] private ElementResource fireResource;
+    [SerializeField] private ElementResource fireResource;*/
 
     [SerializeField] private Color fireColor = Color.red;
     [SerializeField] private Color waterColor = Color.blue;
@@ -73,7 +75,7 @@ public class SpellCircle : MonoBehaviour
                 circleImage.color = ColorHelpers.SetColorAlpha(circleImage.color, circleImageMinAlpha + lastTouchedTimer);
         }*/
         
-        UpdateResources();
+        //UpdateResources();
         /*if (lastLocation == SpellCircleLocation.none)
         {
             if (VRInput.ButtonPressed(UnityEngine.XR.XRNode.LeftHand, UnityEngine.XR.Interaction.Toolkit.InputHelpers.Button.PrimaryButton)) SetElement(Element.earth);
@@ -170,7 +172,7 @@ public class SpellCircle : MonoBehaviour
         return true;
     }
 
-    private void UpdateResources()
+    /*private void UpdateResources()
     {
         earthAmount = Mathf.Clamp(earthAmount + Time.deltaTime * resourceGainSpeed, 0, 8);
         airAmount = Mathf.Clamp(airAmount + Time.deltaTime * resourceGainSpeed, 0, 8);
@@ -180,7 +182,7 @@ public class SpellCircle : MonoBehaviour
         fireResource.UpdateResource(fireAmount);
         waterResource.UpdateResource(waterAmount);
         airResource.UpdateResource(airAmount);
-    }
+    }*/
 
     private void UpdateLines(SpellCircleLocation circleLocation)
     {
@@ -321,6 +323,7 @@ public class SpellCircle : MonoBehaviour
         if (setElementToNoneOnReset) SetElement(Element.none);
         circleImage.color = ColorHelpers.SetColorAlpha(circleImage.color, 0);
         circleImageInner.color = ColorHelpers.SetColorAlpha(circleImageInner.color, 1f);
+        circleImageInner.sprite = circleImageInnerColored;
         foreach (SpellCirclePoint point in spellCirclePoints)
         {
             point.ResetSpellCirclePoint();
@@ -387,10 +390,12 @@ public class SpellCircle : MonoBehaviour
             case Element.none:
                 circleImage.color = ColorHelpers.SetColorAlpha(circleImage.color, 0.0f);
                 circleImageInner.color = ColorHelpers.SetColorAlpha(circleImageInner.color, 1f);
+                circleImageInner.sprite = circleImageInnerColored;
                 break;
         }
         circleImage.color = ColorHelpers.SetColorRGB(circleImage.color, newColor);
         circleImageInner.color = ColorHelpers.SetColorRGB(circleImageInner.color, newColor);
+        circleImageInner.sprite = circleImageInnerWhite;
         line.startColor = newColor;
         line.endColor = newColor;
         foreach (SpellCirclePoint point in spellCirclePoints)

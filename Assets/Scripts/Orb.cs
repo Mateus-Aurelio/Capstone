@@ -135,7 +135,6 @@ public class Orb : Spell
         orbState = OrbState.held;
         GetComponent<Rigidbody>().useGravity = false;
         GetComponent<Rigidbody>().velocity = Vector3.zero;
-        StartCoroutine("DelayedGravity");
     }
 
     private void PunchOrb(PlayerHand hand)
@@ -146,6 +145,7 @@ public class Orb : Spell
         hand.TriggerHaptic(Mathf.Lerp(0.1f, 1f, velocity.magnitude / maxPunchVelocity), 0.1f);
         ReleasedFromHand(velocity, false);
         orbState = OrbState.released;
+        StartCoroutine("DelayedGravity");
     }
 
     private void TouchedOtherHand()

@@ -161,7 +161,7 @@ MonoBehaviour:
       location2: 6
     - location1: 6
       location2: 7
-  preparedPrefab: {fileID: 6567944683054488724, guid: d8c90a552da74cb4ea3bd9740876744f, type: 3}
+  preparedPrefab: {fileID: 7934861112535543328, guid: 53e495a8e3f7e8b449caedbe37889ce0, type: 3}
   spawnRelativeToHandRot: 0
   spawnRelativeToCameraRot: 0
   spawnRelativeToFromCameraToHand: 1

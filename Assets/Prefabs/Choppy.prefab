@@ -152,11 +152,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9828f24aaafc3d84696b124d630157a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tree: {fileID: 0}
   attackRange: 3
   spinWhenAttack: {fileID: 6531131140533142668}
-  spinVectorNormal: {x: 0, y: 0, z: -200}
-  spinVectorAttacking: {x: 0, y: 0, z: -640}
+  spinVectorNormal: {x: 0, y: 0, z: -100}
+  spinVectorAttacking: {x: 0, y: 0, z: -800}
 --- !u!114 &5571072200285201940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -297,7 +296,6 @@ GameObject:
   - component: {fileID: 7197714831232504374}
   - component: {fileID: 6622485037041755707}
   - component: {fileID: 1460573771704032708}
-  - component: {fileID: 8806904087383505808}
   m_Layer: 12
   m_Name: Damage
   m_TagString: Untagged
@@ -359,36 +357,10 @@ MonoBehaviour:
     effectsToInflict: []
   damageEnemies: 0
   damagePlayers: 1
+  damageTrees: 1
   damageOnTrigger: 1
   damageOnCollision: 1
   destroySelfOnDamage: 0
---- !u!54 &8806904087383505808
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8710104445928869878}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
 --- !u!1001 &137299371411847548
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -605,6 +577,14 @@ PrefabInstance:
     - target: {fileID: 3003402447416735077, guid: ef08cf8f88ea0c542a5b139f9a33c829, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6482276775008786937, guid: ef08cf8f88ea0c542a5b139f9a33c829, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.0366
+      objectReference: {fileID: 0}
+    - target: {fileID: 6482276775008786937, guid: ef08cf8f88ea0c542a5b139f9a33c829, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
