@@ -47,7 +47,7 @@ public class HandRay : MonoBehaviour
             // if (hit.collider.GetComponent<SpellCircle>() != null)
             // if (hit.collider.gameObject.name == "SpellCircle Canvas")
             {
-                Debug.Log("Hit canvas");
+                // Debug.Log("Hit canvas");
                 lineRenderer.SetPositions(new Vector3[2] { new Vector3(0, 0, 0), new Vector3(0, 0, Vector3.Distance(transform.position, hit.point)) });
                 lineRenderer.colorGradient = drawingGradient;
                 hit.collider.GetComponent<SpellCircleImage>().TouchedByRay();
@@ -55,7 +55,7 @@ public class HandRay : MonoBehaviour
             }
             else if (hit.collider.GetComponent<SpellCirclePoint>() != null)
             {
-                Debug.Log("Hit point!");
+                // Debug.Log("Hit point!");
                 lineRenderer.SetPositions(new Vector3[2] { new Vector3(0, 0, 0), new Vector3(0, 0, Vector3.Distance(transform.position, hit.point)) });
                 lineRenderer.colorGradient = drawingGradient;
                 hit.collider.GetComponent<SpellCirclePoint>().TouchedByRay();

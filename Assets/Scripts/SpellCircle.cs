@@ -39,6 +39,12 @@ public class SpellCircle : MonoBehaviour
     [SerializeField] private ElementResource waterResource;
     [SerializeField] private ElementResource airResource;
     [SerializeField] private ElementResource fireResource;
+
+    [SerializeField] private Color fireColor = Color.red;
+    [SerializeField] private Color waterColor = Color.blue;
+    [SerializeField] private Color airColor = Color.white;
+    [SerializeField] private Color earthColor = Color.black;
+    [SerializeField] private float innerFadeAlpha = 0.2f;
     private float earthAmount = 8;
     private float waterAmount = 8;
     private float airAmount = 8;
@@ -363,20 +369,20 @@ public class SpellCircle : MonoBehaviour
         element = given;
         Color newColor = Color.white;
         circleImage.color = ColorHelpers.SetColorAlpha(circleImage.color, 1);
-        circleImageInner.color = ColorHelpers.SetColorAlpha(circleImageInner.color, 0.15f);
+        circleImageInner.color = ColorHelpers.SetColorAlpha(circleImageInner.color, innerFadeAlpha);
         switch (element)
         {
             case Element.water:
-                newColor = new Color(0.15f, 0.5f, 0.9f);
+                newColor = waterColor;
                 break;
             case Element.earth:
-                newColor = new Color(0.7f, 0.5f, 0.2f);
+                newColor = earthColor;
                 break;
             case Element.fire:
-                newColor = Color.red;
+                newColor = fireColor;
                 break;
             case Element.air:
-                newColor = new Color(0.85f, 0.95f, 0.95f);
+                newColor = airColor;
                 break;
             case Element.none:
                 circleImage.color = ColorHelpers.SetColorAlpha(circleImage.color, 0.0f);
