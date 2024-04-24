@@ -141,13 +141,16 @@ MonoBehaviour:
   - spellCircleEdges:
     - location1: 7
       location2: 3
+  preparedPrefab: {fileID: 3261399452110736818, guid: 6e5c3331c5c9ed440997c20a641b0d50, type: 3}
   minGripTimeToGrab: 0
   maxGripTimeToGrab: 0.125
   minGripTimeToPunch: 0.125
   minVelocityToPunch: 1
+  throwModifier: 2
   minPunchVelocity: 10
   maxPunchVelocity: 20
   punchModifier: 4
+  punchGravityDelay: 1
   maxMovementChecks: 3
 --- !u!114 &550980915904739813
 MonoBehaviour:

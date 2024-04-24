@@ -95,6 +95,14 @@ MonoBehaviour:
   spellCircle: {fileID: 7753590421206652456}
   circleLocation: 6
   filledCircle: {fileID: 1243531616691555063}
+  elementCircle: {fileID: 0}
+  setElement: 0
+  elementToSet: 0
+  onlySetElementIfNone: 1
+  doNotTouchIfSetElement: 1
+  doNotTouchIfFirst: 0
+  ignoreTouchIfElementIsNone: 0
+  ignoreTouchIfElementExists: 0
 --- !u!136 &7415217249219684610
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -261,6 +269,14 @@ MonoBehaviour:
   spellCircle: {fileID: 7753590421206652456}
   circleLocation: 1
   filledCircle: {fileID: 8979706671800226391}
+  elementCircle: {fileID: 0}
+  setElement: 0
+  elementToSet: 0
+  onlySetElementIfNone: 1
+  doNotTouchIfSetElement: 1
+  doNotTouchIfFirst: 0
+  ignoreTouchIfElementIsNone: 0
+  ignoreTouchIfElementExists: 0
 --- !u!136 &2506018842507847445
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -874,7 +890,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.25, y: 1.25, z: 0.01}
+  m_Size: {x: 1.25, y: 1.25, z: 0.001}
   m_Center: {x: 0, y: 0, z: -0.005}
 --- !u!114 &6860175923883175058
 MonoBehaviour:
@@ -1134,6 +1150,14 @@ MonoBehaviour:
   spellCircle: {fileID: 7753590421206652456}
   circleLocation: 2
   filledCircle: {fileID: 1157764334843439148}
+  elementCircle: {fileID: 0}
+  setElement: 0
+  elementToSet: 0
+  onlySetElementIfNone: 1
+  doNotTouchIfSetElement: 1
+  doNotTouchIfFirst: 0
+  ignoreTouchIfElementIsNone: 0
+  ignoreTouchIfElementExists: 0
 --- !u!136 &3046334898935855049
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1300,6 +1324,14 @@ MonoBehaviour:
   spellCircle: {fileID: 7753590421206652456}
   circleLocation: 5
   filledCircle: {fileID: 2906657367492606790}
+  elementCircle: {fileID: 0}
+  setElement: 0
+  elementToSet: 0
+  onlySetElementIfNone: 1
+  doNotTouchIfSetElement: 1
+  doNotTouchIfFirst: 0
+  ignoreTouchIfElementIsNone: 0
+  ignoreTouchIfElementExists: 0
 --- !u!136 &8226690050972006743
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1508,6 +1540,7 @@ MonoBehaviour:
   - {fileID: 6567944683054488724, guid: 5785a3ef73918044fb87ccfad85ca2ce, type: 3}
   leftHand: {fileID: 0}
   rightHand: {fileID: 0}
+  setElementToNoneOnReset: 0
   resourceGainSpeed: 0.6
   earthResource: {fileID: 8692378440885610118}
   waterResource: {fileID: 6230599402271442019}
@@ -1935,6 +1968,14 @@ MonoBehaviour:
   spellCircle: {fileID: 7753590421206652456}
   circleLocation: 7
   filledCircle: {fileID: 8074472015976512125}
+  elementCircle: {fileID: 0}
+  setElement: 0
+  elementToSet: 0
+  onlySetElementIfNone: 1
+  doNotTouchIfSetElement: 1
+  doNotTouchIfFirst: 0
+  ignoreTouchIfElementIsNone: 0
+  ignoreTouchIfElementExists: 0
 --- !u!136 &5948989060553126543
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2101,6 +2142,14 @@ MonoBehaviour:
   spellCircle: {fileID: 7753590421206652456}
   circleLocation: 3
   filledCircle: {fileID: 2022800940544656887}
+  elementCircle: {fileID: 0}
+  setElement: 0
+  elementToSet: 0
+  onlySetElementIfNone: 1
+  doNotTouchIfSetElement: 1
+  doNotTouchIfFirst: 0
+  ignoreTouchIfElementIsNone: 0
+  ignoreTouchIfElementExists: 0
 --- !u!136 &6230771185822205364
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2342,6 +2391,14 @@ MonoBehaviour:
   spellCircle: {fileID: 7753590421206652456}
   circleLocation: 8
   filledCircle: {fileID: 1758734399839531441}
+  elementCircle: {fileID: 0}
+  setElement: 0
+  elementToSet: 0
+  onlySetElementIfNone: 1
+  doNotTouchIfSetElement: 1
+  doNotTouchIfFirst: 0
+  ignoreTouchIfElementIsNone: 0
+  ignoreTouchIfElementExists: 0
 --- !u!136 &2962728473217358657
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2583,6 +2640,14 @@ MonoBehaviour:
   spellCircle: {fileID: 7753590421206652456}
   circleLocation: 4
   filledCircle: {fileID: 5828983864620919579}
+  elementCircle: {fileID: 0}
+  setElement: 0
+  elementToSet: 0
+  onlySetElementIfNone: 1
+  doNotTouchIfSetElement: 1
+  doNotTouchIfFirst: 0
+  ignoreTouchIfElementIsNone: 0
+  ignoreTouchIfElementExists: 0
 --- !u!136 &4286588381303894514
 CapsuleCollider:
   m_ObjectHideFlags: 0

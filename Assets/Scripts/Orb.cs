@@ -7,14 +7,18 @@ public class Orb : Spell
     private PlayerHand myHand;
     private OrbState orbState;
 
+    [SerializeField] private GameObject preparedPrefab;
+
     [SerializeField] private float minGripTimeToGrab = 0;
     [SerializeField] private float maxGripTimeToGrab = 0.15f;
     [SerializeField] private float minGripTimeToPunch = 0.3f;
     [SerializeField] private float minVelocityToPunch = 0.5f;
 
+    [SerializeField] private float throwModifier = 3f;
     [SerializeField] private float minPunchVelocity = 10f;
     [SerializeField] private float maxPunchVelocity = 20f;
     [SerializeField] private float punchModifier = 4f;
+    [SerializeField] private float punchGravityDelay = 1f;
 
     private List<Vector3> movementChecker = new List<Vector3>();
     [SerializeField] private int maxMovementChecks = 3;
@@ -35,7 +39,7 @@ public class Orb : Spell
             orbState = OrbState.released; 
             Vector3 startPos = movementChecker[movementChecker.Count - 1];
             Vector3 endPos = movementChecker[0];
-            ReleasedFromHand((startPos - endPos) / (Time.fixedDeltaTime * maxMovementChecks));
+            ReleasedFromHand(throwModifier * (startPos - endPos) / (Time.fixedDeltaTime * maxMovementChecks));
         }
     }
 
@@ -49,6 +53,16 @@ public class Orb : Spell
     public override void SpellInit(PlayerHand mainHand)
     {
         myHand = mainHand;
+    }
+
+    public override GameObject GetPreparedPrefab(PlayerHand mainHand)
+    {
+        return preparedPrefab;
+    }
+
+    public override void UpdatePreparedObject(Vector3 defaultSpawnPosition, PlayerHand mainHand, GameObject preparedObject)
+    {
+        preparedObject.transform.position = defaultSpawnPosition;
     }
 
     public void ReleasedFromHand(Vector3 velocity, bool useGravity=true)
@@ -121,6 +135,7 @@ public class Orb : Spell
         orbState = OrbState.held;
         GetComponent<Rigidbody>().useGravity = false;
         GetComponent<Rigidbody>().velocity = Vector3.zero;
+        StartCoroutine("DelayedGravity");
     }
 
     private void PunchOrb(PlayerHand hand)
@@ -169,6 +184,15 @@ public class Orb : Spell
             }
         }
         return velocity;
+    }
+
+    private IEnumerator DelayedGravity()
+    {
+        yield return new WaitForSeconds(punchGravityDelay);
+        if (orbState != OrbState.held)
+        {
+            GetComponent<Rigidbody>().useGravity = true;
+        }
     }
 }
 

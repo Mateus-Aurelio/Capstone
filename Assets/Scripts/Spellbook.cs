@@ -5,6 +5,9 @@ using UnityEngine;
 public class Spellbook : MonoBehaviour
 {
     [SerializeField] private SpellCircle spellCircle;
+    [SerializeField] private Transform spellCircleParent;
+    [SerializeField] private Vector3 spellCircleParentRelativeOffset;
+    [SerializeField] private bool unparentSpellCircleOnEnterCastMode = false;
     [SerializeField] private GameObject spellBook;
     [SerializeField] private GameObject spellBookLeftPage;
     [SerializeField] private GameObject spellBookRightPage;
@@ -81,9 +84,28 @@ public class Spellbook : MonoBehaviour
     {
         if (castingMode == given) return;
         castingMode = given;
-        if (!castingMode) spellCircle.ResetCasting();
+        if (!castingMode)
+        {
+            spellCircle.ResetCasting();
+            /*if (unparentSpellCircleOnEnterCastMode)
+            {
+                spellCircle.transform.parent = spellCircleParent;
+                spellCircle.transform.rotation = spellCircleParent.rotation;
+                spellCircle.transform.Translate(spellCircleParentRelativeOffset);
+            }*/
+        }
         spellCircle.gameObject.SetActive(castingMode);
-        if (castingMode) spellCircle.ResetCasting();
+        if (castingMode)
+        {
+            spellCircle.ResetCasting();
+            /*if (unparentSpellCircleOnEnterCastMode)
+            {
+                spellCircle.transform.parent = spellCircleParent;
+                spellCircle.transform.rotation = spellCircleParent.rotation;
+                spellCircle.transform.Translate(spellCircleParentRelativeOffset);
+                spellCircle.transform.parent = null;
+            }*/
+        }
         spellBook.SetActive(!castingMode);
         spellBookLeftPage.gameObject.SetActive(!castingMode);
         spellBookRightPage.gameObject.SetActive(!castingMode);

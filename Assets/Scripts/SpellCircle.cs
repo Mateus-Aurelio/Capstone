@@ -8,19 +8,29 @@ public class SpellCircle : MonoBehaviour
 {
     private SpellCircleLocation lastLocation = SpellCircleLocation.none;
     private List<SpellCircleEdge> edges = new List<SpellCircleEdge>();
-    [SerializeField] private GameObject visualsGameObject;
+    [SerializeField] private GameObject visualsGameObject; // also where a spell defaults to being cast
+    [SerializeField] private bool unparentSpellCircleOnEnterCastMode = false;
+    [SerializeField] private Transform parent;
+    [SerializeField] private Vector3 parentRelativeOffset;
+    private Spell currentPreparedSpellScript;
+    private GameObject preparedSpellCastVisual;
     [SerializeField] private Image circleImage;
+    [SerializeField] private Image circleImageInner;
+
     [SerializeField] private LineRenderer line;
     private Vector3[] linePositions = new Vector3[0];
     [SerializeField] private Transform playerCamera;
+
     [SerializeField] private List<GameObject> spells = new List<GameObject>();
     private List<SpellCirclePoint> spellCirclePoints = new List<SpellCirclePoint>();
     /*[SerializeField] private List<PlayerHand> hands = new List<PlayerHand>();
     private PlayerHand preparingHand = null;*/
+
     private PlayerHand castingHand = null;
     [SerializeField] private PlayerHand leftHand = null;
     [SerializeField] private PlayerHand rightHand = null;
     private bool ignoreUntilUninput = false;
+
     private Element element = Element.earth;
     [SerializeField] private bool setElementToNoneOnReset = false;
 
@@ -44,6 +54,7 @@ public class SpellCircle : MonoBehaviour
         SetElement(element);
         ResetCasting();
     }
+    
 
     private void Update()
     {
@@ -89,8 +100,24 @@ public class SpellCircle : MonoBehaviour
         if (!ignoreUntilUninput && rightHand.HandButtonPressed(UnityEngine.XR.Interaction.Toolkit.InputHelpers.Button.Trigger))
         {
             ResetCasting();
+            // ENABLE SPELLCASTING
             visualsGameObject.SetActive(true);
             ignoreUntilUninput = true;
+            if (unparentSpellCircleOnEnterCastMode)
+            {
+                //visualsGameObject.transform.parent = parent;
+                /*visualsGameObject.transform.SetParent(parent);
+                visualsGameObject.transform.rotation = parent.rotation;
+                visualsGameObject.transform.Translate(parentRelativeOffset);
+                visualsGameObject.transform.SetParent(null);*/
+
+                transform.SetParent(parent);
+                transform.localPosition = parentRelativeOffset;
+                //transform.Translate(parentRelativeOffset, parent);
+                // transform.position = parent.position + Vector3.Project(parentRelativeOffset, parent.forward);
+                transform.SetParent(PlayerTracker.GetPlayer().transform);
+                //visualsGameObject.transform.parent = null;
+            }
             // transform.position = leftHand.transform.position;
         }
 
@@ -98,6 +125,11 @@ public class SpellCircle : MonoBehaviour
 
         castingHand = rightHand;
         // if (castingHand == null) return; 
+
+        if (currentPreparedSpellScript != null)
+        {
+            UpdatePreparedSpellVisuals();
+        }
 
         if (!castingHand.HandButtonPressed(UnityEngine.XR.Interaction.Toolkit.InputHelpers.Button.Trigger))
         {
@@ -127,6 +159,8 @@ public class SpellCircle : MonoBehaviour
             UpdateLines(circleLocation);
         }
         lastLocation = circleLocation;
+        SetPreparedSpell();
+        if (currentPreparedSpellScript != null) UpdatePreparedSpellVisuals();
         return true;
     }
 
@@ -182,6 +216,26 @@ public class SpellCircle : MonoBehaviour
         linePositions = newLinePositions;
         line.positionCount = newLinePositions.Length;
         line.SetPositions(linePositions);
+    }
+
+    private void SetPreparedSpell()
+    {
+        GameObject spellToCast = DetermineSpellFromEdges();
+        if (spellToCast == null)
+        {
+            currentPreparedSpellScript = null;
+            if (preparedSpellCastVisual != null) Destroy(preparedSpellCastVisual);
+            return;
+        }
+        currentPreparedSpellScript = spellToCast.GetComponent<Spell>();
+        if (preparedSpellCastVisual != null) Destroy(preparedSpellCastVisual);
+        preparedSpellCastVisual = Instantiate(currentPreparedSpellScript.GetPreparedPrefab(castingHand));
+        UpdatePreparedSpellVisuals();
+    }
+
+    private void UpdatePreparedSpellVisuals()
+    {
+        currentPreparedSpellScript.UpdatePreparedObject(visualsGameObject.transform.position, castingHand, preparedSpellCastVisual);
     }
 
     public void CastAttempt()
@@ -245,6 +299,12 @@ public class SpellCircle : MonoBehaviour
 
     public void ResetCasting()
     {
+        currentPreparedSpellScript = null;
+        if (preparedSpellCastVisual != null)
+        {
+            Destroy(preparedSpellCastVisual);
+            preparedSpellCastVisual = null;
+        }
         circleImage.color = ColorHelpers.SetColorAlpha(circleImage.color, 1);
         lastTouchedTimer = lastTouchedTimeSet;
         lastLocation = SpellCircleLocation.none;
@@ -301,6 +361,8 @@ public class SpellCircle : MonoBehaviour
         lastTouchedTimer = lastTouchedTimeSet;
         element = given;
         Color newColor = Color.white;
+        circleImage.color = ColorHelpers.SetColorAlpha(circleImage.color, 1);
+        circleImageInner.color = ColorHelpers.SetColorAlpha(circleImageInner.color, 0.1f);
         switch (element)
         {
             case Element.water:
@@ -314,6 +376,10 @@ public class SpellCircle : MonoBehaviour
                 break;
             case Element.air:
                 newColor = new Color(0.85f, 0.95f, 0.95f);
+                break;
+            case Element.none:
+                circleImage.color = ColorHelpers.SetColorAlpha(circleImage.color, 0.1f);
+                circleImageInner.color = ColorHelpers.SetColorAlpha(circleImageInner.color, 1f);
                 break;
         }
         circleImage.color = newColor;

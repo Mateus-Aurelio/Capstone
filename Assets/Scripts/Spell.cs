@@ -18,6 +18,16 @@ public class Spell : MonoBehaviour
 
     }
 
+    public virtual GameObject GetPreparedPrefab(PlayerHand mainHand)
+    {
+        return null;
+    }
+
+    public virtual void UpdatePreparedObject(Vector3 defaultSpawnPosition, PlayerHand mainHand, GameObject preparedObject)
+    {
+        
+    }
+
     public Element GetElementToCast()
     {
         return elementToCast;
