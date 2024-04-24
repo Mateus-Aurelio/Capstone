@@ -558,7 +558,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7753590421206652456, guid: ea372631f6993a844aaa70ba0d9a3ee9, type: 3}
       propertyPath: parentRelativeOffset.z
-      value: 0.2
+      value: 0.22
       objectReference: {fileID: 0}
     - target: {fileID: 7753590421206652456, guid: ea372631f6993a844aaa70ba0d9a3ee9, type: 3}
       propertyPath: unparentSpellCircleOnEnterCastMode
@@ -33599,7 +33599,7 @@ MonoBehaviour:
   otherHand: {fileID: 2663740636077621944}
   xrController: {fileID: 5840913269357087441}
   relativeTransform: {fileID: 5840913269446814295}
-  grabSnapPos: {x: -0.08, y: 0, z: -0.02}
+  grabSnapPos: {x: -0.08, y: 0, z: 0.01}
   maxMovementChecks: 3
 --- !u!1 &8605186467652001791
 GameObject:

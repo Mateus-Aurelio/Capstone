@@ -20,12 +20,12 @@ public class Spellbook : MonoBehaviour
     [SerializeField] private PlayerHand lefthand;
     [SerializeField] private float bookSpeed = 5;
     [SerializeField] private float minGripAmount = 0.95f;
-    private bool castingMode = true;
+    // private bool castingMode = true;
     private bool waitForUninput = false;
 
     void Start()
     {
-        SetCastingMode(true);
+        // SetCastingMode(true);
     }
 
     void Update()
@@ -33,20 +33,17 @@ public class Spellbook : MonoBehaviour
         float gripAmount = VRInput.ButtonPressedAmountInTenths(lefthand.GetInputHand(), UnityEngine.XR.Interaction.Toolkit.InputHelpers.Button.Grip);
         UpdateBookPivots(gripAmount);
 
-        // if (!waitForUninput && VRInput.ButtonPressed(UnityEngine.XR.XRNode.LeftHand, UnityEngine.XR.Interaction.Toolkit.InputHelpers.Button.MenuButton))
         if (!waitForUninput && gripAmount > minGripAmount)
         {
             waitForUninput = true;
-            SetCastingMode(!castingMode);
+            // SetCastingMode(!castingMode);
         }
-        // else if (waitForUninput && !VRInput.ButtonPressed(UnityEngine.XR.XRNode.LeftHand, UnityEngine.XR.Interaction.Toolkit.InputHelpers.Button.MenuButton))
         else if (waitForUninput && gripAmount < minGripAmount)
         {
             waitForUninput = false;
         }
 
-        // if (!castingMode && VRInput.ButtonPressed(UnityEngine.XR.XRNode.LeftHand, UnityEngine.XR.Interaction.Toolkit.InputHelpers.Button.Trigger))
-        if (!castingMode && gripAmount < minGripAmount)
+        /*if (!castingMode && gripAmount < minGripAmount)
         {
             if (!spellBook.gameObject.activeInHierarchy)
             {
@@ -68,7 +65,7 @@ public class Spellbook : MonoBehaviour
                 spellBookCastingLeftPage.gameObject.SetActive(true);
                 spellBookCastingRightPage.gameObject.SetActive(true);
             }
-        }
+        }*/
     }
 
     private void UpdateBookPivots(float gripAmount)
@@ -80,36 +77,23 @@ public class Spellbook : MonoBehaviour
         spellBookBook.localPosition = new Vector3(Mathf.Lerp(.06f, 0.01f, gripAmount), -0.021f, -0.035f);
     }
 
-    public void SetCastingMode(bool given)
+    /*public void SetCastingMode(bool given)
     {
         if (castingMode == given) return;
         castingMode = given;
         if (!castingMode)
         {
             spellCircle.ResetCasting();
-            /*if (unparentSpellCircleOnEnterCastMode)
-            {
-                spellCircle.transform.parent = spellCircleParent;
-                spellCircle.transform.rotation = spellCircleParent.rotation;
-                spellCircle.transform.Translate(spellCircleParentRelativeOffset);
-            }*/
         }
         spellCircle.gameObject.SetActive(castingMode);
         if (castingMode)
         {
             spellCircle.ResetCasting();
-            /*if (unparentSpellCircleOnEnterCastMode)
-            {
-                spellCircle.transform.parent = spellCircleParent;
-                spellCircle.transform.rotation = spellCircleParent.rotation;
-                spellCircle.transform.Translate(spellCircleParentRelativeOffset);
-                spellCircle.transform.parent = null;
-            }*/
         }
         spellBook.SetActive(!castingMode);
         spellBookLeftPage.gameObject.SetActive(!castingMode);
         spellBookRightPage.gameObject.SetActive(!castingMode);
         spellBookCastingLeftPage.gameObject.SetActive(castingMode);
         spellBookCastingRightPage.gameObject.SetActive(castingMode);
-    }
+    }*/
 }
