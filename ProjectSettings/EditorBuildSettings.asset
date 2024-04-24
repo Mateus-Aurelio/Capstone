@@ -11,9 +11,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/BasicScene.unity
     guid: 4e9fef26e6adb88479ad1b9834a32d94
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Combat.unity
     guid: 60daa0a86c0abd547b1eb92f61113a2e
+  - enabled: 1
+    path: Assets/Scenes/abovegroundGraybox.unity
+    guid: f71043ab3b7a405419d95b39a0f76677
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260, type: 2}
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: dc5a169419fa04987b057f65238cf3ba, type: 2}
