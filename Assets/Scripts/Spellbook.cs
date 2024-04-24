@@ -1,31 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Spellbook : MonoBehaviour
 {
     [SerializeField] private SpellCircle spellCircle;
-    /*[SerializeField] private Transform spellCircleParent;
-    [SerializeField] private Vector3 spellCircleParentRelativeOffset;
-    [SerializeField] private bool unparentSpellCircleOnEnterCastMode = false;*/
     [SerializeField] private GameObject spellBook;
     [SerializeField] private GameObject spellBookLeftPage;
     [SerializeField] private GameObject spellBookRightPage;
-    [SerializeField] private GameObject spellBookCastingLeftPage;
-    [SerializeField] private GameObject spellBookCastingRightPage;
+    [SerializeField] private GameObject spellBookTurningPage;
     [SerializeField] private Transform spellBookBook;
     [SerializeField] private Camera playerCamera;
     [SerializeField] private Transform leftPivot;
     [SerializeField] private Transform rightPivot;
+    [SerializeField] private Transform turningPivot;
     [SerializeField] private PlayerHand lefthand;
+
+    [SerializeField] private Image turningPageLeftImage;
+    [SerializeField] private Image turningPageRightImage;
+    [SerializeField] private Image leftPageImage;
+    [SerializeField] private Image rightPageImage;
+    private bool changingPages = false;
+    private float pageTurnSpeed = 1;
+
     [SerializeField] private float bookSpeed = 5;
     [SerializeField] private float minGripAmount = 0.95f;
-    // private bool castingMode = true;
     private bool waitForUninput = false;
 
     void Start()
     {
-        // SetCastingMode(true);
+
     }
 
     void Update()
@@ -43,29 +48,7 @@ public class Spellbook : MonoBehaviour
             waitForUninput = false;
         }
 
-        /*if (!castingMode && gripAmount < minGripAmount)
-        {
-            if (!spellBook.gameObject.activeInHierarchy)
-            {
-                spellBook.gameObject.SetActive(true);
-                spellBookLeftPage.gameObject.SetActive(true);
-                spellBookRightPage.gameObject.SetActive(true);
-                spellBookCastingLeftPage.gameObject.SetActive(false);
-                spellBookCastingRightPage.gameObject.SetActive(false);
-            }
-            spellBook.transform.LookAt(spellBook.transform.position - (playerCamera.transform.position - spellBook.transform.position));
-        }
-        else
-        {
-            if (spellBook.gameObject.activeInHierarchy)
-            {
-                spellBook.gameObject.SetActive(false);
-                spellBookLeftPage.gameObject.SetActive(false);
-                spellBookRightPage.gameObject.SetActive(false);
-                spellBookCastingLeftPage.gameObject.SetActive(true);
-                spellBookCastingRightPage.gameObject.SetActive(true);
-            }
-        }*/
+        if (changingPages) UpdateTurningPage();
     }
 
     private void UpdateBookPivots(float gripAmount)
@@ -77,23 +60,14 @@ public class Spellbook : MonoBehaviour
         spellBookBook.localPosition = new Vector3(Mathf.Lerp(.06f, 0.01f, gripAmount), -0.021f, -0.035f);
     }
 
-    /*public void SetCastingMode(bool given)
+    private void UpdateTurningPage()
     {
-        if (castingMode == given) return;
-        castingMode = given;
-        if (!castingMode)
-        {
-            spellCircle.ResetCasting();
-        }
-        spellCircle.gameObject.SetActive(castingMode);
-        if (castingMode)
-        {
-            spellCircle.ResetCasting();
-        }
-        spellBook.SetActive(!castingMode);
-        spellBookLeftPage.gameObject.SetActive(!castingMode);
-        spellBookRightPage.gameObject.SetActive(!castingMode);
-        spellBookCastingLeftPage.gameObject.SetActive(castingMode);
-        spellBookCastingRightPage.gameObject.SetActive(castingMode);
-    }*/
+        if (pageTurnSpeed < 0) turningPivot.localRotation = Quaternion.Euler(0, 0, Mathf.Lerp(turningPivot.localRotation.z, -180, pageTurnSpeed * Time.deltaTime));
+        else turningPivot.localRotation = Quaternion.Euler(0, 0, Mathf.Lerp(turningPivot.localRotation.z, 0, pageTurnSpeed * Time.deltaTime));
+    }
+
+    public void TurnToTab(int tabID)
+    {
+
+    }
 }

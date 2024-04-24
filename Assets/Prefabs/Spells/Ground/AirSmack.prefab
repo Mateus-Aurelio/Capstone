@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 405606098304688834}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.058435917, y: 0.3806994, z: 2.4940271}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -169,8 +169,8 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 22
-      minScalar: 18
+      scalar: 15
+      minScalar: 8
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -751,7 +751,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 1
+      value: 0.1
       mode: 0
       spread: 0
       speed:
@@ -9715,6 +9715,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: c227c9c84377f6e46bb161e7447f2638, type: 2}
   damageEnemies: 1
   damagePlayers: 0
+  damageTrees: 0
   damageOnTrigger: 1
   damageOnCollision: 1
   destroySelfOnDamage: 0
@@ -9779,7 +9780,7 @@ Transform:
   m_GameObject: {fileID: 6567944683054488724}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.2685773, z: 0, w: 0.96325815}
-  m_LocalPosition: {x: 779.5259, y: 0, z: 2186.8533}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9831,6 +9832,7 @@ MonoBehaviour:
   spawnRelativeToFromCameraToHand: 1
   relativeSpawnPos: {x: 0, y: 0, z: 4}
   spawnGrounded: 1
+  rotateAway: 0
 --- !u!1 &7255229599903495102
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6437742460398433595}
   - component: {fileID: 6532629342953318327}
   m_Layer: 0
-  m_Name: RoboBoom
+  m_Name: BoomEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -223,7 +223,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.7924528, g: 0.772789, b: 0.5943396, a: 1}
+      maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -4777,7 +4777,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fdc8c8241ce5e2d4296f395ce9db1e99, type: 2}
+  - {fileID: 2100000, guid: c57c682a3b96b2e4a8274c1eee69f0db, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4830,6 +4830,54 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!1 &3505032813343114512
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2539243123557466175}
+  - component: {fileID: 5095426061930215441}
+  m_Layer: 0
+  m_Name: SpawnTestDummy
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2539243123557466175
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3505032813343114512}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 20, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1362875478241697582}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5095426061930215441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3505032813343114512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c4a2ce97e855f746a41d0af9203ada5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  seconds: 0.1
+  prefab: {fileID: 4100520269693254205, guid: bc4df612f4ca2c44bb70a01b14aecfb9, type: 3}
+  destroyAfterSpawn: 0
+  randomRangeSeconds: 0
 --- !u!1 &9149298981587626215
 GameObject:
   m_ObjectHideFlags: 0
@@ -4839,9 +4887,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1362875478241697582}
-  - component: {fileID: 3768085891102310259}
+  - component: {fileID: 924806635552458143}
   m_Layer: 0
-  m_Name: TestDummyBoom
+  m_Name: DummyBoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4861,9 +4909,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2389181357441323983}
+  - {fileID: 2539243123557466175}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3768085891102310259
+--- !u!114 &924806635552458143
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

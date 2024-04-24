@@ -2196,14 +2196,13 @@ MonoBehaviour:
   - {fileID: 6567944683054488724, guid: 2f75f74293b679646a3112e59e8b94ab, type: 3}
   - {fileID: 6567944683054488724, guid: 5785a3ef73918044fb87ccfad85ca2ce, type: 3}
   - {fileID: 6567944683054488724, guid: 8276b178594f38e41838c5196608744b, type: 3}
+  - {fileID: 231658538485934377, guid: 91bc591d2986f5b4cbe9663fe02fac6c, type: 3}
+  - {fileID: 231658538485934377, guid: 58e3ca68c872b7946ad13084b3b1bc3f, type: 3}
+  - {fileID: 231658538485934377, guid: a0b344bf93f4e874e8613d3eddf60944, type: 3}
+  - {fileID: 231658538485934377, guid: 751c81fcab9240d44ad795b269a6be15, type: 3}
   leftHand: {fileID: 0}
   rightHand: {fileID: 0}
   setElementToNoneOnReset: 1
-  resourceGainSpeed: 0.6
-  earthResource: {fileID: 8692378440885610118}
-  waterResource: {fileID: 6230599402271442019}
-  airResource: {fileID: 6955344991930151905}
-  fireResource: {fileID: 2352841479628764362}
   fireColor: {r: 0.9803922, g: 0.32941177, b: 0.09411766, a: 1}
   waterColor: {r: 0.17254902, g: 0.57254905, b: 0.7686275, a: 1}
   airColor: {r: 0.86666673, g: 0.86666673, b: 0.73333335, a: 1}
@@ -4200,17 +4199,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6230599402271442019 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6704426869274741921, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
-  m_PrefabInstance: {fileID: 827925187869673666}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fba5b22268526ee48b11dfc9ffda1eed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &6868338815168988921 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6065324302343786043, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
@@ -4433,17 +4421,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6065324302343786043, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
   m_PrefabInstance: {fileID: 2714369389392865831}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8692378440885610118 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6704426869274741921, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
-  m_PrefabInstance: {fileID: 2714369389392865831}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fba5b22268526ee48b11dfc9ffda1eed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &4435115291570962240
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4764,17 +4741,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6955344991930151905 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6704426869274741921, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
-  m_PrefabInstance: {fileID: 4435115291570962240}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fba5b22268526ee48b11dfc9ffda1eed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &7611344561365037435 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6065324302343786043, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
@@ -5089,17 +5055,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
---- !u!114 &2352841479628764362 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6704426869274741921, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}
-  m_PrefabInstance: {fileID: 9055631003886237803}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fba5b22268526ee48b11dfc9ffda1eed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &2990473965020509776 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6065324302343786043, guid: afcb5c5fd8a3b4448affea2216c7743c, type: 3}

@@ -6,7 +6,7 @@ using UnityEngine;
 public abstract class StatusEffect : ScriptableObject
 {
     [SerializeField] private Sprite image;
-    [SerializeField] private float duration = 1;
+    [SerializeField] protected float duration = 1;
     private GameObject uiGameObject;
 
     public abstract void ApplyStatusEffect(StatusEffectHandler statusEffectHandler);

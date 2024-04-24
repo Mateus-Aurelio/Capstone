@@ -11,10 +11,11 @@ public class SpawnSpell : Spell
     [SerializeField] private bool spawnRelativeToFromCameraToHand = false;
     [SerializeField] private Vector3 relativeSpawnPos;
     [SerializeField] private bool spawnGrounded = true;
+    [SerializeField] private bool rotateAway = false;
 
     public override void SpellInit(PlayerHand mainHand)
     {
-        transform.position = DetermineSpawnPos(transform.position, mainHand);
+        DetermineSpawnPos(transform, transform.position, mainHand);
     }
 
     public override GameObject GetPreparedPrefab(PlayerHand mainHand)
@@ -24,11 +25,10 @@ public class SpawnSpell : Spell
 
     public override void UpdatePreparedObject(Vector3 defaultSpawnPosition, PlayerHand mainHand, GameObject preparedObject)
     {
-        preparedObject.transform.position = DetermineSpawnPos(defaultSpawnPosition, mainHand);
-        // preparedObject.transform.LookAt(Camera.main.transform.position);
+        DetermineSpawnPos(preparedObject.transform, defaultSpawnPosition, mainHand);
     }
 
-    private Vector3 DetermineSpawnPos(Vector3 defaultSpawnPosition, PlayerHand mainHand)
+    private void DetermineSpawnPos(Transform givenTransform, Vector3 defaultSpawnPosition, PlayerHand mainHand)
     {
         Vector3 spawnPos = defaultSpawnPosition;
         //Debug.Log("started at " + transform.position + " rot " + transform.rotation.eulerAngles);
@@ -49,7 +49,7 @@ public class SpawnSpell : Spell
         {
             test.LookAt(mainHand.transform.position + mainHand.transform.forward * 10);
         }
-        else if(spawnRelativeToFromCameraToHand)
+        else if (spawnRelativeToFromCameraToHand)
         {
             test.LookAt(Camera.main.transform.position + (mainHand.transform.position - Camera.main.transform.position) * 10);
         }
@@ -66,13 +66,17 @@ public class SpawnSpell : Spell
             if (Physics.Raycast(spawnPos + new Vector3(0, 10, 0), new Vector3(0, -1, 0), out hit, 30, 1 << LayerMask.NameToLayer("Environment")))
             {
                 spawnPos = hit.point;
-                return spawnPos;
+                givenTransform.position = spawnPos;
+                if (rotateAway) givenTransform.rotation = test.rotation;
+                return;
             }
 
             Collider[] environmentColliders = Physics.OverlapSphere(spawnPos, 20, 1 << LayerMask.NameToLayer("Environment"));
             if (environmentColliders.Length <= 0)
             {
-                return spawnPos;
+                givenTransform.position = spawnPos;
+                if (rotateAway) givenTransform.rotation = test.rotation;
+                return;
             }
 
             Vector3 closestPoint = environmentColliders[0].ClosestPoint(spawnPos);
@@ -94,6 +98,8 @@ public class SpawnSpell : Spell
             spawnPos = closestPoint;
             //Debug.Log("grounded at " + spawnPos + " rot " + transform.rotation.eulerAngles);
         }
-        return spawnPos;
+        givenTransform.position = spawnPos;
+        if (rotateAway) givenTransform.rotation = test.rotation;
+        return;
     }
 }

@@ -13,11 +13,13 @@ public class StatusEffectHandler : MonoBehaviour
 
     private AHealth health;
     private NavMeshAgent agent;
+    private Rigidbody rb;
 
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         health = GetComponent<AHealth>();
+        rb = GetComponent<Rigidbody>();
     }
 
     private void Update()
@@ -51,6 +53,7 @@ public class StatusEffectHandler : MonoBehaviour
 
     public AHealth GetHealth() { return health; }
     public NavMeshAgent GetNavMeshAgent() { return agent; }
+    public Rigidbody GetRigidbody() { return rb; }
 
 }
 

@@ -86,7 +86,7 @@ MonoBehaviour:
   - {fileID: 1929919167647416599}
   - {fileID: 4998949913674739490}
   - {fileID: 6318447226184692024}
-  treeDeathPrefab: {fileID: 9149298981587626215, guid: 4a13d009cae9d194887856e8ab51243a, type: 3}
+  treeDeathPrefab: {fileID: 40872230030851769, guid: 125abee9be522014e833d058506abf4c, type: 3}
 --- !u!114 &4029562056999566495
 MonoBehaviour:
   m_ObjectHideFlags: 0

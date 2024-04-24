@@ -14,8 +14,13 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Vector3 spinVectorNormal = new Vector3(0, 0, -400);
     [SerializeField] private Vector3 spinVectorAttacking = new Vector3(0, 0, -600);
 
+    [SerializeField] private GameObject faceWhenAttackingTree;
+    [SerializeField] private GameObject faceWhenAttackingPlayer;
+
     void Start()
     {
+        faceWhenAttackingTree.SetActive(true);
+        faceWhenAttackingPlayer.SetActive(false);
         wait = true;
         StartCoroutine("FindTree");
     }
@@ -86,9 +91,13 @@ public class Enemy : MonoBehaviour
                 goal = null;
                 break;
             case EnemyState.walkToTree:
+                faceWhenAttackingTree.SetActive(true);
+                faceWhenAttackingPlayer.SetActive(false);
                 goal = TreePosList.GetList()[0];
                 break;
             case EnemyState.walkToPlayer:
+                faceWhenAttackingTree.SetActive(false);
+                faceWhenAttackingPlayer.SetActive(true);
                 goal = PlayerTracker.GetPlayer().transform;
                 break;
             case EnemyState.attacking:

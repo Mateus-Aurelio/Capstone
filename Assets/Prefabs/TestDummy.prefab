@@ -101,12 +101,8 @@ MonoBehaviour:
   healthTrackers:
   - {fileID: 6928122740730325021}
   - {fileID: 4215419102040483959}
-  damageModifiers:
-  - damageType: 1
-    modifier: 2
-  - damageType: 3
-    modifier: 0.5
-  deathPrefab: {fileID: 9149298981587626215, guid: 71cd66b4e98c8804398d6477b5b21421, type: 3}
+  damageModifiers: []
+  deathPrefab: {fileID: 9149298981587626215, guid: 7c3d437a29a8b7f42b85b1395b949e03, type: 3}
 --- !u!114 &5571072200285201940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,7 +140,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0

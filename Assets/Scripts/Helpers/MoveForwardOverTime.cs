@@ -9,8 +9,7 @@ public class MoveForwardOverTime : MonoBehaviour
 
     void FixedUpdate()
     {
-        print("Rightward direction: " + transform.right);
-        transform.Translate(transform.right * velocity * Time.fixedDeltaTime);
+        transform.Translate(transform.forward * velocity * Time.fixedDeltaTime);
         velocity += accel * Time.fixedDeltaTime;
     }
 
