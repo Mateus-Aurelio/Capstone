@@ -47,10 +47,10 @@ public class SpellCircle : MonoBehaviour
     [SerializeField] private Color airColor = Color.white;
     [SerializeField] private Color earthColor = Color.black;
     [SerializeField] private float innerFadeAlpha = 0.2f;
-    private float earthAmount = 8;
+    /*private float earthAmount = 8;
     private float waterAmount = 8;
     private float airAmount = 8;
-    private float fireAmount = 8;
+    private float fireAmount = 8;*/
 
     /*private float lastTouchedTimer = 0f;
     private float lastTouchedTimeSet = 4;
@@ -151,14 +151,14 @@ public class SpellCircle : MonoBehaviour
         if (lastLocation == circleLocation) return true;
         if (circleLocation == SpellCircleLocation.none) return false;
 
-        if ((element == Element.fire && fireAmount <= edges.Count + 1.99f) ||
+        /*if ((element == Element.fire && fireAmount <= edges.Count + 1.99f) ||
             (element == Element.water && waterAmount <= edges.Count + 1.99f) ||
             (element == Element.air && airAmount <= edges.Count + 1.99f) ||
             (element == Element.earth && earthAmount <= edges.Count + 1.99f))
         {
             point.ResetSpellCirclePoint();
             return false;
-        }
+        }*/
 
         if (lastLocation != SpellCircleLocation.none)
         {
@@ -342,7 +342,7 @@ public class SpellCircle : MonoBehaviour
         // Spell spellScript = spellObj.GetComponent<Spell>();
         // spellScript.SpellInit(castingHand);
 
-        switch (element)
+        /*switch (element)
         {
             case Element.water:
                 waterAmount -= edges.Count + 1;
@@ -356,7 +356,7 @@ public class SpellCircle : MonoBehaviour
             case Element.air:
                 airAmount -= edges.Count + 1;
                 break;
-        }
+        }*/
 
         ResetCasting();
     }
