@@ -8,6 +8,7 @@ public class AlternateImage : MonoBehaviour
     [SerializeField] private Image image;
     [SerializeField] private List<Sprite> images = new List<Sprite>();
     private int index = 0;
+    [SerializeField] private int resetIndex = 0;
     [SerializeField] private float swapTime = 1;
     [SerializeField] private bool swapOnFramesInstead = false;
 
@@ -19,16 +20,22 @@ public class AlternateImage : MonoBehaviour
     private void Update()
     {
         index++;
-        if (index >= images.Count) index = 0;
+        if (index >= images.Count) index = resetIndex;
         image.sprite = images[index];
     }
 
     private IEnumerator NextImage()
     {
         index++;
-        if (index >= images.Count) index = 0;
+        if (index >= images.Count) index = resetIndex;
         image.sprite = images[index];
         yield return new WaitForSeconds(swapTime);
         StartCoroutine("NextImage");
+    }
+
+    public void ResetAnim()
+    {
+        index = 0;
+        image.sprite = images[index];
     }
 }

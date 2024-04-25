@@ -19,8 +19,10 @@ public class SpellCircle : MonoBehaviour
     [SerializeField] private Image circleImageInnerText;
     [SerializeField] private Sprite circleImageInnerColored;
     [SerializeField] private Sprite circleImageInnerWhite;
+    private float textFadeInTimer;
 
     [SerializeField] private Light pointLight;
+    [SerializeField] private AlternateImage introAnim;
 
     [SerializeField] private LineRenderer line;
     private Vector3[] linePositions = new Vector3[0];
@@ -112,9 +114,11 @@ public class SpellCircle : MonoBehaviour
         {
             ResetCasting();
             // ENABLE SPELLCASTING
+            introAnim.ResetAnim();
             rightHand.SetCasting(true);
             visualsGameObject.SetActive(true);
             ignoreUntilUninput = true;
+            textFadeInTimer = 0;
             if (unparentSpellCircleOnEnterCastMode)
             {
                 //visualsGameObject.transform.parent = parent;
@@ -134,7 +138,8 @@ public class SpellCircle : MonoBehaviour
         }
 
         visualsGameObject.transform.LookAt(visualsGameObject.transform.position - (playerCamera.position - visualsGameObject.transform.position));
-
+        textFadeInTimer += Time.deltaTime;
+        circleImageInnerText.color = ColorHelpers.SetColorAlpha(circleImageInnerText.color, circleImageInnerText.color.a + Time.deltaTime);
         castingHand = rightHand;
         // if (castingHand == null) return; 
 
@@ -313,6 +318,7 @@ public class SpellCircle : MonoBehaviour
     {
         rightHand.SetCasting(false);
         currentPreparedSpellScript = null;
+        textFadeInTimer = 0;
         if (preparedSpellCastVisual != null)
         {
             Destroy(preparedSpellCastVisual);
@@ -328,7 +334,7 @@ public class SpellCircle : MonoBehaviour
         if (setElementToNoneOnReset) SetElement(Element.none);
         circleImage.color = ColorHelpers.SetColorAlpha(circleImage.color, 0);
         circleImageInner.color = ColorHelpers.SetColorAlpha(circleImageInner.color, 1f);
-        circleImageInnerText.color = ColorHelpers.SetColorAlpha(circleImageInnerText.color, 1f);
+        circleImageInnerText.color = ColorHelpers.SetColorAlpha(circleImageInnerText.color, 0);
         pointLight.color = ColorHelpers.SetColorAlpha(pointLight.color, 1f);
         circleImageInner.sprite = circleImageInnerColored;
         foreach (SpellCirclePoint point in spellCirclePoints)
@@ -380,7 +386,7 @@ public class SpellCircle : MonoBehaviour
         Color newColor = Color.white;
         circleImage.color = ColorHelpers.SetColorAlpha(circleImage.color, 1);
         circleImageInner.color = ColorHelpers.SetColorAlpha(circleImageInner.color, innerFadeAlpha);
-        circleImageInnerText.color = ColorHelpers.SetColorAlpha(circleImageInnerText.color, innerFadeAlpha);
+         // circleImageInnerText.color = ColorHelpers.SetColorAlpha(circleImageInnerText.color, innerFadeAlpha);
         pointLight.color = ColorHelpers.SetColorAlpha(pointLight.color, innerFadeAlpha);
         switch (element)
         {

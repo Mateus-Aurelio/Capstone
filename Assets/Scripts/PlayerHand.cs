@@ -27,7 +27,9 @@ public class PlayerHand : MonoBehaviour
     [SerializeField] private GameObject handClosing; // 2
     [SerializeField] private GameObject handFist; // 3
     [SerializeField] private GameObject handPoint; // 4
-    [SerializeField] private bool casting = false;
+    [SerializeField] private GameObject handOpenFully; // 5
+    private bool casting = false;
+    private bool holdingBook = false;
     private float gripTime = 0;
 
 
@@ -68,6 +70,28 @@ public class PlayerHand : MonoBehaviour
 
         if (casting) return;
         float gripAmount = VRInput.ButtonPressedAmountInTenths(inputHand, InputHelpers.Button.Grip);
+        if (holdingBook)
+        {
+            if (gripAmount > 0.85f)
+            {
+                if (handModel != 0)
+                {
+                    DisableAllHandModels();
+                    handOpen.SetActive(true);
+                    handModel = 0;
+                }
+            }
+            else
+            {
+                if (handModel != 5)
+                {
+                    DisableAllHandModels();
+                    handOpenFully.SetActive(true);
+                    handModel = 5;
+                }
+            }
+            return;
+        }
         if (gripAmount > 0.85f)
         {
             if (handModel != 3)
@@ -113,6 +137,7 @@ public class PlayerHand : MonoBehaviour
         handClosing.SetActive(false);
         handFist.SetActive(false);
         handPoint.SetActive(false);
+        handOpenFully.SetActive(false);
     }
 
     public void SetCasting(bool given)
@@ -123,6 +148,17 @@ public class PlayerHand : MonoBehaviour
             DisableAllHandModels();
             handPoint.SetActive(true);
             handModel = 4;
+        }
+    }
+
+    public void SetHoldingBook(bool given)
+    {
+        holdingBook = given;
+        if (holdingBook)
+        {
+            DisableAllHandModels();
+            handOpenFully.SetActive(true);
+            handModel = 5;
         }
     }
 

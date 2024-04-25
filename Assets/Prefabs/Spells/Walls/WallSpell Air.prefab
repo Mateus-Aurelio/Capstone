@@ -18,7 +18,7 @@ PrefabInstance:
       objectReference: {fileID: 67512122837692794, guid: f12bc8b2d3502174faabfe3cf8e6db1b, type: 3}
     - target: {fileID: 707889862853986907, guid: df68ecd70ef54b946afef8a4cdf9a957, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1015245616237525324, guid: df68ecd70ef54b946afef8a4cdf9a957, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -71,5 +71,43 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8560289713251362189, guid: df68ecd70ef54b946afef8a4cdf9a957, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5366225647216041890}
+    - targetCorrespondingSourceObject: {fileID: 8560289713251362189, guid: df68ecd70ef54b946afef8a4cdf9a957, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4862167047343817250}
   m_SourcePrefab: {fileID: 100100000, guid: df68ecd70ef54b946afef8a4cdf9a957, type: 3}
+--- !u!1 &231658538485934377 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8560289713251362189, guid: df68ecd70ef54b946afef8a4cdf9a957, type: 3}
+  m_PrefabInstance: {fileID: 8501465778999315620}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5366225647216041890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231658538485934377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45ca549aab831544b8f7694923c1a059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocity: 1
+  accel: 1
+--- !u!114 &4862167047343817250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231658538485934377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c63746359693bdf47933076594c7915f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delayTime: 5

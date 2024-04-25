@@ -9,8 +9,8 @@ public class Spellbook : MonoBehaviour
     [SerializeField] private Transform spellbookHolder;
     [SerializeField] private Transform playerFloor;
     [SerializeField] private Transform playerCamera;
-    [SerializeField] private Vector3 heldLocalPos = new Vector3(.06f, -0.021f, -0.035f);
-    [SerializeField] private Vector3 heldLocalRot = new Vector3(-15, 0, -90);
+    [SerializeField] private Vector3 heldLocalPos;
+    [SerializeField] private Vector3 heldLocalRot;
     [SerializeField] private float unheldYPosOffset = -0.3f;
 
     [SerializeField] private Transform leftPivot;
@@ -34,7 +34,7 @@ public class Spellbook : MonoBehaviour
 
     void Start()
     {
-
+        SetBookHeld(true);
     }
 
     void Update()
@@ -143,12 +143,7 @@ public class Spellbook : MonoBehaviour
         {
             if (other.transform == spellbookHolder && lefthand.GetGripTime() > 0.2f)
             {
-                spellbookHeld = false; 
-                leftPivot.localRotation = Quaternion.Euler(0, 0, -90);
-                rightPivot.localRotation = Quaternion.Euler(0, 0, 90);
-                transform.position = spellbookHolder.position;
-                transform.SetParent(spellbookHolder);
-                waitForUninput = true;
+                SetBookHeld(false);
             }
             return;
         }
@@ -157,11 +152,27 @@ public class Spellbook : MonoBehaviour
         PlayerHand hand = other.GetComponent<PlayerHand>();
         if (hand == null || hand.GetGripTime() <= 0 || hand.GetHand() != Hand.left) return;
 
+        SetBookHeld(true);
+    }
+
+    private void SetBookHeld(bool given)
+    {
+        spellbookHeld = given;
+        lefthand.SetHoldingBook(given);
         waitForUninput = true;
-        spellbookHeld = true;
-        transform.SetParent(lefthand.transform);
-        transform.localPosition = heldLocalPos;
-        transform.localRotation = Quaternion.Euler(heldLocalRot);
+        if (given)
+        {
+            transform.SetParent(lefthand.transform);
+            transform.localPosition = heldLocalPos;
+            transform.localRotation = Quaternion.Euler(heldLocalRot);
+        }
+        else
+        {
+            leftPivot.localRotation = Quaternion.Euler(0, 0, -90);
+            rightPivot.localRotation = Quaternion.Euler(0, 0, 90);
+            transform.position = spellbookHolder.position;
+            transform.SetParent(spellbookHolder);
+        }
     }
 
     /*private void OnTriggerExit(Collider other)
