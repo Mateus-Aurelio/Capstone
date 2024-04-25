@@ -134,6 +134,7 @@
     <Compile Include="Assets\Scripts\StatusEffects\StatusEffect.cs" />
     <Compile Include="Assets\Scripts\Health\Health.cs" />
     <Compile Include="Assets\PDollar\Scripts\PDollarGestureRecognizer\PointCloudRecognizer.cs" />
+    <Compile Include="Assets\Scripts\EnemyWaves.cs" />
     <Compile Include="Assets\Scripts\StatusEffects\StopStatusEffect.cs" />
     <Compile Include="Assets\Scripts\Causes+Effects\Effects\SetActiveEffect.cs" />
     <Compile Include="Assets\Scripts\Causes+Effects\Causes\OnMouseEnterCause.cs" />

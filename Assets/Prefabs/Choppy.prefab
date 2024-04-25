@@ -238,11 +238,7 @@ MonoBehaviour:
   - {fileID: 6928122740730325021}
   - {fileID: 4215419102040483959}
   - {fileID: 3822761898943290415}
-  damageModifiers:
-  - damageType: 1
-    modifier: 2
-  - damageType: 3
-    modifier: 0.5
+  damageModifiers: []
   deathPrefab: {fileID: 9149298981587626215, guid: 71cd66b4e98c8804398d6477b5b21421, type: 3}
 --- !u!114 &3822761898943290415
 MonoBehaviour:
