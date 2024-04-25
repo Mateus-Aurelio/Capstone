@@ -9,7 +9,7 @@ public class HealthSlider : AHealthTracker
     [SerializeField] private Slider healthSlider;
 
     [SerializeField] private bool hideSliderAtStart;
-    //[SerializeField] private bool slidersFacePlayer = true;
+    [SerializeField] private bool slidersFacePlayer = true;
     private Transform faceTransform;
 
     private void Start()
@@ -23,7 +23,7 @@ public class HealthSlider : AHealthTracker
         if (hideSliderAtStart) healthSlider.value = 0;
 
         faceTransform = PlayerTracker.GetPlayer().transform;
-        if (faceTransform != null && faceTransform.GetComponentInChildren<Camera>() != null)
+        if (slidersFacePlayer && faceTransform != null && faceTransform.GetComponentInChildren<Camera>() != null)
         {
             faceTransform = faceTransform.GetComponentInChildren<Camera>().transform;
         }
@@ -37,6 +37,6 @@ public class HealthSlider : AHealthTracker
 
     private void LateUpdate()
     {
-        if (healthSlider.value > 0) healthSlider.transform.LookAt(faceTransform.position);
+        if (slidersFacePlayer && healthSlider.value > 0) healthSlider.transform.LookAt(faceTransform.position);
     }
 }

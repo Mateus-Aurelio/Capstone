@@ -10,6 +10,7 @@ public class DamageSlider : AHealthTracker
     [SerializeField] float speed = 6;
     [SerializeField] private bool hideSliderAtStart = true;
     [SerializeField] private GameObject background;
+    [SerializeField] private bool slidersFacePlayer = true;
     private Transform faceTransform;
 
     private void Start()
@@ -23,7 +24,7 @@ public class DamageSlider : AHealthTracker
         }
 
         faceTransform = PlayerTracker.GetPlayer().transform;
-        if (faceTransform != null && faceTransform.GetComponentInChildren<Camera>() != null)
+        if (slidersFacePlayer && faceTransform != null && faceTransform.GetComponentInChildren<Camera>() != null)
         {
             faceTransform = faceTransform.GetComponentInChildren<Camera>().transform;
         }
@@ -53,6 +54,6 @@ public class DamageSlider : AHealthTracker
 
     private void LateUpdate()
     {
-        if (damageSlider.value > 0) damageSlider.transform.LookAt(faceTransform.position);
+        if (slidersFacePlayer && damageSlider.value > 0) damageSlider.transform.LookAt(faceTransform.position);
     }
 }

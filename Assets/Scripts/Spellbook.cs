@@ -5,6 +5,14 @@ using UnityEngine.UI;
 
 public class Spellbook : MonoBehaviour
 {
+    private bool spellbookHeld = true;
+    [SerializeField] private Transform spellbookHolder;
+    [SerializeField] private Transform playerFloor;
+    [SerializeField] private Transform playerCamera;
+    [SerializeField] private Vector3 heldLocalPos = new Vector3(.06f, -0.021f, -0.035f);
+    [SerializeField] private Vector3 heldLocalRot = new Vector3(-15, 0, -90);
+    [SerializeField] private float unheldYPosOffset = -0.3f;
+
     [SerializeField] private Transform leftPivot;
     [SerializeField] private Transform rightPivot;
     [SerializeField] private Transform turningPivot;
@@ -28,19 +36,25 @@ public class Spellbook : MonoBehaviour
 
     void Update()
     {
-        if (changingPages) UpdateTurningPage();
+        spellbookHolder.position = new Vector3(spellbookHolder.position.x, playerCamera.position.y + unheldYPosOffset, spellbookHolder.position.z);
 
         float gripAmount = VRInput.ButtonPressedAmountInTenths(lefthand.GetInputHand(), UnityEngine.XR.Interaction.Toolkit.InputHelpers.Button.Grip);
-        UpdateBookPivots(gripAmount);
-
         if (!waitForUninput && gripAmount > minGripAmount)
         {
-            waitForUninput = true;
+            // waitForUninput = true;
         }
         else if (waitForUninput && gripAmount < minGripAmount)
         {
             waitForUninput = false;
         }
+
+        if (!spellbookHeld) return;
+
+        if (changingPages) UpdateTurningPage();
+
+        UpdateBookPivots(gripAmount);
+
+        
     }
 
     private void UpdateBookPivots(float gripAmount)
@@ -54,22 +68,76 @@ public class Spellbook : MonoBehaviour
 
     private void UpdateTurningPage()
     {
-        Debug.Log("UpdateTurningPage");
-        turningPivot.localRotation = Quaternion.Euler(0, 0, turningPivot.localRotation.z + Time.deltaTime * pageTurnSpeed);
-        Debug.Log(turningPivot.localRotation.z + Time.deltaTime * pageTurnSpeed);
-        if (turningPivot.localRotation.eulerAngles.z >= 0 || turningPivot.localRotation.eulerAngles.z <= -180)
+        //turningPivot.localRotation = Quaternion.Euler(0, 0, turningPivot.localRotation.z + Time.deltaTime * pageTurnSpeed);
+        turningPivot.Rotate(new Vector3(0, 0, Time.deltaTime * pageTurnSpeed));
+        /*if (turningPivot.localRotation.eulerAngles.z > 0 || turningPivot.localRotation.eulerAngles.z < -180)
         {
             changingPages = false;
-            Debug.Log("changingPages false now");
-        }
+        }*/
     }
 
     public void TurnToTab(int tabID)
     {
-        Debug.Log("TurnToTab");
         if (changingPages) return;
-        Debug.Log("TurnToTab went");
+        turningPivot.gameObject.SetActive(true);
         changingPages = true;
         pageTurnSpeed *= -1;
+        if (pageTurnSpeed < 0) turningPivot.localRotation = Quaternion.Euler(0, 0, 0);
+        else turningPivot.localRotation = Quaternion.Euler(0, 0, -180);
+        StartCoroutine("StopTurning");
     }
+
+    private IEnumerator StopTurning()
+    {
+        yield return new WaitForSeconds(Mathf.Abs(180 / pageTurnSpeed));
+        changingPages = false;
+        turningPivot.gameObject.SetActive(false);
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (waitForUninput) return;
+        if (spellbookHeld)
+        {
+            if (other.transform == spellbookHolder && lefthand.GetGripTime() > 0.2f)
+            {
+                spellbookHeld = false; 
+                leftPivot.localRotation = Quaternion.Euler(0, 0, -90);
+                rightPivot.localRotation = Quaternion.Euler(0, 0, 90);
+                transform.position = spellbookHolder.position;
+                transform.SetParent(spellbookHolder);
+                waitForUninput = true;
+            }
+            return;
+        }
+;
+        if (!other.CompareTag("PlayerHand")) return;
+        PlayerHand hand = other.GetComponent<PlayerHand>();
+        if (hand == null || hand.GetGripTime() <= 0 || hand.GetHand() != Hand.left) return;
+
+        waitForUninput = true;
+        spellbookHeld = true;
+        transform.SetParent(lefthand.transform);
+        transform.localPosition = heldLocalPos;
+        transform.localRotation = Quaternion.Euler(heldLocalRot);
+    }
+
+    /*private void OnTriggerExit(Collider other)
+    {
+        if (!waitForUninput) return;
+        if (spellbookHeld)
+        {
+            if (other.transform == spellbookHolder)
+            {
+                waitForUninput = false;
+            }
+            return;
+        }
+;
+        if (!other.CompareTag("PlayerHand")) return;
+        PlayerHand hand = other.GetComponent<PlayerHand>();
+        if (hand == null || hand.GetGripTime() <= 0 || hand.GetHand() != Hand.left) return;
+
+        waitForUninput = false;
+    }*/
 }
