@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1978312598060021896}
   - component: {fileID: 1302090695295239105}
   - component: {fileID: 1594445961437330963}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Damage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 5751082509894257524}
   - component: {fileID: 1715787004354287905}
   - component: {fileID: -1485390077513644343}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Firezone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,6 +167,7 @@ MonoBehaviour:
   spawnRelativeToFromCameraToHand: 1
   relativeSpawnPos: {x: 0, y: 0, z: 4}
   spawnGrounded: 1
+  rotateAway: 0
 --- !u!1 &7255229599903495102
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,7 +179,7 @@ GameObject:
   - component: {fileID: 609891924257641922}
   - component: {fileID: 5941370457889180992}
   - component: {fileID: 6602067713256104111}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5008,7 +5009,7 @@ GameObject:
   - component: {fileID: 8207362414688641899}
   - component: {fileID: 6575188010278973376}
   - component: {fileID: 6229672919706156253}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Particle System (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

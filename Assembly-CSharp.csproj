@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Causes+Effects\Effects\PlayAudioEffect.cs" />
+    <Compile Include="Assets\Scripts\OrbShrineSystem.cs" />
     <Compile Include="Assets\Scripts\ZoneEffects\WeightArea.cs" />
     <Compile Include="Assets\Scripts\AlternateImage.cs" />
     <Compile Include="Assets\Scripts\Terrain\TerrainChange.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="Assets\Scripts\Health\HealthChild.cs" />
     <Compile Include="Assets\Scripts\Orb.cs" />
     <Compile Include="Assets\Bitgem\StylisedWater\URP\Scripts\Bitgem\VFX\StylisedWater\WaterVolumeBox.cs" />
+    <Compile Include="Assets\Scripts\Fade.cs" />
     <Compile Include="Assets\Scripts\Health\AHealth.cs" />
     <Compile Include="Assets\Scripts\FollowPlayerHead.cs" />
     <Compile Include="Assets\VRTemplateAssets\Scripts\RayAttachModifier.cs" />
@@ -106,6 +108,7 @@
     <Compile Include="Assets\VRTemplateAssets\Scripts\XRPokeFollowAffordanceFill.cs" />
     <Compile Include="Assets\Scripts\StatusEffects\SlowStatusEffect.cs" />
     <Compile Include="Assets\Scripts\SpellCircleImage.cs" />
+    <Compile Include="Assets\Scripts\OrbShrine.cs" />
     <Compile Include="Assets\Scripts\Helpers\VRInput.cs" />
     <Compile Include="Assets\Bitgem\StylisedWater\URP\Scripts\Bitgem\VFX\StylisedWater\WaterVolumeTransforms.cs" />
     <Compile Include="Assets\Scripts\ElementResource.cs" />

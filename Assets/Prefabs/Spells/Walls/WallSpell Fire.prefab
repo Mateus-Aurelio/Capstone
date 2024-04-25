@@ -4866,6 +4866,10 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5010295631119813413, guid: df68ecd70ef54b946afef8a4cdf9a957, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8362178421891115013, guid: df68ecd70ef54b946afef8a4cdf9a957, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -4909,6 +4913,10 @@ PrefabInstance:
     - target: {fileID: 8560289713251362189, guid: df68ecd70ef54b946afef8a4cdf9a957, type: 3}
       propertyPath: m_Name
       value: WallSpell Fire
+      objectReference: {fileID: 0}
+    - target: {fileID: 8560289713251362189, guid: df68ecd70ef54b946afef8a4cdf9a957, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1015245616237525324, guid: df68ecd70ef54b946afef8a4cdf9a957, type: 3}

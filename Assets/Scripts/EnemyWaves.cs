@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyWaves : MonoBehaviour
 {
+    private int waveNumber = 0;
     [SerializeField] private List<GameObject> wave1 = new List<GameObject>();
     [SerializeField] private List<GameObject> wave2 = new List<GameObject>();
     [SerializeField] private List<GameObject> wave3 = new List<GameObject>();
