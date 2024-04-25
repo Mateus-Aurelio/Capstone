@@ -79,8 +79,14 @@ public class Spellbook : MonoBehaviour
         }*/
     }
 
+    public void ChangeTab(int tabChange)
+    {
+        TurnToTab(pageID + tabChange);
+    }
+
     public void TurnToTab(int tabID)
     {
+        if (tabID < 0 || tabID > 5) return;
         if (!spellbookHeld) return;
         if (changingPages) return;
         if (pageID == tabID) return;
@@ -105,7 +111,8 @@ public class Spellbook : MonoBehaviour
         }
         for (int i = 0; i < tabs.Count / 3; i++)
         {
-            if (i > pageID && i < tabID || i < pageID && i > tabID || (pageTurnSpeed > 0 && i == pageID))
+            // if (i > pageID && i < tabID || i < pageID && i > tabID || (pageTurnSpeed > 0 && i == pageID))
+            if ((pageTurnSpeed > 0 && i > pageID && i <= tabID) || (pageTurnSpeed < 0 && i <= pageID && i > tabID))
             {
                 tabs[i * 3].SetActive(false);
                 tabs[i * 3 + 1].SetActive(true);

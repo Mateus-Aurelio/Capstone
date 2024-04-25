@@ -256,7 +256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9828f24aaafc3d84696b124d630157a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 3
+  attackRange: 1.5
   loseInterestFromPlayerRange: 15
   spinWhenAttack: {fileID: 6531131140533142668}
   spinVectorNormal: {x: 0, y: 0, z: -50}

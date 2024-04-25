@@ -222,7 +222,7 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 0.46226418, g: 0.27271578, b: 0.006541462, a: 1}
+      minColor: {r: 0.21698111, g: 0.12719584, b: 0, a: 1}
       maxColor: {r: 0.5283019, g: 0.34087816, b: 0.07725169, a: 1}
       maxGradient:
         serializedVersion: 2
@@ -4998,6 +4998,7 @@ MonoBehaviour:
   spawnRelativeToFromCameraToHand: 1
   relativeSpawnPos: {x: 0, y: 0, z: 4}
   spawnGrounded: 1
+  rotateAway: 0
 --- !u!1 &7255229599903495102
 GameObject:
   m_ObjectHideFlags: 0
@@ -5220,7 +5221,7 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 0.8113208, g: 0.77529436, b: 0.7309541, a: 1}
+      minColor: {r: 0.509434, g: 0.45691147, b: 0.38688147, a: 1}
       maxColor: {r: 0.5283019, g: 0.34087816, b: 0.07725169, a: 1}
       maxGradient:
         serializedVersion: 2

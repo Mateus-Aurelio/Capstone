@@ -9,7 +9,7 @@ public class MoveForwardOverTime : MonoBehaviour
 
     void FixedUpdate()
     {
-        transform.Translate(transform.forward * velocity * Time.fixedDeltaTime);
+        transform.Translate(Vector3.forward * velocity * Time.fixedDeltaTime, transform);
         velocity += accel * Time.fixedDeltaTime;
     }
 
