@@ -23,6 +23,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/showcaseMain.unity
     guid: 2f11a9c34609b7d4796c12398574a17c
+  - enabled: 1
+    path: Assets/Scenes/showcaseWin.unity
+    guid: 06dd8e3ab85ab2d428789331d8b5b35b
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260, type: 2}
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: dc5a169419fa04987b057f65238cf3ba, type: 2}
