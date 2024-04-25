@@ -114,7 +114,7 @@ public class SpellCircle : MonoBehaviour
         {
             ResetCasting();
             // ENABLE SPELLCASTING
-            introAnim.ResetAnim();
+            if (introAnim.isActiveAndEnabled) introAnim.ResetAnim();
             rightHand.SetCasting(true);
             visualsGameObject.SetActive(true);
             ignoreUntilUninput = true;

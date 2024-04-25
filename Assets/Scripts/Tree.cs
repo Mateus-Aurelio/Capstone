@@ -36,7 +36,7 @@ public class Tree : AHealthTracker
             {
                 g.SetActive(false);
             }
-            transform.localScale = new Vector3(transform.localScale.x * 0.8f, transform.localScale.y, transform.localScale.z * 0.8f); 
+            // transform.localScale = new Vector3(transform.localScale.x * 0.8f, transform.localScale.y, transform.localScale.z * 0.8f); 
             treeState = TreeState.veryHurt;
         }
         if (healthScript.GetHealth() <= 0)
