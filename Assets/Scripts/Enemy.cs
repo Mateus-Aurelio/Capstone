@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Enemy : MonoBehaviour
+public class Enemy : AHealthTracker
 {
     private bool wait = true;
     private Transform goal;
     private EnemyState enemyState = EnemyState.none;
     [SerializeField] private float attackRange = 2;
+    [SerializeField] private float loseInterestFromPlayerRange = 15;
 
     [SerializeField] private Spin spinWhenAttack;
     [SerializeField] private Vector3 spinVectorNormal = new Vector3(0, 0, -400);
@@ -16,6 +17,11 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private GameObject faceWhenAttackingTree;
     [SerializeField] private GameObject faceWhenAttackingPlayer;
+
+    [SerializeField] private bool targetNearestTreeFirst = true;
+    [SerializeField] private bool targetedNearestTree = false;
+    [SerializeField] private bool targetPlayerWhenDamaged = true;
+    [SerializeField] private bool targetMainTreeAfterOtherTree = true;
 
     void Start()
     {
@@ -28,7 +34,7 @@ public class Enemy : MonoBehaviour
     private void Update()
     {
         if (wait) return;
-        if (goal == null) DetermineGoal();
+        if (goal == null || goal == transform) DetermineGoal();
         switch (enemyState)
         {
             case EnemyState.none:
@@ -59,6 +65,10 @@ public class Enemy : MonoBehaviour
         {
             SetState(EnemyState.attacking);
         }
+        else if (Vector3.Distance(goal.transform.position, transform.position) >= loseInterestFromPlayerRange)
+        {
+            SetState(EnemyState.walkToTree);
+        }
     }
 
     private void AttackUpdate()
@@ -88,12 +98,20 @@ public class Enemy : MonoBehaviour
         switch (enemyState)
         {
             case EnemyState.none:
-                goal = null;
+                goal = transform;
                 break;
             case EnemyState.walkToTree:
                 faceWhenAttackingTree.SetActive(true);
                 faceWhenAttackingPlayer.SetActive(false);
-                goal = TreePosList.GetList()[0];
+                if (targetNearestTreeFirst && !targetedNearestTree)
+                {
+                    goal = GetNearestTree();
+                    targetedNearestTree = true;
+                }
+                else
+                {
+                    goal = TreePosList.GetMainTree();
+                }
                 break;
             case EnemyState.walkToPlayer:
                 faceWhenAttackingTree.SetActive(false);
@@ -102,9 +120,10 @@ public class Enemy : MonoBehaviour
                 break;
             case EnemyState.attacking:
                 if (spinWhenAttack != null) spinWhenAttack.SetSpinVector(spinVectorAttacking);
-                goal = null;
+                GetComponent<NavMeshAgent>().SetDestination(transform.position);
                 break;
         }
+        GetComponent<NavMeshAgent>().SetDestination(goal.position);
     }
 
     private IEnumerator FindTree()
@@ -112,10 +131,30 @@ public class Enemy : MonoBehaviour
         yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();
-        goal = TreePosList.GetList()[0];
-        GetComponent<NavMeshAgent>().SetDestination(goal.position);
         SetState(EnemyState.walkToTree);
         wait = false;
+    }
+
+    private Transform GetNearestTree()
+    {
+        float minDistance = 999;
+        Transform nearest = null;
+        int i = 0;
+        foreach (Transform t in TreePosList.GetList())
+        {
+            i++;
+            if (Vector3.Distance(t.position, transform.position) < minDistance)
+            {
+                minDistance = Vector3.Distance(t.position, transform.position);
+                nearest = t;
+            }
+        }
+        return nearest;
+    }
+
+    public override void HealthChanged(AHealth healthScript)
+    {
+        SetState(EnemyState.walkToPlayer);
     }
 }
 

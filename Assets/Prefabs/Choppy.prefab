@@ -237,6 +237,7 @@ MonoBehaviour:
   healthTrackers:
   - {fileID: 6928122740730325021}
   - {fileID: 4215419102040483959}
+  - {fileID: 3822761898943290415}
   damageModifiers:
   - damageType: 1
     modifier: 2
@@ -256,11 +257,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackRange: 3
+  loseInterestFromPlayerRange: 15
   spinWhenAttack: {fileID: 6531131140533142668}
   spinVectorNormal: {x: 0, y: 0, z: -50}
   spinVectorAttacking: {x: 0, y: 0, z: -400}
   faceWhenAttackingTree: {fileID: 6707684354800942448}
   faceWhenAttackingPlayer: {fileID: 5440536092073476878}
+  targetNearestTreeFirst: 1
+  targetedNearestTree: 0
+  targetPlayerWhenDamaged: 1
+  targetMainTreeAfterOtherTree: 1
 --- !u!114 &5571072200285201940
 MonoBehaviour:
   m_ObjectHideFlags: 0
