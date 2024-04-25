@@ -21,15 +21,13 @@ public class PlayerHand : MonoBehaviour
     [SerializeField] private XRBaseController xrController;
     [SerializeField] private Transform relativeTransform;
     [SerializeField] private Vector3 grabSnapPos;
-    /*[SerializeField] private CharacterController characterController;
-
-    private bool touchSpellMode = false;
-    private bool moveEarthMode = false;
-    private bool gripWasDown = false;
-    [SerializeField] private GameObject touchSpellEffect;
-    private Transform movingEarth;
-    private Vector3 moveRelativePos;
-    private Vector3 tempMove;*/
+    private int handModel = 0;
+    [SerializeField] private GameObject handOpen; // 0
+    [SerializeField] private GameObject handOpening; // 1
+    [SerializeField] private GameObject handClosing; // 2
+    [SerializeField] private GameObject handFist; // 3
+    [SerializeField] private GameObject handPoint; // 4
+    [SerializeField] private bool casting = false;
     private float gripTime = 0;
 
 
@@ -44,26 +42,17 @@ public class PlayerHand : MonoBehaviour
         }
         else
         {
-
             inputHand = XRNode.LeftHand;
         }
+        DisableAllHandModels();
+        handOpen.SetActive(true);
+        handModel = 0;
     }
 
     private void FixedUpdate()
     {
         if (movementChecker.Count > maxMovementChecks) movementChecker.RemoveAt(0);
-        // if (currentOrb != null)
         movementChecker.Add(transform.position);
-
-        /*Vector3 sum = new Vector3();
-                foreach (Vector3 v in movementChecker)
-                {
-                    sum += v;
-                }
-                currentOrb.GetComponent<Rigidbody>().velocity = (sum / movementChecker.Count) / (Time.fixedDeltaTime * maxMovementChecks);*/
-        //Vector3 startPos = movementChecker[movementChecker.Count - 1];
-        //Vector3 endPos = movementChecker[0];
-        //currentOrb.GetComponent<Orb>().ReleasedFromHand((startPos - endPos) / (Time.fixedDeltaTime * maxMovementChecks));
     }
 
     private void Update()
@@ -75,6 +64,65 @@ public class PlayerHand : MonoBehaviour
         else
         {
             gripTime = 0;
+        }
+
+        if (casting) return;
+        float gripAmount = VRInput.ButtonPressedAmountInTenths(inputHand, InputHelpers.Button.Grip);
+        if (gripAmount > 0.85f)
+        {
+            if (handModel != 3)
+            {
+                DisableAllHandModels();
+                handFist.SetActive(true);
+                handModel = 3;
+            }
+        }
+        else if (gripAmount > 0.55f)
+        {
+            if (handModel != 2)
+            {
+                DisableAllHandModels();
+                handClosing.SetActive(true);
+                handModel = 2;
+            }
+        }
+        else if (gripAmount > 0.25f)
+        {
+            if (handModel != 1)
+            {
+                DisableAllHandModels();
+                handOpening.SetActive(true);
+                handModel = 1;
+            }
+        }
+        else
+        {
+            if (handModel != 0)
+            {
+                DisableAllHandModels();
+                handOpen.SetActive(true);
+                handModel = 0;
+            }
+        }
+    }
+
+    private void DisableAllHandModels()
+    {
+        handOpen.SetActive(false);
+        handOpening.SetActive(false);
+        handClosing.SetActive(false);
+        handFist.SetActive(false);
+        handPoint.SetActive(false);
+    }
+
+    public void SetCasting(bool given)
+    {
+        casting = given;
+        if (casting)
+        {
+            DisableAllHandModels();
+            handPoint.SetActive(true);
+            handModel = 4;
         }
     }
 

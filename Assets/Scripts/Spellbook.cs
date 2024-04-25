@@ -22,6 +22,9 @@ public class Spellbook : MonoBehaviour
     [SerializeField] private Image turningPageRightImage;
     [SerializeField] private Image leftPageImage;
     [SerializeField] private Image rightPageImage;
+    [SerializeField] private List<Sprite> pageSprites = new List<Sprite>();
+    [SerializeField] private List<GameObject> tabs = new List<GameObject>(); // left tabs, turning tabs, right tabs
+    private int pageID = 0;
     private bool changingPages = false;
     [SerializeField] private float pageTurnSpeed = 1;
 
@@ -78,12 +81,43 @@ public class Spellbook : MonoBehaviour
 
     public void TurnToTab(int tabID)
     {
+        if (!spellbookHeld) return;
         if (changingPages) return;
+        if (pageID == tabID) return;
+
+        if (tabID < pageID && pageTurnSpeed > 0 || tabID > pageID && pageTurnSpeed < 0)
+        {
+            pageTurnSpeed *= -1;
+        }
+        if (tabID > pageID)
+        {
+            leftPageImage.sprite = pageSprites[pageID * 2];
+            turningPageRightImage.sprite = pageSprites[pageID * 2 + 1];
+            rightPageImage.sprite = pageSprites[tabID * 2 + 1];
+            turningPageLeftImage.sprite = pageSprites[tabID * 2];
+        }
+        else
+        {
+            rightPageImage.sprite = pageSprites[pageID * 2 + 1];
+            turningPageLeftImage.sprite = pageSprites[pageID * 2];
+            leftPageImage.sprite = pageSprites[tabID * 2];
+            turningPageRightImage.sprite = pageSprites[tabID * 2 + 1];
+        }
+        for (int i = 0; i < tabs.Count / 3; i++)
+        {
+            if (i > pageID && i < tabID || i < pageID && i > tabID || (pageTurnSpeed > 0 && i == pageID))
+            {
+                tabs[i * 3].SetActive(false);
+                tabs[i * 3 + 1].SetActive(true);
+                tabs[i * 3 + 2].SetActive(false);
+            }
+        }
+
+        pageID = tabID;
         turningPivot.gameObject.SetActive(true);
         changingPages = true;
-        pageTurnSpeed *= -1;
-        if (pageTurnSpeed < 0) turningPivot.localRotation = Quaternion.Euler(0, 0, 0);
-        else turningPivot.localRotation = Quaternion.Euler(0, 0, -180);
+        if (pageTurnSpeed < 0) turningPivot.localRotation = Quaternion.Euler(0, 0, -2);
+        else turningPivot.localRotation = Quaternion.Euler(0, 0, -178);
         StartCoroutine("StopTurning");
     }
 
@@ -92,6 +126,14 @@ public class Spellbook : MonoBehaviour
         yield return new WaitForSeconds(Mathf.Abs(180 / pageTurnSpeed));
         changingPages = false;
         turningPivot.gameObject.SetActive(false);
+        leftPageImage.sprite = pageSprites[pageID * 2];
+        rightPageImage.sprite = pageSprites[pageID * 2+ 1];
+        for (int i = 0; i < tabs.Count / 3; i++)
+        {
+            tabs[i * 3].SetActive(pageID >= i);
+            tabs[i * 3 + 1].SetActive(false);
+            tabs[i * 3 + 2].SetActive(pageID < i);
+        }
     }
 
     private void OnTriggerStay(Collider other)

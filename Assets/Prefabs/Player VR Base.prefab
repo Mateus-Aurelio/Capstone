@@ -5024,6 +5024,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHead: {fileID: 1220232780913577489}
   followYPos: 1
+  rotateToMatch: 0
 --- !u!1 &5067767565967555657
 GameObject:
   m_ObjectHideFlags: 0
@@ -6622,6 +6623,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8630019841647684919, guid: 7fdc5d9f61c90b1499dbb2a9a53ac1d7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8210245012030606638}
+    - targetCorrespondingSourceObject: {fileID: 8630019841647684919, guid: 7fdc5d9f61c90b1499dbb2a9a53ac1d7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7716500160018249307}
   m_SourcePrefab: {fileID: 100100000, guid: 7fdc5d9f61c90b1499dbb2a9a53ac1d7, type: 3}
 --- !u!114 &1415501119882218129 stripped
 MonoBehaviour:
@@ -6662,8 +6666,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee74e41ef9fecff40a6da2d0d5d18fc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spellbookHolder: {fileID: 0}
+  playerFloor: {fileID: 3106310440770959473}
+  playerCamera: {fileID: 1220232780913577489}
   heldLocalPos: {x: 0.06, y: -0.021, z: -0.035}
   heldLocalRot: {x: -15, y: 0, z: -90}
+  unheldYPosOffset: -0.75
   leftPivot: {fileID: 3094834874495486395}
   rightPivot: {fileID: 6057424042851654030}
   turningPivot: {fileID: 2640205745678780295}
@@ -6672,9 +6680,42 @@ MonoBehaviour:
   turningPageRightImage: {fileID: 1415501119882218129}
   leftPageImage: {fileID: 7965856225993211471}
   rightPageImage: {fileID: 4718296592632785456}
-  pageTurnSpeed: 360
+  pageSprites:
+  - {fileID: 21300000, guid: 5b16721ea9d6756409092510163690ff, type: 3}
+  - {fileID: 21300000, guid: 201fe7cc5341e80469e6338f546eeb8b, type: 3}
+  - {fileID: 21300000, guid: c7f3e51e7c98f5e41b14863e4f37c57c, type: 3}
+  - {fileID: 21300000, guid: 531d6e5a1383f8645a8ad04d7aeb1e4b, type: 3}
+  - {fileID: 21300000, guid: 18caf96665c03614c8eed40c7b6db448, type: 3}
+  - {fileID: 21300000, guid: b8c8a76b44ef783469c3eddb9c1e9269, type: 3}
+  - {fileID: 21300000, guid: c07dc7e7fdfe8944588776e524011276, type: 3}
+  - {fileID: 21300000, guid: 8c1ce770f7aebaa4ba564b3705c9c641, type: 3}
+  - {fileID: 21300000, guid: bb51d15af8860fd4bbd4eaf046022f0d, type: 3}
+  - {fileID: 21300000, guid: 7ea6aad0c6e18f34f91eaaf721f90bd1, type: 3}
+  tabs: []
+  pageTurnSpeed: 720
   bookSpeed: 5
   minGripAmount: 0.95
+--- !u!65 &7716500160018249307
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2189532408368861343}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.5, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.3, z: 0}
 --- !u!4 &2640205745678780295 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5549226864655120943, guid: 7fdc5d9f61c90b1499dbb2a9a53ac1d7, type: 3}
