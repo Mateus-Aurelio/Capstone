@@ -8,6 +8,7 @@ public class Enemy : AHealthTracker
     private bool wait = true;
     private Transform goal;
     private EnemyState enemyState = EnemyState.none;
+    private NavMeshAgent agent;
     [SerializeField] private float attackRange = 2;
     [SerializeField] private float loseInterestFromPlayerRange = 15;
 
@@ -25,6 +26,7 @@ public class Enemy : AHealthTracker
 
     void Start()
     {
+        agent = GetComponent<NavMeshAgent>();
         faceWhenAttackingTree.SetActive(true);
         faceWhenAttackingPlayer.SetActive(false);
         wait = true;
@@ -61,6 +63,7 @@ public class Enemy : AHealthTracker
 
     private void WalkToPlayerUpdate()
     {
+        agent.SetDestination(goal.transform.position);
         if (Vector3.Distance(goal.transform.position, transform.position) <= attackRange)
         {
             SetState(EnemyState.attacking);
@@ -120,10 +123,11 @@ public class Enemy : AHealthTracker
                 break;
             case EnemyState.attacking:
                 if (spinWhenAttack != null) spinWhenAttack.SetSpinVector(spinVectorAttacking);
-                GetComponent<NavMeshAgent>().SetDestination(transform.position);
-                break;
+                agent.SetDestination(transform.position);
+                return;
+                // break;
         }
-        GetComponent<NavMeshAgent>().SetDestination(goal.position);
+        agent.SetDestination(goal.position);
     }
 
     private IEnumerator FindTree()

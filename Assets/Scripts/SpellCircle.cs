@@ -17,12 +17,13 @@ public class SpellCircle : MonoBehaviour
     [SerializeField] private Image circleImage;
     [SerializeField] private Image circleImageInner;
     [SerializeField] private Image circleImageInnerText;
-    [SerializeField] private Sprite circleImageInnerColored;
-    [SerializeField] private Sprite circleImageInnerWhite;
+    [SerializeField] private Image circleImageOuterText;
+    [SerializeField] private List<Image> imagesToColor = new List<Image>();
     private float textFadeInTimer;
 
     [SerializeField] private Light pointLight;
-    [SerializeField] private AlternateImage introAnim;
+    [SerializeField] private AlternateImage introAnimInner;
+    [SerializeField] private AlternateImage introAnimOuter;
 
     [SerializeField] private LineRenderer line;
     private Vector3[] linePositions = new Vector3[0];
@@ -30,8 +31,6 @@ public class SpellCircle : MonoBehaviour
 
     [SerializeField] private List<GameObject> spells = new List<GameObject>();
     private List<SpellCirclePoint> spellCirclePoints = new List<SpellCirclePoint>();
-    /*[SerializeField] private List<PlayerHand> hands = new List<PlayerHand>();
-    private PlayerHand preparingHand = null;*/
 
     private PlayerHand castingHand = null;
     [SerializeField] private PlayerHand leftHand = null;
@@ -41,26 +40,11 @@ public class SpellCircle : MonoBehaviour
     private Element element = Element.earth;
     [SerializeField] private bool setElementToNoneOnReset = false;
 
-    /*[SerializeField] private float resourceGainSpeed = 1;
-    [SerializeField] private ElementResource earthResource;
-    [SerializeField] private ElementResource waterResource;
-    [SerializeField] private ElementResource airResource;
-    [SerializeField] private ElementResource fireResource;*/
-
     [SerializeField] private Color fireColor = Color.red;
     [SerializeField] private Color waterColor = Color.blue;
     [SerializeField] private Color airColor = Color.white;
     [SerializeField] private Color earthColor = Color.black;
     [SerializeField] private float innerFadeAlpha = 0.2f;
-    /*private float earthAmount = 8;
-    private float waterAmount = 8;
-    private float airAmount = 8;
-    private float fireAmount = 8;*/
-
-    /*private float lastTouchedTimer = 0f;
-    private float lastTouchedTimeSet = 4;
-    private float lastTouchFadeTime = 2;
-    private float circleImageMinAlpha = 0.25f;*/
 
     private void Awake()
     {
@@ -114,7 +98,7 @@ public class SpellCircle : MonoBehaviour
         {
             ResetCasting();
             // ENABLE SPELLCASTING
-            if (introAnim.isActiveAndEnabled) introAnim.ResetAnim();
+            introAnimInner.ResetAnim();
             rightHand.SetCasting(true);
             visualsGameObject.SetActive(true);
             ignoreUntilUninput = true;
@@ -140,6 +124,7 @@ public class SpellCircle : MonoBehaviour
         visualsGameObject.transform.LookAt(visualsGameObject.transform.position - (playerCamera.position - visualsGameObject.transform.position));
         textFadeInTimer += Time.deltaTime;
         circleImageInnerText.color = ColorHelpers.SetColorAlpha(circleImageInnerText.color, circleImageInnerText.color.a + Time.deltaTime);
+        if (element != Element.none) circleImageOuterText.color = ColorHelpers.SetColorAlpha(circleImageOuterText.color, circleImageOuterText.color.a + Time.deltaTime);
         castingHand = rightHand;
         // if (castingHand == null) return; 
 
@@ -332,11 +317,12 @@ public class SpellCircle : MonoBehaviour
         castingHand = null;
         //preparingHand = null;
         if (setElementToNoneOnReset) SetElement(Element.none);
+        foreach (Image i in imagesToColor) i.color = ColorHelpers.SetColorAlpha(i.color, 0);
         circleImage.color = ColorHelpers.SetColorAlpha(circleImage.color, 0);
         circleImageInner.color = ColorHelpers.SetColorAlpha(circleImageInner.color, 1f);
         circleImageInnerText.color = ColorHelpers.SetColorAlpha(circleImageInnerText.color, 0);
+        circleImageOuterText.color = ColorHelpers.SetColorAlpha(circleImageOuterText.color, 0);
         pointLight.color = ColorHelpers.SetColorAlpha(pointLight.color, 1f);
-        circleImageInner.sprite = circleImageInnerColored;
         foreach (SpellCirclePoint point in spellCirclePoints)
         {
             point.ResetSpellCirclePoint();
@@ -384,10 +370,13 @@ public class SpellCircle : MonoBehaviour
         //lastTouchedTimer = lastTouchedTimeSet;
         element = given;
         Color newColor = Color.white;
+        foreach (Image i in imagesToColor) i.color = ColorHelpers.SetColorAlpha(i.color, 1);
         circleImage.color = ColorHelpers.SetColorAlpha(circleImage.color, 1);
         circleImageInner.color = ColorHelpers.SetColorAlpha(circleImageInner.color, innerFadeAlpha);
-         // circleImageInnerText.color = ColorHelpers.SetColorAlpha(circleImageInnerText.color, innerFadeAlpha);
+        // circleImageInnerText.color = ColorHelpers.SetColorAlpha(circleImageInnerText.color, innerFadeAlpha);
+        // circleImageOuterText.color = ColorHelpers.SetColorAlpha(circleImageOuterText.color, innerFadeAlpha);
         pointLight.color = ColorHelpers.SetColorAlpha(pointLight.color, innerFadeAlpha);
+        introAnimOuter.ResetAnim();
         switch (element)
         {
             case Element.water:
@@ -406,15 +395,16 @@ public class SpellCircle : MonoBehaviour
                 circleImage.color = ColorHelpers.SetColorAlpha(circleImage.color, 0.0f);
                 circleImageInner.color = ColorHelpers.SetColorAlpha(circleImageInner.color, 1f);
                 circleImageInnerText.color = ColorHelpers.SetColorAlpha(circleImageInnerText.color, 1f);
+                circleImageOuterText.color = ColorHelpers.SetColorAlpha(circleImageOuterText.color, 1f);
                 pointLight.color = ColorHelpers.SetColorAlpha(pointLight.color, 1f);
-                circleImageInner.sprite = circleImageInnerColored;
                 break;
         }
+        foreach (Image i in imagesToColor) i.color = ColorHelpers.SetColorRGB(i.color, newColor);
         circleImage.color = ColorHelpers.SetColorRGB(circleImage.color, newColor);
         circleImageInner.color = ColorHelpers.SetColorRGB(circleImageInner.color, newColor);
         circleImageInnerText.color = ColorHelpers.SetColorRGB(circleImageInnerText.color, newColor);
+        circleImageOuterText.color = ColorHelpers.SetColorRGB(circleImageOuterText.color, newColor);
         pointLight.color = ColorHelpers.SetColorRGB(pointLight.color, newColor);
-        circleImageInner.sprite = circleImageInnerWhite;
         line.startColor = newColor;
         line.endColor = newColor;
         foreach (SpellCirclePoint point in spellCirclePoints)
