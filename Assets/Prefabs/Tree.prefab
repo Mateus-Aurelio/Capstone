@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 145f366507eea934ca635cf78088e618, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 40
+  maxHealth: 10
   healthTrackers:
   - {fileID: 8449159683595027597}
   damageModifiers: []
